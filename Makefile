@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/23 00:56:25 by madorna-         ###   ########.fr        #
+#    Updated: 2021/11/23 01:21:19 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,4 +14,72 @@ SRCS =	main.c
 
 NAME = minishell
 
-# $(NAME): ()
+NAME 			=	minishell
+
+OBJS			= 	$(SRCS:.c=.o)
+
+NAME_LIBFT		=	libft.a
+PATH_LIBFT		=	libft
+LIBFT			=	$(PATH_LIBFT)/$(NAME_LIBFT)
+
+INCLUDES		=	-I. -I$(PATH_LIBFT)
+
+PATH_LIBS		=	-L$(PATH_LIBFT)
+###-L searchdir
+###--library-path=searchdir
+# Añade la ruta "searchdir" a la lista de rutas que buscará para bibliotecas y
+# scripts de control
+
+LIBS			=	-lft
+###-l namespec
+###--library=namespec
+# Añade el archivo u objeto especificado por "namespec" a la lista de ficheros
+# a linkar. Si "namespec" es de la forma ':filename', buscará la ruta de la
+# biblioteca para un fichero llamado filename, sino buscará la ruta de la
+# biblioteca para un fichero llamado 'libnamespec.a' (poniendo el sufijo lib
+# antes del nombre pasado)
+
+CC 				=	gcc
+
+RM 				=	rm -f
+
+SANITIZE		=	-fsanitize=address -g3 -O0
+
+CFLAGS 			=	$(INCLUDES) -Wall -Wextra -Werror
+
+LDFLAGS 		=	$(PATH_LIBS) $(LIBS)
+
+#.c.o:
+#		@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
+
+$(NAME):	$(LIBFT) $(OBJS)
+				$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+
+$(LIBFT):
+				make -C $(PATH_LIBFT)
+#-C -->Cambia al directorio PATH_LIBFT antes de leer la orden,
+#y es en ese directorio donde ejecuta lo pedido
+#Normalmente se usa con invocaciones recursivas de make
+
+all:		$(NAME)
+
+print:
+	echo $(PATH_LIBFT)
+
+clean:
+				$(RM) $(OBJS)
+
+fclean:		clean
+				@$(RM) $(NAME)
+				@make -C $(PATH_LIBFT) fclean
+
+re:			fclean all
+
+rebug:		fclean debug
+
+debug:		$(NAME)
+debug:		CFLAGS += $(SANITIZE)
+debug:		LDFLAGS += $(SANITIZE)
+
+#.SILENT:	all clean fclean re $(NAME)
+.PHONY:		all clean fclean re debug
