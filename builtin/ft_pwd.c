@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:12:21 by madorna-         ###   ########.fr       */
+/*   Created: 2021/06/18 16:48:23 by madorna-          #+#    #+#             */
+/*   Updated: 2021/07/11 06:32:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int
-	main(int argc, char **argv, char **env)
-{
-	t_mini mini;
-	char *cosa;
+/*
+** builtin: pwd
+** pwd takes current workdir using getcwd and prints it
+** Please keep in mind that pwd does not have to manage options as the subject
+** 	says !
+*/
 
-	ft_bzero(&mini, sizeof(t_mini));
-	mini.argc = argc;
-	mini.argv = argv;
-	mini.env = env;
-	printf("%d\n", mini.argc);
-	while (1)
-	{
-		cosa = readline("putishell 😎$ ");
-		if (cosa && *cosa)
-			add_history(cosa);
-	}
+int
+	ft_pwd(int argc, char **argv, t_list *env)
+{
+	char	*path;
+
+	(void)env;
+	(void)argc;
+	(void)argv;
+	path = NULL;
+	path = getcwd(path, 0);
+	write(1, "\n", 1);
+	ft_putstr_fd(path, 1);
+	write(1, "\n", 1);
+	free(path);
+	return (0);
 }

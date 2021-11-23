@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:12:21 by madorna-         ###   ########.fr       */
+/*   Created: 2021/07/07 05:13:01 by madorna-          #+#    #+#             */
+/*   Updated: 2021/08/01 02:18:39 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int
-	main(int argc, char **argv, char **env)
-{
-	t_mini mini;
-	char *cosa;
+/*
+** builtin: env
+** env -> print environment variables
+** Keep in mind that env is not meant to take arguments
+** 	or optins as the subject says !
+*/
 
-	ft_bzero(&mini, sizeof(t_mini));
-	mini.argc = argc;
-	mini.argv = argv;
-	mini.env = env;
-	printf("%d\n", mini.argc);
-	while (1)
-	{
-		cosa = readline("putishell 😎$ ");
-		if (cosa && *cosa)
-			add_history(cosa);
-	}
+int
+	ft_env(int argc, char **argv, t_list *env)
+{
+	(void)argc;
+	(void)argv;
+	write(1, "\n", 1);
+	print_env_list(env, __FUNCTION__);
+	return (0);
 }

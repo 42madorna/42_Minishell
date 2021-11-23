@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/23 01:21:19 by madorna-         ###   ########.fr        #
+#    Updated: 2021/11/23 18:05:53 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,10 @@ NAME_LIBFT		=	libft.a
 PATH_LIBFT		=	libft
 LIBFT			=	$(PATH_LIBFT)/$(NAME_LIBFT)
 
+#NAME_RL		=	libreadline.a
+PATH_RL		=	librl
+RL			=	$(PATH_RL)/$(NAME_RL)
+
 INCLUDES		=	-I. -I$(PATH_LIBFT)
 
 PATH_LIBS		=	-L$(PATH_LIBFT)
@@ -30,7 +34,7 @@ PATH_LIBS		=	-L$(PATH_LIBFT)
 # Añade la ruta "searchdir" a la lista de rutas que buscará para bibliotecas y
 # scripts de control
 
-LIBS			=	-lft
+LIBS			=	-lft -lreadline
 ###-l namespec
 ###--library=namespec
 # Añade el archivo u objeto especificado por "namespec" a la lista de ficheros

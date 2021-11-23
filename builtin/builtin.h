@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 18:12:21 by madorna-         ###   ########.fr       */
+/*   Created: 2021/06/18 16:53:49 by madorna-          #+#    #+#             */
+/*   Updated: 2021/07/11 06:30:28 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef BUILTIN_H
+# define BUILTIN_H
+# include "minishell.h"
 
-int
-	main(int argc, char **argv, char **env)
-{
-	t_mini mini;
-	char *cosa;
+int	builtin(t_minishell *mini);
+int	ft_pwd(t_list *env);
+int	ft_exit(int status);
+int	ft_cd(char *path, t_list *env);
+int	ft_env(int argc, char **argv, t_list *env);
+int	ft_unset(int argc, char **argv, t_list *env);
+int	ft_export(int argc, char **argv, t_list *env);
 
-	ft_bzero(&mini, sizeof(t_mini));
-	mini.argc = argc;
-	mini.argv = argv;
-	mini.env = env;
-	printf("%d\n", mini.argc);
-	while (1)
-	{
-		cosa = readline("putishell 😎$ ");
-		if (cosa && *cosa)
-			add_history(cosa);
-	}
-}
+#endif
