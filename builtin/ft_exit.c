@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:50:18 by madorna-          #+#    #+#             */
-/*   Updated: 2021/08/01 00:31:38 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/23 21:40:34 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 */
 
 int
-	ft_exit(int argc, char **argv, t_list *env, t_minishell *mini)
+	ft_exit(int argc, char **argv, t_list *env, t_mini *mini)
 {
 	int		i;
 
 	(void)env;
 	i = -1;
-	ft_putstr_fd("\nexit\n", 1);
+	ft_putstr_fd("exit\n", 1);
 	if (argc == 1)
 		exit(0);
 	while (argv[1][++i])
@@ -46,7 +46,6 @@ int
 	}
 	if (i != -2 && argc >= 3)
 		return (write(1, "minishell: exit: too many arguments\n", 36));
-	tcsetattr(STDIN_FILENO, TCSAFLUSH, &mini->termios_backup);
 	if (i == -2)
 		exit(255);
 	exit (ft_atoi(argv[1]));

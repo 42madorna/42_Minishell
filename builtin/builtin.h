@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:53:49 by madorna-          #+#    #+#             */
-/*   Updated: 2021/07/11 06:30:28 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/23 18:57:37 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define BUILTIN_H
 # include "minishell.h"
 
-int	builtin(t_minishell *mini);
-int	ft_pwd(t_list *env);
-int	ft_exit(int status);
-int	ft_cd(char *path, t_list *env);
+struct	s_mini;
+
+int	builtin(char **argv, struct s_mini *mini);
+int	ft_pwd(int argc, char **argv, t_list *env);
+int	ft_exit(int argc, char **argv, t_list *env, struct s_mini *mini);
+int	ft_cd(int argc, char **argv, t_list *env);
 int	ft_env(int argc, char **argv, t_list *env);
 int	ft_unset(int argc, char **argv, t_list *env);
 int	ft_export(int argc, char **argv, t_list *env);
