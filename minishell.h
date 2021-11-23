@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 20:50:43 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/23 23:48:50 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+#define SHELL_NAME "minishell"
 
 
 typedef struct	s_mini

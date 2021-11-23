@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 21:39:28 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/23 23:49:44 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void
 	parse(t_mini *mini)
 {
-	char *line;
+	char	*line;
 
 	line = mini->line;
 	while (*line)
@@ -34,16 +34,16 @@ void
 void
 	signal_h(int what)
 {
-	printf("\n"); // Move to a new line
-	rl_on_new_line(); // Regenerate the prompt on a newline
-	rl_replace_line("", 0); // Clear the previous text
+	printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
 	rl_redisplay();
 }
 
 int
 	main(int argc, char **argv, char **env)
 {
-	t_mini mini;
+	t_mini	mini;
 
 	ft_bzero(&mini, sizeof(t_mini));
 	mini.argc = argc;
@@ -54,13 +54,14 @@ int
 	signal(SIGHUP, signal_h);
 	while (1)
 	{
-		mini.line = readline("putishell 😎$ ");
+		mini.line = readline(SHELL_NAME "$ ");
 		if (mini.line && *mini.line)
 		{
 			add_history(mini.line);
 			parse(&mini);
 			free(mini.line);
-		} else if (!mini.line)
+		}
+		else if (!mini.line)
 		{
 			write(1, "exit\n", 6);
 			exit(0);

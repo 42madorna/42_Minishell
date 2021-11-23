@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/23 21:33:31 by madorna-         ###   ########.fr        #
+#    Updated: 2021/11/23 23:53:14 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ NAME_LIBFT		=	libft.a
 PATH_LIBFT		=	libft
 LIBFT			=	$(PATH_LIBFT)/$(NAME_LIBFT)
 
-INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin -I/Users/madorna-/.brew/opt/readline/include
+INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin -I/Users/$(USER)/.brew/opt/readline/include
 
-PATH_LIBS		=	-L$(PATH_LIBFT) -L/Users/madorna-/.brew/opt/readline/lib
+PATH_LIBS		=	-L$(PATH_LIBFT) -L/Users/$(USER)/.brew/opt/readline/lib
 ###-L searchdir
 ###--library-path=searchdir
 # Añade la ruta "searchdir" a la lista de rutas que buscará para bibliotecas y
