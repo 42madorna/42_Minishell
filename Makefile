@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/24 00:45:34 by madorna-         ###   ########.fr        #
+#    Updated: 2021/11/24 03:01:11 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ $(NAME):	$(LIBFT) $(OBJS)
 				$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 $(LIBFT):
-				make -C $(PATH_LIBFT)
+				make -C $(PATH_LIBFT) bonus
 #-C -->Cambia al directorio PATH_LIBFT antes de leer la orden,
 #y es en ese directorio donde ejecuta lo pedido
 #Normalmente se usa con invocaciones recursivas de make

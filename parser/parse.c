@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/24 02:48:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/24 03:21:56 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,47 @@ int
 	return (0);
 }
 
+void
+	print(void *lst)
+{
+	char *str;
+
+	str = lst;
+	printf("node content '%s'\n", str);
+}
+
 int
 	parse(t_mini *mini)
 {
 	char	*line;
+	char	*str;
 	t_cmd	cmd;
+	int		i;
 
 	line = mini->line;
 	ft_bzero(&cmd, sizeof(t_cmd));
 	cmd.env = mini->env;
+	str = malloc(sizeof(char *));
+	i = -1;
 	while (*line)
 	{
 		if (specials(&line))
 			return (printf("Unexpected token\n"));
+		if (*line == ' ' || *line == '\t')
+			ft_lstadd_back(&cmd.l_argv, ft_lstnew(++line));
+		str[++i] = *line;
 		line++;
+		/*
+		** TODO: [MINS-63] Add parsed content to cmd.argv.
+		** Example: echo "hola $HOME"
+		** cmd.argv = {
+		**     "echo",
+		**     "hola /Users/madorna-"
+		** }
+		*/
 	}
+	ft_lstadd_back(&cmd.l_argv, ft_lstnew(line));
+	ft_lstiter(cmd.l_argv, print);
 	ft_execve(cmd);
 	// execve(cmd.argv[0], cmd.argv, mini->env);
 	// while (*line)
