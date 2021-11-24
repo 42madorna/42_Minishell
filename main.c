@@ -6,38 +6,22 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 23:49:44 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/24 00:44:05 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void
-	parse(t_mini *mini)
+	signal_h(int signal)
 {
-	char	*line;
-
-	line = mini->line;
-	while (*line)
+	if (signal == SIGINT)
 	{
-		if (!strcmp(line, "exit"))
-		{
-			mini->argv[0] = strdup("exit\0");
-			builtin(mini->argv, mini);
-		}
-		write(1, line, 1);
-		++line;
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
 	}
-	write(1, "\n", 1);
-}
-
-void
-	signal_h(int what)
-{
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
 }
 
 int
@@ -49,12 +33,11 @@ int
 	mini.argc = argc;
 	mini.argv = argv;
 	mini.env = env;
-	printf("%s\n", getenv("PATH"));
 	signal(SIGINT, signal_h);
-	signal(SIGHUP, signal_h);
+	signal(SIGQUIT, signal_h);
 	while (1)
 	{
-		mini.line = readline(SHELL_NAME "$ ");
+		mini.line = readline(SHELL_NAME);
 		if (mini.line && *mini.line)
 		{
 			add_history(mini.line);

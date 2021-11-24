@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 23:48:50 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/24 00:45:13 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-#define SHELL_NAME "minishell"
+#define SHELL_NAME "minishell$ "
 
+# define PIPE '|'
+# define DQUOTE '"'
+# define QUOTE '\''
+# define DOLLAR '$'
+# define IN '<'
+# define OUT '>'
 
 typedef struct	s_mini
 {
@@ -30,7 +36,26 @@ typedef struct	s_mini
 	char	**argv;
 	char	**env;
 	char	*line;
+	int		errno;
 	t_list	*l_env;
+	t_list	*cmds;
 }				t_mini;
+
+typedef struct	s_cmd
+{
+	int		argc;
+	char	**argv;
+	char	**env;
+}				t_cmd;
+
+/*
+** Parser functions
+*/
+void	parse(t_mini *mini);
+
+/*
+** Exec functions
+*/
+int		ft_execve(t_cmd command);
 
 #endif
