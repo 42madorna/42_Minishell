@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/24 00:45:13 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/24 01:07:27 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct	s_cmd
 	int		argc;
 	char	**argv;
 	char	**env;
+	char	*infile;
+	char	*outfile;
 }				t_cmd;
 
 /*
