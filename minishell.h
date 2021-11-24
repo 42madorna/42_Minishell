@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/24 01:07:27 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/24 02:47:15 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_cmd
 	int		argc;
 	char	**argv;
 	char	**env;
+	t_list	l_argv;
 	char	*infile;
 	char	*outfile;
 }				t_cmd;
@@ -53,7 +54,7 @@ typedef struct	s_cmd
 /*
 ** Parser functions
 */
-void	parse(t_mini *mini);
+int		parse(t_mini *mini);
 
 /*
 ** Exec functions
