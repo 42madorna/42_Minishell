@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/24 03:00:45 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/27 03:52:34 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@
 # include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <signal.h>
 
-#define SHELL_NAME "minishell$ "
+#define SHELL_NAME "minishell"
 
-# define PIPE '|'
-# define DQUOTE '"'
-# define QUOTE '\''
-# define DOLLAR '$'
-# define IN '<'
-# define OUT '>'
+# define PIPE "|"
+# define DQUOTE "\""
+# define QUOTE "\'"
+# define DOLLAR "$"
+# define DELIMITTER "<<"
+# define IN "<"
+# define APPEND ">>"
+# define OUT ">"
 
 typedef struct	s_mini
 {

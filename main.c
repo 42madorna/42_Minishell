@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/24 00:44:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/27 04:01:46 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ void
 	}
 }
 
+void
+	promt(t_mini *mini, int type)
+{
+	static char	*names[] = {SHELL_NAME"$ ", "> "};
+
+	mini->line = readline(names[type]);
+}
+
 int
 	main(int argc, char **argv, char **env)
 {
@@ -37,7 +45,7 @@ int
 	signal(SIGQUIT, signal_h);
 	while (1)
 	{
-		mini.line = readline(SHELL_NAME);
+		promt(&mini, 0);
 		if (mini.line && *mini.line)
 		{
 			add_history(mini.line);
@@ -47,6 +55,7 @@ int
 		else if (!mini.line)
 		{
 			write(1, "exit\n", 6);
+			rl_clear_history();
 			exit(0);
 		}
 	}
