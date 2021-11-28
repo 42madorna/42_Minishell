@@ -6,11 +6,31 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/23 01:21:19 by madorna-         ###   ########.fr        #
+#    Updated: 2021/11/27 23:28:54 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	main.c																	
+SRCS =	main.c																	\
+		ft_execve.c																\
+		builtin/ft_exit.c														\
+		builtin/builtin.c														\
+		parser/append.c															\
+		parser/clear.c															\
+		parser/delimiter.c														\
+		parser/dollar.c															\
+		parser/dquote.c															\
+		parser/in.c																\
+		parser/out.c															\
+		parser/parse.c															\
+		parser/pipe.c															\
+		parser/quote.c
+
+# builtin/ft_cd.c														
+# builtin/ft_echo.c														
+# builtin/ft_env.c														
+# builtin/ft_export.c													
+# builtin/ft_pwd.c														
+# builtin/ft_uknset.c													
 
 NAME = minishell
 
@@ -22,15 +42,20 @@ NAME_LIBFT		=	libft.a
 PATH_LIBFT		=	libft
 LIBFT			=	$(PATH_LIBFT)/$(NAME_LIBFT)
 
-INCLUDES		=	-I. -I$(PATH_LIBFT)
+INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin
 
 PATH_LIBS		=	-L$(PATH_LIBFT)
+
+ifeq ($(shell uname -s),Darwin)
+	INCLUDES += -I/Users/$(USER)/.brew/opt/readline/include
+	PATH_LIBS += -L/Users/$(USER)/.brew/opt/readline/lib
+endif
 ###-L searchdir
 ###--library-path=searchdir
 # Añade la ruta "searchdir" a la lista de rutas que buscará para bibliotecas y
 # scripts de control
 
-LIBS			=	-lft
+LIBS			=	-lft -lreadline
 ###-l namespec
 ###--library=namespec
 # Añade el archivo u objeto especificado por "namespec" a la lista de ficheros
@@ -45,7 +70,7 @@ RM 				=	rm -f
 
 SANITIZE		=	-fsanitize=address -g3 -O0
 
-CFLAGS 			=	$(INCLUDES) -Wall -Wextra -Werror
+CFLAGS 			=	$(INCLUDES) -Wall #-Wextra -Werror
 
 LDFLAGS 		=	$(PATH_LIBS) $(LIBS)
 
@@ -56,7 +81,7 @@ $(NAME):	$(LIBFT) $(OBJS)
 				$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 $(LIBFT):
-				make -C $(PATH_LIBFT)
+				make -C $(PATH_LIBFT) bonus
 #-C -->Cambia al directorio PATH_LIBFT antes de leer la orden,
 #y es en ese directorio donde ejecuta lo pedido
 #Normalmente se usa con invocaciones recursivas de make
