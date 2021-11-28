@@ -6,111 +6,150 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/27 04:48:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/28 01:19:21 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char
-	*ft_dollar(char **line)
-{
-	char	*parsed;
-	int		i;
+// char
+// 	*ft_dollar(char **line)
+// {
+// 	char	*parsed;
+// 	int		i;
 
-	parsed = calloc(1, sizeof(char *));
-	i = 0;
-	++*line;
-	while (**line && !ft_strncmp(*line, DQUOTE, 1))
-	{
-		parsed[i] = **line;
-		++*line;
-		++i;
-	}
-	return (getenv(parsed));
-}
+// 	parsed = calloc(1, sizeof(char *));
+// 	i = 0;
+// 	++*line;
+// 	while (**line && !ft_strncmp(*line, DQUOTE, 1))
+// 	{
+// 		parsed[i] = **line;
+// 		++*line;
+// 		++i;
+// 	}
+// 	return (getenv(parsed));
+// }
+
+// int
+// 	find_quote(char **line, char *q)
+// {
+// 	++*line;
+// 	// printf("current: %s\n", *line);
+// 	while (*(*line))
+// 	{
+// 		// printf("current: %s\n", (*line));
+// 		if (!ft_strncmp(q, DQUOTE, 1) && **line == '$')
+// 			printf("%s\n", ft_dollar(line));
+// 		if (!ft_strncmp(*line, q, 1))
+// 			return (0);
+// 		++*line;
+// 	}
+// 	return (1);
+// }
 
 int
-	find_quote(char **line, char *q)
-{
-	++*line;
-	// printf("current: %s\n", *line);
-	while (*(*line))
-	{
-		// printf("current: %s\n", (*line));
-		if (!ft_strncmp(q, DQUOTE, 1) && **line == '$')
-			printf("%s\n", ft_dollar(line));
-		if (!ft_strncmp(*line, q, 1))
-			return (0);
-		++*line;
-	}
-	return (1);
-}
-
-int
-	specials(char **line)
+	specials(t_mini *mini)
 {
 	// [MINS-50] HERE!
-	// printf("received %s\n", *line);
-	if (!ft_strncmp(*line, APPEND, 2))
+	// printf("received %s\n", mini->line_cpy);
+	if (!ft_strncmp(mini->line_cpy, ">>", 2))
 	{
 		/*
 		** ">> file"
 		** Append opens the file in O_APPEND mode and uses it as STDOUT
 		*/
-		*line += 2;
+		mini->line_cpy += 2;
+		mini->flag += APPEND;
+		mini->flag -= APPEND;
 		return (printf("Append!\n") - 8);
 	}
-	if (!ft_strncmp(*line, DELIMITTER, 2))
+	if (!ft_strncmp(mini->line_cpy, "<<", 2))
 	{
 		/*
-		** Delimitter should be like this "<< delim"
+		** DELIMITER should be like this "<< delim"
 		** 	then, ">" is prompted and waits for "delim" to be written.
 		** If there are many "<<", the "delim" has to be written in the order
 		** 	the pipes have.
 		*/
-		*line += 2;
-		return (printf("Delimitter!\n") - 12);
+		mini->line_cpy += 2;
+		mini->flag += DELIMITER;
+		mini->flag -= DELIMITER;
+		return (printf("DELIMITER!\n") - 12);
 	}
-	if (!ft_strncmp(*line, IN, 1))
+	if (!ft_strncmp(mini->line_cpy, "<", 1))
+	{
 		/*
 		** > Opens file in read mode and take it as STDIN
 		** If file does not exist, bash prints this:
 		** 	bash: noexiste: No existe el archivo o el directorio
 		** IMPORTANT: In this case, a command is not required.
 		*/
+		mini->flag += IN;
 		printf("In!\n");
-	if (!ft_strncmp(*line, OUT, 1))
+		mini->flag -= IN;
+	}
+	if (!ft_strncmp(mini->line_cpy, ">", 1))
+	{
 		/*
 		** > Opens file in write mode and use it as STDOUT
 		** If file does not exist, bash creates it.
 		** IMPORTANT: In this case, a command is not required.
 		*/
+		mini->flag += OUT;
 		printf("Out!\n");
-	if (!ft_strncmp(*line, PIPE, 1))
+		mini->flag -= OUT;
+	}
+	if (!ft_strncmp(mini->line_cpy, "|", 1))
+	{
 		/*
 		** | Passes command[n] STDOUT to command[n + 1] STDIN
 		** | can not be the first character at input. All commands/files
 		** 	existence is checked before executing anything.
 		*/
+		mini->flag += PIPE;
 		printf("Pipe!\n");
-	if (!ft_strncmp(*line, DQUOTE, 1))
+		mini->flag -= PIPE;
+	}
+	if (!ft_strncmp(mini->line_cpy, "\"", 1))
+	{
 		/*
 		** " Ignores every special character except $, which would expand.
 		** 	Also, the argv[n] should be saved ignoring espaces
 		*/
-		return (find_quote(line, DQUOTE));
-	if (!ft_strncmp(*line, QUOTE, 1))
+		if (((mini->flag & DQUOTE) == DQUOTE) == 1)
+			mini->flag -= DQUOTE;
+		else if (((mini->flag & QUOTE) == QUOTE) != 1)
+		{
+			mini->flag += DQUOTE;
+			printf("Dquote!\n");
+		}
+	}
+	if (!ft_strncmp(mini->line_cpy, "'", 1))
+	{
 		/*
 		** ' Ignores every special character.
 		** 	Also, the argv[n] should be saved ignoring espaces
 		*/
-		return (find_quote(line, QUOTE));
-	if (!ft_strncmp(*line, DOLLAR, 1))
+		if (((mini->flag & QUOTE) == QUOTE) == 1)
+			mini->flag -= QUOTE;
+		else if (((mini->flag & DQUOTE) == DQUOTE) != 1)
+		{
+			mini->flag += QUOTE;
+			printf("Quote!\n");
+		}
+	}
+	if (!ft_strncmp(mini->line_cpy, "$", 1))
+	{
 		/*
 		** $ should expand the ENV_VAR name to its value.
 		*/
-		printf("%s\n", ft_dollar(line));
+		if (((mini->flag & QUOTE) == QUOTE) != 1)
+		{
+			mini->flag += DOLLAR;
+			printf("Dollar!\n");
+			mini->flag -= DOLLAR;
+		}
+	}
 	return (0);
 }
 
@@ -124,26 +163,35 @@ void
 }
 
 int
+	unexpected(t_mini *mini)
+{
+	const static char *tokens[] = {NULL, "|", ">", "'",
+		"<<", "<", ">>", "$", "\""};
+
+	return (printf("Unexpected token near `%s'\n", tokens[mini->flag]));
+}
+
+int
 	parse(t_mini *mini)
 {
-	char	*line;
 	char	*str;
 	t_cmd	cmd;
 	int		i;
 
-	line = mini->line;
+	mini->line_cpy = ft_strtrim(mini->line, " ");
 	ft_bzero(&cmd, sizeof(t_cmd));
 	cmd.env = mini->env;
 	str = malloc(sizeof(char *)); // TODO: Leak
 	i = -1;
-	while (*line)
+	if (*mini->line_cpy == '|')
+		return (printf("Unexpected token near `|'\n"));
+	while (*mini->line_cpy)
 	{
-		if (specials(&line))
-			return (printf("Unexpected token\n"));
-		if (*line == ' ' || *line == '\t')
-			ft_lstadd_back(&cmd.l_argv, ft_lstnew(++line)); // Leak
-		str[++i] = *line;
-		line++;
+		specials(mini);
+		if (*mini->line_cpy == ' ' || *mini->line_cpy == '\t')
+			ft_lstadd_back(&cmd.l_argv, ft_lstnew(mini->line_cpy)); // Leak
+		str[++i] = *mini->line_cpy;
+		mini->line_cpy++;
 		/*
 		** TODO: [MINS-63] Add parsed content to cmd.argv.
 		** Example: echo "hola $HOME"
@@ -153,8 +201,13 @@ int
 		** }
 		*/
 	}
-	ft_lstadd_back(&cmd.l_argv, ft_lstnew(line)); // TODO: Leaks
-	ft_lstiter(cmd.l_argv, print);
+	// printf("flag is %d\n", mini->flag);
+	// if (mini->flag > 0)
+	// 	return (printf("Unexpected token\n"));
+	if (mini->flag > 0)
+		return (unexpected(mini));
+	ft_lstadd_back(&cmd.l_argv, ft_lstnew(mini->line_cpy)); // TODO: Leaks
+	// ft_lstiter(cmd.l_argv, print);
 	ft_execve(cmd);
 	// execve(cmd.argv[0], cmd.argv, mini->env);
 	// while (*line)
