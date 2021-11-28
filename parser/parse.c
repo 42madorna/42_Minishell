@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/28 01:19:21 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/28 06:17:57 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ int
 		** Append opens the file in O_APPEND mode and uses it as STDOUT
 		*/
 		mini->line_cpy += 2;
-		mini->flag += APPEND;
-		mini->flag -= APPEND;
-		return (printf("Append!\n") - 8);
+		mini->p[APPEND](mini);
+		// return (printf("Append!\n") - 8);
 	}
 	if (!ft_strncmp(mini->line_cpy, "<<", 2))
 	{
@@ -72,8 +71,7 @@ int
 		** 	the pipes have.
 		*/
 		mini->line_cpy += 2;
-		mini->flag += DELIMITER;
-		mini->flag -= DELIMITER;
+		mini->p[DELIMITER](mini);
 		return (printf("DELIMITER!\n") - 12);
 	}
 	if (!ft_strncmp(mini->line_cpy, "<", 1))
@@ -84,9 +82,9 @@ int
 		** 	bash: noexiste: No existe el archivo o el directorio
 		** IMPORTANT: In this case, a command is not required.
 		*/
-		mini->flag += IN;
-		printf("In!\n");
-		mini->flag -= IN;
+		// printf("In!\n");
+		mini->line_cpy++;
+		mini->p[IN](mini);
 	}
 	if (!ft_strncmp(mini->line_cpy, ">", 1))
 	{
@@ -95,9 +93,9 @@ int
 		** If file does not exist, bash creates it.
 		** IMPORTANT: In this case, a command is not required.
 		*/
-		mini->flag += OUT;
-		printf("Out!\n");
-		mini->flag -= OUT;
+		// printf("Out!\n");
+		mini->line_cpy++;
+		mini->p[OUT](mini);
 	}
 	if (!ft_strncmp(mini->line_cpy, "|", 1))
 	{
@@ -106,9 +104,9 @@ int
 		** | can not be the first character at input. All commands/files
 		** 	existence is checked before executing anything.
 		*/
-		mini->flag += PIPE;
 		printf("Pipe!\n");
-		mini->flag -= PIPE;
+		mini->line_cpy++;
+		mini->p[PIPE](mini);
 	}
 	if (!ft_strncmp(mini->line_cpy, "\"", 1))
 	{
@@ -116,13 +114,8 @@ int
 		** " Ignores every special character except $, which would expand.
 		** 	Also, the argv[n] should be saved ignoring espaces
 		*/
-		if (((mini->flag & DQUOTE) == DQUOTE) == 1)
-			mini->flag -= DQUOTE;
-		else if (((mini->flag & QUOTE) == QUOTE) != 1)
-		{
-			mini->flag += DQUOTE;
-			printf("Dquote!\n");
-		}
+		mini->line_cpy++;
+		mini->p[DQUOTE](mini);
 	}
 	if (!ft_strncmp(mini->line_cpy, "'", 1))
 	{
@@ -130,26 +123,18 @@ int
 		** ' Ignores every special character.
 		** 	Also, the argv[n] should be saved ignoring espaces
 		*/
-		if (((mini->flag & QUOTE) == QUOTE) == 1)
-			mini->flag -= QUOTE;
-		else if (((mini->flag & DQUOTE) == DQUOTE) != 1)
-		{
-			mini->flag += QUOTE;
-			printf("Quote!\n");
-		}
+		mini->line_cpy++;
+		mini->p[QUOTE](mini);
 	}
 	if (!ft_strncmp(mini->line_cpy, "$", 1))
 	{
 		/*
 		** $ should expand the ENV_VAR name to its value.
 		*/
-		if (((mini->flag & QUOTE) == QUOTE) != 1)
-		{
-			mini->flag += DOLLAR;
-			printf("Dollar!\n");
-			mini->flag -= DOLLAR;
-		}
+		mini->line_cpy++;
+		mini->p[DOLLAR](mini);
 	}
+	mini->p[CLEAR](mini);
 	return (0);
 }
 
@@ -181,7 +166,7 @@ int
 	mini->line_cpy = ft_strtrim(mini->line, " ");
 	ft_bzero(&cmd, sizeof(t_cmd));
 	cmd.env = mini->env;
-	str = malloc(sizeof(char *)); // TODO: Leak
+	str = calloc(100, sizeof(char)); // TODO: Leak
 	i = -1;
 	if (*mini->line_cpy == '|')
 		return (printf("Unexpected token near `|'\n"));
@@ -201,6 +186,7 @@ int
 		** }
 		*/
 	}
+	printf("str is %s\n", str);
 	// printf("flag is %d\n", mini->flag);
 	// if (mini->flag > 0)
 	// 	return (printf("Unexpected token\n"));
@@ -208,7 +194,7 @@ int
 		return (unexpected(mini));
 	ft_lstadd_back(&cmd.l_argv, ft_lstnew(mini->line_cpy)); // TODO: Leaks
 	// ft_lstiter(cmd.l_argv, print);
-	ft_execve(cmd);
+	// ft_execve(cmd);
 	// execve(cmd.argv[0], cmd.argv, mini->env);
 	// while (*line)
 	// {

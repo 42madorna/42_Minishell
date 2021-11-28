@@ -6,15 +6,26 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/27 23:51:33 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/28 05:33:57 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+** Add QUOTE content to buffer except when APPEND, DELIMITER, IN, OUT are
+** 	specified, in that case, the normal behaviour of these flags may occur!
+*/
 int
 	parse_quote(t_mini *mini)
 {
+	if (((mini->flag & QUOTE) == QUOTE) == 1)
+			mini->flag -= QUOTE;
+	else if (((mini->flag & DQUOTE) == DQUOTE) != 1)
+	{
+		mini->flag += QUOTE;
+		printf("Quote!\n");
+	}
 	printf("Called Quote function\n");
 	return (0);
 }

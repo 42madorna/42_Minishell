@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/28 00:32:27 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/28 06:02:00 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <errno.h>
 
 # define SHELL_NAME "minishell"
 
@@ -50,10 +51,13 @@ typedef struct s_mini
 	char	**env;
 	char	*line;
 	char	*line_cpy;
+	char	*buffer;
 	int		flag;
-	int		errno;
+	// int		errno;
+	int		p_error;
 	t_list	*l_env;
 	t_list	*cmds;
+	t_list	*delimiters;
 	int		(*p[9])(struct s_mini*);
 }				t_mini;
 
