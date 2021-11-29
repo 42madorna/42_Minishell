@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/28 00:58:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 22:27:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+	if (signal == SIGQUIT)
+		printf("SIGQUIT RECEIVED; MUST HANDLE IT\n");
 }
 
 void
@@ -68,19 +70,6 @@ int
 	signal(SIGINT, signal_h);
 	signal(SIGQUIT, signal_h);
 	set_functions(&mini);
-	// mini.flag = CLEAR;
-	// printf("mini.flag %d\n", mini.flag);
-	// // Añadir al binario
-	// mini.flag += DQUOTE + DOLLAR;
-	// printf("mini.flag %d\n", mini.flag);
-	// // Saber si algo está dentro del binario
-	// printf("mini.flag %d\n", (mini.flag & DQUOTE) == DQUOTE);
-	// if (((mini.flag & DQUOTE) == DQUOTE) == 1)
-	// 	mini.p[DQUOTE](&mini);
-	// if (((mini.flag & DOLLAR) == DOLLAR) == 1)
-	// 	mini.p[DOLLAR](&mini);
-	// if (mini.flag != 0)
-	// 	printf("Parse error\n");
 	while (1)
 	{
 		mini.flag = CLEAR;
@@ -89,6 +78,9 @@ int
 		{
 			add_history(mini.line);
 			parse(&mini);
+			// TODO: Add add cmds->l_argv to cmd->argv
+			// TODO: Execve
+			// TODO: If not found, builtins!
 			free(mini.line);
 		}
 		else if (!mini.line)
