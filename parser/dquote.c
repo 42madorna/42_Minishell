@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 05:37:27 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 05:55:33 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int
 	}
 	else if (((mini->flag & QUOTE) == QUOTE) != 1)
 	{
+		if (((mini->flag & DOLLAR) == DOLLAR) == 1)
+			mini->flag -= DOLLAR;
 		mini->flag += DQUOTE;
 		mini->line_cpy++;
 	}

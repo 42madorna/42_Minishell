@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 05:36:19 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 08:14:42 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,12 +256,13 @@ int
 	parse(t_mini *mini)
 {
 	t_chars	*chars;
+	char	*p;
 
 	mini->line_cpy = ft_strtrim(mini->line, " "); // TODO: Leak
+	p = mini->line_cpy;
 	while (*mini->line_cpy)
 	{
-		if (*mini->line_cpy == ' ' && (((mini->flag & DOLLAR) == DOLLAR) == 1))
-			mini->flag -= DOLLAR;
+		mini->p[CLEAR](mini);
 		chars = calloc(1, sizeof(t_chars*));
 		chars->flag = specials(mini);
 		if (!*mini->line_cpy)
@@ -269,13 +270,14 @@ int
 			free(chars);
 			break ;
 		}
+		if (*mini->line_cpy == '|')
+			chars->flag = PIPE;
 		chars->c = *mini->line_cpy;
-		// chars->end = 
 		ft_lstadd_back(&mini->chars, ft_lstnew(chars));
 		mini->line_cpy++;
 	}
-	// if (mini->line_cpy)
-	// 	free(mini->line_cpy);
-	ft_lstiter(mini->chars, print);
+	free(p);
+	// ft_lstiter(mini->chars, print);
+	make_command(mini);
 	ft_lstclear(&mini->chars, free);
 }

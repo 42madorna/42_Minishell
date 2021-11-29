@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/29 03:39:55 by madorna-         ###   ########.fr        #
+#    Updated: 2021/11/29 06:42:09 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS =	main.c																	\
 		parser/dollar.c															\
 		parser/dquote.c															\
 		parser/in.c																\
+		parser/make_command.c													\
 		parser/out.c															\
 		parser/parse.c															\
 		parser/pipe.c															\

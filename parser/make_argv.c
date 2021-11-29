@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dollar.c                                           :+:      :+:    :+:   */
+/*   make_argv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 06:04:33 by madorna-         ###   ########.fr       */
+/*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
+/*   Updated: 2021/11/29 06:36:14 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Parse env_var name after DOLLAR ($) and add the content to buffer.
-** If there is a space or any other special char or even '\0' after dollar,
-** 	put the dollar into the buffer.
-*/
-int
-	parse_dollar(t_mini *mini)
+void
+	make_argv(t_mini *mini)
 {
-	if (((mini->flag & QUOTE) == QUOTE) != 1)
-		mini->flag += DOLLAR;
-	return (0);
+	
 }
