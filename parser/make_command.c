@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 08:23:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 08:32:29 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void
 	printf("End of Command\n");
 }
 
+// FIXME: Revisar creación de comandos
 void
 	make_command(t_mini *mini)
 {
