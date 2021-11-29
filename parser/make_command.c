@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 08:32:29 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 08:34:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char
 
 	env_var = calloc(1024, sizeof(char));
 	i = 0;
-	while ((*lst) && ((((t_chars*)(*lst)->content)->flag & DOLLAR)
+	while ((*lst)->next && ((((t_chars*)(*lst)->next->content)->flag & DOLLAR)
 		== DOLLAR) == 1)
 	{
 		env_var[i++] = ((t_chars*)(*lst)->next->content)->c;
