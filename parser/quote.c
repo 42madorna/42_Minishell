@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/28 05:33:57 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 05:37:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ int
 	parse_quote(t_mini *mini)
 {
 	if (((mini->flag & QUOTE) == QUOTE) == 1)
-			mini->flag -= QUOTE;
+	{
+		mini->flag -= QUOTE;
+		mini->line_cpy++;
+	}
 	else if (((mini->flag & DQUOTE) == DQUOTE) != 1)
 	{
 		mini->flag += QUOTE;
-		printf("Quote!\n");
+		mini->line_cpy++;
 	}
-	printf("Called Quote function\n");
 	return (0);
 }

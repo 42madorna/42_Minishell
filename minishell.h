@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/28 06:02:00 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 05:23:32 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_mini
 	t_list	*l_env;
 	t_list	*cmds;
 	t_list	*delimiters;
+	t_list	*chars;
 	int		(*p[9])(struct s_mini*);
 }				t_mini;
 
@@ -71,10 +72,18 @@ typedef struct s_cmd
 	char	*outfile;
 }				t_cmd;
 
+typedef struct s_chars
+{
+	char	c;
+	int		flag;
+	int		end;
+}				t_chars;
+
 /*
 ** Parser functions
 */
 int		parse(t_mini *mini);
+int		specials(t_mini *mini);
 int		parse_clear(t_mini *mini);
 int		parse_pipe(t_mini *mini);
 int		parse_dquote(t_mini *mini);

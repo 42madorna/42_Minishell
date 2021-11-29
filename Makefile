@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/27 23:28:54 by madorna-         ###   ########.fr        #
+#    Updated: 2021/11/29 03:39:55 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,10 +46,6 @@ INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin
 
 PATH_LIBS		=	-L$(PATH_LIBFT)
 
-ifeq ($(shell uname -s),Darwin)
-	INCLUDES += -I/Users/$(USER)/.brew/opt/readline/include
-	PATH_LIBS += -L/Users/$(USER)/.brew/opt/readline/lib
-endif
 ###-L searchdir
 ###--library-path=searchdir
 # Añade la ruta "searchdir" a la lista de rutas que buscará para bibliotecas y
@@ -76,6 +72,11 @@ LDFLAGS 		=	$(PATH_LIBS) $(LIBS)
 
 #.c.o:
 #		@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
+
+ifeq ($(shell uname -s),Darwin)
+	INCLUDES += -I/Users/$(USER)/.brew/opt/readline/include
+	PATH_LIBS += -L/Users/$(USER)/.brew/opt/readline/lib
+endif
 
 $(NAME):	$(LIBFT) $(OBJS)
 				$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
