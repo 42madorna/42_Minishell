@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 08:34:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 22:11:31 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,27 @@ void
 
 // FIXME: taking bad names
 char
-	*manage_dollar(t_list **lst)
+	*manage_dollar(t_mini *mini, t_list **lst, int *pos)
 {
 	char	*env_var;
+	char	*env_cont;
 	int		i;
 
-	env_var = calloc(1024, sizeof(char));
 	i = 0;
-	while ((*lst)->next && ((((t_chars*)(*lst)->next->content)->flag & DOLLAR)
-		== DOLLAR) == 1)
+	env_var = calloc(1024, sizeof(char));
+	// printf("$");
+	while ((*lst) && ((((t_chars*)(*lst)->content)->flag & DOLLAR)
+		== DOLLAR) == 1 && ((t_chars*)(*lst)->content)->c)
 	{
-		env_var[i++] = ((t_chars*)(*lst)->next->content)->c;
+		env_var[i++] = ((t_chars*)(*lst)->content)->c;
+		// printf("%c", ((t_chars*)(*lst)->content)->c);
 		*lst = (*lst)->next;
 	}
+	// printf("\n");
+	env_cont = getenv(env_var);
+	while (env_cont && *env_cont)
+		mini->buffer[(*pos)++] = *env_cont++;
+	(*pos)++;
 	return (env_var);
 }
 
@@ -53,6 +61,11 @@ void
 }
 
 // FIXME: Revisar creación de comandos
+/*
+** At this moment, ARGV is constructed ok but
+** 	FIXME: Spaces after PIPE
+** 	TODO: APPEND, DELIMITTER, IN, OUT
+*/
 void
 	make_command(t_mini *mini)
 {
@@ -79,9 +92,15 @@ void
 			i = 0;
 		}
 		if (((((t_chars*)(lst)->content)->flag & DOLLAR) == DOLLAR) == 1)
-			printf("ENV [%s]\n", getenv(manage_dollar(&lst)));
+			manage_dollar(mini, &lst, &i);
 		if (((t_chars*)lst->content)->c == '|')
 		{
+			if (!cmd->l_argv)
+			{
+				printf("Unexpected `|'\n");
+				return ;
+			}
+			lst = lst->next;
 			ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
 			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 			cmd = calloc(1, sizeof(t_cmd));
@@ -89,8 +108,13 @@ void
 			i = 0;
 		}
 		mini->buffer[i++] = ((t_chars*)lst->content)->c;
+		if (((t_chars*)lst->content)->c == ' ' && (((((t_chars*)(lst)->content)->flag & QUOTE)
+				== QUOTE) != 1) && (((((t_chars*)(lst)->content)->flag
+				& DQUOTE) == DQUOTE) != 1))
+			continue ;
 		lst = lst->next;
 	}
+	ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
 	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 	ft_lstiter(mini->cmds, iter_l_argv);
 	mini->cmds = NULL;

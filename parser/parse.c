@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 08:14:42 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/29 22:09:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,7 +249,7 @@ void
 	t_chars *chars;
 
 	chars = lst;
-	printf("node content '%c', flag '%d'\n", chars->c, chars->flag);
+	printf("node content '%c%c', flag '%d'\n", chars->c == 0 ? '\\' : chars->c, chars->c == 0 ? '0' : '\0' , chars->flag);
 }
 
 int
@@ -276,8 +276,12 @@ int
 		ft_lstadd_back(&mini->chars, ft_lstnew(chars));
 		mini->line_cpy++;
 	}
+	chars = calloc(1, sizeof(t_chars*));
+	chars->flag = 0;
+	chars->c = '\0';
+	ft_lstadd_back(&mini->chars, ft_lstnew(chars));
 	free(p);
-	// ft_lstiter(mini->chars, print);
+	ft_lstiter(mini->chars, print);
 	make_command(mini);
 	ft_lstclear(&mini->chars, free);
 }
