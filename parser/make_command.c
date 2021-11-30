@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 22:11:31 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/30 20:36:01 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,7 @@ void
 	}
 	ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
 	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
-	ft_lstiter(mini->cmds, iter_l_argv);
-	mini->cmds = NULL;
+	// ft_lstiter(mini->cmds, iter_l_argv);
 	// ft_lstadd_back(&cmd->l_argv, ft_lstnew(str));
-	printf("\n");
+	// printf("\n");
 }

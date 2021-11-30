@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 06:42:26 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/30 20:42:30 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		parse_append(t_mini *mini);
 int		parse_out(t_mini *mini);
 
 void	make_command(t_mini *mini);
+void	make_argv(t_mini *mini);
 
 /*
 ** Exec functions
