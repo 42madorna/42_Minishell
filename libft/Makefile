@@ -41,6 +41,7 @@ SRCS =	ft_isdigit.c \
 		ft_freestr.c \
 		ft_split.c \
 		ft_realloc.c \
+		ft_skip_spaces.c
 
 BONUS =	ft_lstnew.c \
 		ft_lstadd_front.c \
@@ -50,8 +51,7 @@ BONUS =	ft_lstnew.c \
 		ft_lstdelone.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
-		ft_lstmap.c \
-		
+		ft_lstmap.c
 
 OBJS = ${SRCS:.c=.o}
 

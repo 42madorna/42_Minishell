@@ -1,31 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delimiter.c                                        :+:      :+:    :+:   */
+/*   make_argv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/29 06:00:02 by madorna-         ###   ########.fr       */
+/*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
+/*   Updated: 2021/11/30 20:27:46 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** If no word is after DELIMITER (<<), error.
-** Add words to (t_list*)mini->delimiters and not to buffer!
-*/
-int
-	parse_delimiter(t_mini *mini)
+void
+	noname(t_cmd *cmd)
 {
-	if (((mini->flag & QUOTE) == QUOTE) != 1
-		&& ((mini->flag & DQUOTE) == DQUOTE) != 1)
+	t_list	*l_argv;
+	int		n_argv;
+	int		i;
+
+	l_argv = cmd->l_argv;
+	n_argv = ft_lstsize(l_argv);
+	cmd->argv = calloc(n_argv, sizeof(char*));
+	i = 0;
+	while (l_argv)
 	{
-		if (((mini->flag & DOLLAR) == DOLLAR) == 1)
-			mini->flag -= DOLLAR;
-		mini->flag += DELIMITER;
-		mini->line_cpy += 2;
+		cmd->argv[i] = l_argv->content;
+		l_argv = l_argv->next;
+		i++;
 	}
-	return (0);
+}
+
+void
+	make_argv(t_mini *mini)
+{
+	t_list	*cmds;
+	t_cmd	*cmd;
+
+	cmds = mini->cmds;
+	while (cmds)
+	{
+		// cmd = cmds->content;
+		noname(cmds->content);
+		cmds = cmds->next;
+	}
 }

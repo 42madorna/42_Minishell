@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:12:25 by agaliste          #+#    #+#             */
-/*   Updated: 2021/11/07 17:28:44 by agaliste         ###   ########.fr       */
+/*   Updated: 2021/11/29 03:34:45 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,11 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 ** Extra functions
 */
 void				ft_lstdel_last(t_list *lista);
-long				ft_atoli(const char *s);
+long				ft_atol(const char *s);
+long long			ft_atoll(const char *s);
 char				*get_next_line(int fd);
 void				ft_freestr(char **str);
 void				*ft_realloc(void *ptr, size_t size);
+void				ft_skip_spaces(char **str);
 
 #endif
