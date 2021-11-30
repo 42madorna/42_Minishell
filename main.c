@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/30 21:57:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/11/30 22:35:57 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,16 @@ int
 		{
 			add_history(mini.line);
 			parse(&mini);
-			// TODO: Add add cmds->l_argv to cmd->argv
 			make_argv(&mini);
-			// TODO: Execve
+			// TODO: Pipex. (This code is temporary; pipex should call
+			// 	ft_search_cmd then ft_execve)
 			while (mini.cmds)
 			{
 				ft_execve(*(t_cmd*)(mini.cmds->content));
 				mini.cmds = mini.cmds->next;
 			}
-			mini.cmds = NULL;
 			// TODO: If not found, builtins!
+			mini.cmds = NULL;
 			free(mini.line);
 		}
 		else if (!mini.line)
