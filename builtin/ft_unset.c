@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2021/08/01 00:32:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 02:09:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int
 	ft_unset(int argc, char **argv, t_list *env)
 {
 	write(1, "\n", 1);
-	if (argc >= 2)
-		del_env_vble(env, argv[1]);
+	// if (argc >= 2)
+	// 	del_env_vble(env, argv[1]);
 	return (0);
 }
