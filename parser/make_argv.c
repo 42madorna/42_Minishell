@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 01:46:09 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 03:16:59 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void
 		cmd->argv[i++] = l_argv->content;
 		l_argv = l_argv->next;
 	}
+	cmd->argc = i;
 }
 
 void
@@ -38,7 +39,6 @@ void
 	cmds = mini->cmds;
 	while (cmds)
 	{
-		// cmd = cmds->content;
 		noname(cmds->content);
 		cmds = cmds->next;
 	}
