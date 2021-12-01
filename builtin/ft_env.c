@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:13:01 by madorna-          #+#    #+#             */
-/*   Updated: 2021/08/01 02:18:39 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 02:06:11 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int
 	(void)argc;
 	(void)argv;
 	write(1, "\n", 1);
-	print_env_list(env, __FUNCTION__);
+	// print_env_list(env, __FUNCTION__);
 	return (0);
 }
