@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/30 20:36:01 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 04:20:41 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,75 @@ char
 	return (env_var);
 }
 
+int
+	manage_append(t_mini *mini, t_list **lst, int *pos)
+{
+	char	*file;
+	int		fd;
+	int		i;
+
+	i = 0;
+	file = calloc(1024, sizeof(char));
+	// printf("$");
+	while ((*lst) && ((((t_chars*)(*lst)->content)->flag & APPEND)
+		== APPEND) == 1 && ((t_chars*)(*lst)->content)->c)
+	{
+		file[i++] = ((t_chars*)(*lst)->content)->c;
+		// printf("%c", ((t_chars*)(*lst)->content)->c);
+		*lst = (*lst)->next;
+	}
+	// printf("\n");
+	fd = open(file, O_APPEND | O_CREAT | O_RDONLY | O_WRONLY);
+	// (*pos)++;
+	return (fd);
+}
+
+int
+	manage_in(t_mini *mini, t_list **lst, int *pos)
+{
+	char	*file;
+	int		fd;
+	int		i;
+
+	i = 0;
+	file = calloc(1024, sizeof(char));
+	// printf("$");
+	while ((*lst) && ((((t_chars*)(*lst)->content)->flag & IN)
+		== IN) == 1 && ((t_chars*)(*lst)->content)->c)
+	{
+		file[i++] = ((t_chars*)(*lst)->content)->c;
+		// printf("%c", ((t_chars*)(*lst)->content)->c);
+		*lst = (*lst)->next;
+	}
+	// printf("\n");
+	fd = open(file, O_RDONLY);
+	// (*pos)++;
+	return (fd);
+}
+
+int
+	manage_out(t_mini *mini, t_list **lst, int *pos)
+{
+	char	*file;
+	int		fd;
+	int		i;
+
+	i = 0;
+	file = calloc(1024, sizeof(char));
+	// printf("$");
+	while ((*lst) && ((((t_chars*)(*lst)->content)->flag & OUT)
+		== OUT) == 1 && ((t_chars*)(*lst)->content)->c)
+	{
+		file[i++] = ((t_chars*)(*lst)->content)->c;
+		printf("%c", ((t_chars*)(*lst)->content)->c);
+		*lst = (*lst)->next;
+	}
+	// printf("\n");
+	fd = open(file, O_WRONLY | O_CREAT);
+	// (*pos)++;
+	return (fd);
+}
+
 void
 	print2(void *content)
 {
@@ -79,9 +148,9 @@ void
 	i = 0;
 	while (lst)
 	{
-		if (((t_chars*)lst->content)->c == ' ' && (((((t_chars*)(lst)->content)->flag & QUOTE)
-				== QUOTE) != 1) && (((((t_chars*)(lst)->content)->flag
-				& DQUOTE) == DQUOTE) != 1))
+		if (((t_chars*)lst->content)->c == ' ' &&
+			(((((t_chars*)(lst)->content)->flag & QUOTE) == QUOTE) != 1)
+			&& (((((t_chars*)(lst)->content)->flag & DQUOTE) == DQUOTE) != 1))
 		{
 			skip_lst_spaces(&lst);
 			if (!cmd->l_argv)
@@ -107,6 +176,14 @@ void
 			mini->buffer = calloc(1024, sizeof(char));
 			i = 0;
 		}
+		if (((((t_chars*)(lst)->content)->flag & APPEND) == APPEND) == 1)
+			cmd->outfile = manage_append(mini, &lst, &i);
+		if (((((t_chars*)(lst)->content)->flag & IN) == IN) == 1)
+			cmd->infile = manage_in(mini, &lst, &i);
+		if (((((t_chars*)(lst)->content)->flag & DELIMITER) == DELIMITER) == 1)
+			printf ("TODO: Manage delimitter [MINS-57]!\n");
+		if (((t_chars*)(lst)->content)->flag == OUT)
+			cmd->outfile = manage_out(mini, &lst, &i);
 		mini->buffer[i++] = ((t_chars*)lst->content)->c;
 		if (((t_chars*)lst->content)->c == ' ' && (((((t_chars*)(lst)->content)->flag & QUOTE)
 				== QUOTE) != 1) && (((((t_chars*)(lst)->content)->flag

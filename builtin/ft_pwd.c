@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:48:23 by madorna-          #+#    #+#             */
-/*   Updated: 2021/07/11 06:32:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 02:56:51 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ int
 	(void)argv;
 	path = NULL;
 	path = getcwd(path, 0);
-	write(1, "\n", 1);
-	ft_putstr_fd(path, 1);
-	write(1, "\n", 1);
+	printf("%s\n", path);
 	free(path);
 	return (0);
 }

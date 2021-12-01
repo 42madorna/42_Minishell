@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/30 21:57:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 03:18:07 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ void
 	mini->p[APPEND] = parse_append;
 	mini->p[DQUOTE] = parse_dquote;
 	mini->p[DOLLAR] = parse_dollar;
-
-	// mini->p[CLEAR](mini);
-	// mini->p[PIPE](mini);
-	// mini->p[OUT](mini);
-	// mini->p[QUOTE](mini);
-	// mini->p[DELIMITER](mini);
-	// mini->p[IN](mini);
-	// mini->p[APPEND](mini);
-	// mini->p[DQUOTE](mini);
-	// mini->p[DOLLAR](mini);
 }
 
 int
@@ -78,21 +68,22 @@ int
 		{
 			add_history(mini.line);
 			parse(&mini);
-			// TODO: Add add cmds->l_argv to cmd->argv
 			make_argv(&mini);
-			// TODO: Execve
+			// TODO: Pipex. (This code is temporary; pipex should call
+			// 	ft_search_cmd then ft_execve)
 			while (mini.cmds)
 			{
-				ft_execve(*(t_cmd*)(mini.cmds->content));
+				if (builtin(argv, &mini))
+					ft_execve(*(t_cmd*)(mini.cmds->content));
 				mini.cmds = mini.cmds->next;
 			}
-			mini.cmds = NULL;
 			// TODO: If not found, builtins!
+			mini.cmds = NULL;
 			free(mini.line);
 		}
 		else if (!mini.line)
 		{
-			write(1, "exit\n", 6);
+			printf("exit\n");
 			rl_clear_history();
 			break ;
 		}

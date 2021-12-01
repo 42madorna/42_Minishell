@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2021/08/01 02:46:25 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 02:06:47 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,35 @@ static char
 	return (NULL);
 }
 
-static inline int
-	cmp_env(t_env *a, t_env *b)
-{
-	if (!a || !b)
-		return (0);
-	if (!a->name)
-		return (1);
-	if (!b->name)
-		return (0);
-	return (ft_strcmp(a->name, b->name) > 0);
-}
+// static inline int
+// 	cmp_env(t_env *a, t_env *b)
+// {
+// 	if (!a || !b)
+// 		return (0);
+// 	if (!a->name)
+// 		return (1);
+// 	if (!b->name)
+// 		return (0);
+// 	return (ft_strcmp(a->name, b->name) > 0);
+// }
 
-void
-	clear_env(void *env)
-{
-	t_env	*clear;
+// void
+// 	clear_env(void *env)
+// {
+// 	t_env	*clear;
 
-	clear = env;
-	if (clear->name)
-	{
-		free(clear->name);
-		clear->name = NULL;
-	}
-	if (clear->value)
-	{
-		free(clear->value);
-		clear->value = NULL;
-	}
-}
+// 	clear = env;
+// 	if (clear->name)
+// 	{
+// 		free(clear->name);
+// 		clear->name = NULL;
+// 	}
+// 	if (clear->value)
+// 	{
+// 		free(clear->value);
+// 		clear->value = NULL;
+// 	}
+// }
 
 /*
 ** builtin: export
@@ -75,21 +75,21 @@ int
 	int		i;
 
 	write(1, "\n", 1);
-	if (argc >= 2)
-	{
-		i = 1;
-		while (argv[i])
-		{
-			arg = ft_split(argv[i], '=');
-			set_value(env, arg[0], arg[1], (char *)__FUNCTION__);
-			free_malloc(arg);
-			++i;
-		}
-		return (0);
-	}
-	cpy = calloc(1, sizeof(t_list));
-	ft_memcpy(cpy, env, sizeof(t_list));
-	ft_lstsort(cpy, cmp_env);
-	print_env_list(cpy, __FUNCTION__);
+	// if (argc >= 2)
+	// {
+	// 	i = 1;
+	// 	while (argv[i])
+	// 	{
+	// 		arg = ft_split(argv[i], '=');
+	// 		set_value(env, arg[0], arg[1], (char *)__FUNCTION__);
+	// 		free_malloc(arg);
+	// 		++i;
+	// 	}
+	// 	return (0);
+	// }
+	// cpy = calloc(1, sizeof(t_list));
+	// ft_memcpy(cpy, env, sizeof(t_list));
+	// ft_lstsort(cpy, cmp_env);
+	// print_env_list(cpy, __FUNCTION__);
 	return (0);
 }
