@@ -11,17 +11,9 @@ pipelines:
   default:
     - parallel:
         - step:
-            name: Test
-            script:
-              - make debug
-        - step:
-            name: Lint
-            script:
-              # apt update && apt -y install cppcheck && cppcheck .
-              - make re
-        - step:
             name: Build and Run
             script:
-              - make compile
+              - make re
               # Execute your C++ application after compilation to check success
               - ./minishell
+              - killall minishell
