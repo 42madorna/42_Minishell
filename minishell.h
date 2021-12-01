@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/30 20:42:30 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 03:57:38 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define CLEAR      0b00000000 // 0
 # define PIPE       0b00000001 // 1
 # define OUT        0b00000010 // 2
-# define QUOTE      0b00000011 // 3
-# define DELIMITER  0b00000100 // 4
-# define IN         0b00000101 // 5
-# define APPEND     0b00000110 // 6
+# define DELIMITER  0b00000011 // 3
+# define IN         0b00000100 // 4
+# define APPEND     0b00000101 // 5
+# define QUOTE      0b00000110 // 6
 # define DOLLAR     0b00000111 // 7
 # define DQUOTE     0b00001000 // 8
 
@@ -68,8 +68,8 @@ typedef struct s_cmd
 	char	**argv;
 	char	**env;
 	t_list	*l_argv;
-	char	*infile;
-	char	*outfile;
+	int		infile;
+	int		outfile;
 }				t_cmd;
 
 typedef struct s_chars
