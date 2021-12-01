@@ -6,14 +6,20 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/11/30 20:30:09 by madorna-         ###   ########.fr        #
+#    Updated: 2021/12/01 02:08:42 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.c																	\
 		ft_execve.c																\
-		builtin/ft_exit.c														\
 		builtin/builtin.c														\
+		builtin/ft_cd.c															\
+		builtin/ft_echo.c														\
+		builtin/ft_env.c														\
+		builtin/ft_exit.c														\
+		builtin/ft_export.c														\
+		builtin/ft_pwd.c														\
+		builtin/ft_unset.c														\
 		parser/append.c															\
 		parser/clear.c															\
 		parser/delimiter.c														\
