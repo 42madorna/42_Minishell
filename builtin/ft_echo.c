@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 22:11:24 by madorna-          #+#    #+#             */
-/*   Updated: 2021/08/01 00:28:06 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/01 02:55:36 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,21 @@ int
 
 	i = 1;
 	option = 0;
-	write(1, "\n", 1);
 	if (argc < 2)
 		return (write(1, "\n", 1) - 1);
-	if (!ft_strcmp(argv[i], "-n"))
+	if (!ft_strncmp(argv[i], "-n", ft_strlen(argv[i])))
 	{
 		option = 1;
 		++i;
 	}
 	while (i < argc)
 	{
-		ft_putstr_fd(argv[i], 1);
+		printf("%s", argv[i]);
 		++i;
 		if (argv[i])
-			write(1, " ", 1);
+			printf(" ");
 	}
 	if (!option)
-		write(1, "\n", 1);
+		printf("\n");
 	return (0);
 }
