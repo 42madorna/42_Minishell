@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 03:18:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/15 02:58:56 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,19 @@ int
 		if (mini.line && *mini.line)
 		{
 			add_history(mini.line);
-			parse(&mini);
-			make_argv(&mini);
-			// TODO: Pipex. (This code is temporary; pipex should call
-			// 	ft_search_cmd then ft_execve)
-			while (mini.cmds)
+			if (!parse(&mini))
 			{
-				if (builtin(argv, &mini))
-					ft_execve(*(t_cmd*)(mini.cmds->content));
-				mini.cmds = mini.cmds->next;
+				make_argv(&mini);
+				// TODO: Pipex. (This code is temporary; pipex should call
+				// 	ft_search_cmd then ft_execve)
+				while (mini.cmds)
+				{
+					if (builtin(argv, &mini))
+						ft_execve(*(t_cmd*)(mini.cmds->content));
+					mini.cmds = mini.cmds->next;
+				}
+				// TODO: If not found, builtins!
 			}
-			// TODO: If not found, builtins!
 			mini.cmds = NULL;
 			free(mini.line);
 		}
@@ -88,5 +90,8 @@ int
 			break ;
 		}
 	}
+	/*
+	** TODO: Leaks!
+	*/
 	return (0);
 }
