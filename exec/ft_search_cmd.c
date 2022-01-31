@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:46:27 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 04:57:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 05:11:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int
 	env = ft_split(ft_env_value(l_env, "PATH"), ':');
 	for (int i = 0; env[i]; i++)
 	{
+		// FIXME: MINS-81
 		path = ft_strjoin(env[i], cmd->argv[0]); // TODO: Leaks
 		// printf("Trying '%s'\n", path);
 		if (open(path, O_RDONLY) >= 0)
