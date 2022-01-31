@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 16:47:48 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:53:33 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,18 @@ int
 				while (mini.cmds)
 				{
 					// ((t_cmd*)(mini.cmds->content))->env = env; // FIXME: MINS-79
+					if (!((t_cmd*)(mini.cmds->content))->argv[0][0])
+						break ;
 					if (builtin(argv, &mini))
 					{
 						if (ft_search_cmd(mini.l_env, (t_cmd*)(mini.cmds->content))) // TODO: Check if this works OK
 						{
-							printf("%s: %s: command not found\n",
-									SHELL_NAME, ((t_cmd*)(mini.cmds->content))->argv[0]);
+							printf("%s: %s: command not found\n", SHELL_NAME,
+								((t_cmd*)(mini.cmds->content))->argv[0]);
 							break ;
 						}
 						else
-							ft_execve(*(t_cmd*)(mini.cmds->content));
+							mini.ret = ft_execve(*(t_cmd*)(mini.cmds->content));
 					}
 					mini.cmds = mini.cmds->next;
 				}

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:13:01 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 02:06:11 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:03:25 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,24 @@
 ** 	or optins as the subject says !
 */
 
+void
+	print_env_list(t_list *l_env)
+{
+	t_list	*env_node;
+
+	env_node = l_env;
+	while(env_node)
+	{
+		printf("%s=%s\n", ((t_env*)(env_node->content))->key, ((t_env*)(env_node->content))->value);
+		env_node = env_node->next;
+	}
+}
+
 int
 	ft_env(int argc, char **argv, t_list *env)
 {
 	(void)argc;
 	(void)argv;
-	write(1, "\n", 1);
-	// print_env_list(env, __FUNCTION__);
+	print_env_list(env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 16:51:22 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:53:25 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_mini
 	t_list	*delimiters;
 	t_list	*chars;
 	int		(*p[9])(struct s_mini*);
+	int		ret;
 }				t_mini;
 
 /*
