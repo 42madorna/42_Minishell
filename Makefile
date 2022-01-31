@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/01/31 15:47:19 by madorna-         ###   ########.fr        #
+#    Updated: 2022/01/31 19:29:43 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS =	main.c																	\
 		builtin/ft_export.c														\
 		builtin/ft_pwd.c														\
 		builtin/ft_unset.c														\
+		env/ft_env_set_value.c													\
 		env/ft_env_to_lst.c														\
 		env/ft_env_value.c														\
 		exec/ft_execve.c														\
