@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 04:20:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:41:18 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ char
 	while ((*lst) && ((((t_chars*)(*lst)->content)->flag & DOLLAR)
 		== DOLLAR) == 1 && ((t_chars*)(*lst)->content)->c)
 	{
+		if (i == 0 && ft_isdigit(((t_chars*)(*lst)->content)->c))
+			printf("Unexpected token\n");
+		if (((t_chars*)(*lst)->content)->c == '\'')
+			break ;
+		if (!ft_isalnum(((t_chars*)(*lst)->content)->c))
+			printf("Unexpected token\n");
 		env_var[i++] = ((t_chars*)(*lst)->content)->c;
 		// printf("%c", ((t_chars*)(*lst)->content)->c);
 		*lst = (*lst)->next;
@@ -42,7 +48,6 @@ char
 	env_cont = getenv(env_var);
 	while (env_cont && *env_cont)
 		mini->buffer[(*pos)++] = *env_cont++;
-	(*pos)++;
 	return (env_var);
 }
 
