@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 20:56:23 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 21:23:38 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ int
 	t_list	*cpy;
 	int		i;
 
+
+	/*
+	** FIXME: Export should not modify existing env vars
+	*/
 	if (argc >= 2)
 	{
 		i = 1;
