@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execve.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adorna_r <adorna_r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:25:30 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 00:44:14 by adorna_r         ###   ########.fr       */
+/*   Updated: 2022/01/31 01:18:58 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int
 	// TODO: search in the PATH env variable for a match
 	/*
 	** if (!command)
-	**		return (printf(command not found...))
+	** 	return (printf(command not found...))
 	*/
 	pid = fork();
 	if (pid == 0)
