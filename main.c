@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/15 02:58:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 00:59:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,16 @@ int
 				while (mini.cmds)
 				{
 					if (builtin(argv, &mini))
-						ft_execve(*(t_cmd*)(mini.cmds->content));
+					{
+						if (ft_search_cmd(*(t_cmd*)(mini.cmds->content))) // TODO: Check if this works OK
+							printf("minishell: %s: No such file or directory\n",
+									((t_cmd*)(mini.cmds->content))->argv[0]);
+						else
+							ft_execve(*(t_cmd*)(mini.cmds->content));
+					}
 					mini.cmds = mini.cmds->next;
 				}
-				// TODO: If not found, builtins!
+				// TODO: If not found, builtins! // WARNING: This may be considered as cheating
 			}
 			mini.cmds = NULL;
 			free(mini.line);
