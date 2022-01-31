@@ -16,3 +16,4 @@ pipelines:
               - make re
               # Execute your C++ application after compilation to check success
               - ./minishell
+              - make fclean

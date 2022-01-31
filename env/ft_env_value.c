@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_execve.c                                        :+:      :+:    :+:   */
+/*   ft_env_value.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 00:25:30 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/30 20:57:01 by madorna-         ###   ########.fr       */
+/*   Created: 2022/01/31 02:22:17 by madorna-          #+#    #+#             */
+/*   Updated: 2022/01/31 03:04:45 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int
-	ft_execve(t_cmd command)
+char
+	*ft_env_value(t_list *l_env, const char *key)
 {
-	pid_t	pid;
-	int		status;
+	t_list	*env_node;
+	int		key_len;
 
-	// command.argv = malloc(sizeof(char*) * 2);
-	// command.argv[0] = "/usr/bin/man";
-	// command.argv[1] = "man";
-	pid = fork();
-	if (pid == 0)
+	key_len = ft_strlen(key) + 1;
+	env_node = l_env;
+	while (env_node)
 	{
-		if (execve(command.argv[0], command.argv, command.env) != 0)
-			perror(strerror(errno));
+		if (!ft_strncmp(((t_env *)env_node->content)->key, key, key_len))
+			return (((t_env *)env_node->content)->value);
+		env_node = env_node->next;
 	}
-	else if (pid > 0)
-		pid = wait(&status);
-	status = WEXITSTATUS(status);
-	return (status);
+	return (NULL);
 }

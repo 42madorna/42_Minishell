@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 02:10:22 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:06:28 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ inline static int
 {
 	if (chdir(argv[1]) <= -1)
 	{
-		ft_putstr_fd("\nminishell: cd: ", 1);
+		printf("\n%s: cd: ", SHELL_NAME);
 		ft_putstr_fd(argv[1], 1);
 		if (open(argv[1], O_RDONLY) > 0)
 		{
@@ -53,7 +53,7 @@ inline static int
 */
 
 int
-	ft_cd(int argc, char **argv, t_list *env)
+	ft_cd(int argc, char **argv, t_list *l_env)
 {
 	char		*p;
 	char		*dir;
@@ -62,7 +62,7 @@ int
 	dir = NULL;
 	(void)argc;
 	if (!argv[1])
-		argv[1] = getenv("HOME");
+		argv[1] = ft_env_value(l_env, "HOME");
 	if (!ft_strncmp(argv[1], "\"\"", ft_strlen(argv[1])) || !ft_strncmp(argv[1], "\'\'", ft_strlen(argv[1])))
 	{
 		write(1, "\n", 1);
@@ -75,8 +75,8 @@ int
 		return (1);
 	write(1, "\n", 1);
 	dir = getcwd(dir, 0);
-	// set_value(env, "OLDPWD", dir, (char *)__FUNCTION__);
-	// set_value(env, "PWD", argv[1], (char *)__FUNCTION__);
+	// set_value(l_env, "OLDPWD", dir, (char *)__FUNCTION__);
+	// set_value(l_env, "PWD", argv[1], (char *)__FUNCTION__);
 	free_cd(p, dir);
 	return (0);
 }

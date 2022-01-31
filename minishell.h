@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 03:57:38 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:45:22 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 # define DOLLAR     0b00000111 // 7
 # define DQUOTE     0b00001000 // 8
 
+
+/*
+** General minishell struct
+*/
 typedef struct s_mini
 {
 	int		argc;
@@ -62,6 +66,9 @@ typedef struct s_mini
 	int		(*p[9])(struct s_mini*);
 }				t_mini;
 
+/*
+** Command structure (aka t_mini->cmds)
+*/
 typedef struct s_cmd
 {
 	int		argc;
@@ -70,14 +77,27 @@ typedef struct s_cmd
 	t_list	*l_argv;
 	int		infile;
 	int		outfile;
+	char	*path;
 }				t_cmd;
 
+/*
+** Parser minishell struct (aka t_mini->chars)
+*/
 typedef struct s_chars
 {
 	char	c;
 	int		flag;
 	int		end;
 }				t_chars;
+
+/*
+** Environment variables struct (aka t_mini->l_env)
+*/
+typedef struct s_env
+{
+	char	*key;
+	char	*value;
+}				t_env;
 
 /*
 ** Parser functions
@@ -94,6 +114,12 @@ int		parse_in(t_mini *mini);
 int		parse_append(t_mini *mini);
 int		parse_out(t_mini *mini);
 
+/*
+** Environment variables functions
+*/
+void	ft_env_to_lst(t_mini *mini);
+char	*ft_env_value(t_list *l_env, const char *key);
+
 void	make_command(t_mini *mini);
 void	make_argv(t_mini *mini);
 
@@ -101,5 +127,11 @@ void	make_argv(t_mini *mini);
 ** Exec functions
 */
 int		ft_execve(t_cmd command);
+int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
+
+/*
+** Utils functions
+*/
+char	*ft_strjoin_path(const char *s1, const char *s2);
 
 #endif
