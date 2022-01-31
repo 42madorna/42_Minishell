@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:50:18 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/23 21:40:34 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 02:17:19 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int
 	{
 		if (ft_isalpha(argv[1][i]))
 		{
-			ft_putstr_fd("minishell: exit: ", 1);
+			// FIXME: ? numeric argument on exit
+			printf("%s: exit: ", SHELL_NAME);
 			ft_putstr_fd(argv[1], 1);
 			ft_putstr_fd(": numeric argument required\n", 1);
 			i = -2;
@@ -45,9 +46,9 @@ int
 		}
 	}
 	if (i != -2 && argc >= 3)
-		return (write(1, "minishell: exit: too many arguments\n", 36));
+		return (printf("%s: exit: too many arguments\n", SHELL_NAME));
 	if (i == -2)
 		exit(255);
-	exit (ft_atoi(argv[1]));
+	exit(ft_atoi(argv[1]));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/30 21:54:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2021/12/15 01:59:21 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ int
 			|| *(mini->line_cpy + 1) == '<' || *(mini->line_cpy + 1) == ' '
 			|| *(mini->line_cpy + 1) == '|')
 			return (0);
-		mini->flag += DOLLAR;
-		mini->line_cpy++;
+		if (*(mini->line_cpy + 1) != '\'' && *(mini->line_cpy + 1) != '"')
+		{
+			mini->flag += DOLLAR;
+			mini->line_cpy++;
+		}
 	}
 	return (0);
 }

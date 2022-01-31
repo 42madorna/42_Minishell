@@ -6,12 +6,11 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2021/12/01 02:08:42 by madorna-         ###   ########.fr        #
+#    Updated: 2022/01/31 02:30:28 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.c																	\
-		ft_execve.c																\
 		builtin/builtin.c														\
 		builtin/ft_cd.c															\
 		builtin/ft_echo.c														\
@@ -20,6 +19,10 @@ SRCS =	main.c																	\
 		builtin/ft_export.c														\
 		builtin/ft_pwd.c														\
 		builtin/ft_unset.c														\
+		env/ft_env_to_lst.c														\
+		env/ft_env_value.c														\
+		exec/ft_execve.c														\
+		exec/ft_search_cmd.c													\
 		parser/append.c															\
 		parser/clear.c															\
 		parser/delimiter.c														\
@@ -38,7 +41,7 @@ SRCS =	main.c																	\
 # builtin/ft_env.c														
 # builtin/ft_export.c													
 # builtin/ft_pwd.c														
-# builtin/ft_uknset.c													
+# builtin/ft_unset.c													
 
 NAME = minishell
 

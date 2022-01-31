@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_env_value.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/23 19:09:29 by agaliste          #+#    #+#             */
-/*   Updated: 2022/01/31 01:34:52 by madorna-         ###   ########.fr       */
+/*   Created: 2022/01/31 02:22:17 by madorna-          #+#    #+#             */
+/*   Updated: 2022/01/31 03:04:45 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char
+	*ft_env_value(t_list *l_env, const char *key)
 {
-	size_t	i;
+	t_list	*env_node;
+	int		key_len;
 
-	i = 0;
-	if (!dst && !src)
-		return (NULL);
-	while (i < n)
+	key_len = ft_strlen(key) + 1;
+	env_node = l_env;
+	while (env_node)
 	{
-		((char *)dst)[i] = ((const char *)src)[i];
-		if (((const unsigned char *)src)[i] == (unsigned char)c)
-			return ((void *)dst + ++i);
-		i++;
+		if (!ft_strncmp(((t_env *)env_node->content)->key, key, key_len))
+			return (((t_env *)env_node->content)->value);
+		env_node = env_node->next;
 	}
 	return (NULL);
 }

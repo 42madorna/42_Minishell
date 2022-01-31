@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 03:18:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 02:13:46 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int
 	signal(SIGINT, signal_h);
 	signal(SIGQUIT, signal_h);
 	set_functions(&mini);
+	ft_env_to_lst(&mini);
 	while (1)
 	{
 		mini.flag = CLEAR;
@@ -67,17 +68,25 @@ int
 		if (mini.line && *mini.line)
 		{
 			add_history(mini.line);
-			parse(&mini);
-			make_argv(&mini);
-			// TODO: Pipex. (This code is temporary; pipex should call
-			// 	ft_search_cmd then ft_execve)
-			while (mini.cmds)
+			if (!parse(&mini))
 			{
-				if (builtin(argv, &mini))
-					ft_execve(*(t_cmd*)(mini.cmds->content));
-				mini.cmds = mini.cmds->next;
+				make_argv(&mini);
+				// TODO: Pipex. (This code is temporary; pipex should call
+				// 	ft_search_cmd then ft_execve)
+				while (mini.cmds)
+				{
+					if (builtin(argv, &mini))
+					{
+						if (ft_search_cmd(*(t_cmd*)(mini.cmds->content))) // TODO: Check if this works OK
+							printf("%s: %s: No such file or directory\n",
+									SHELL_NAME, ((t_cmd*)(mini.cmds->content))->argv[0]);
+						else
+							ft_execve(*(t_cmd*)(mini.cmds->content));
+					}
+					mini.cmds = mini.cmds->next;
+				}
+				// TODO: If not found, builtins! // WARNING: This may be considered as cheating
 			}
-			// TODO: If not found, builtins!
 			mini.cmds = NULL;
 			free(mini.line);
 		}
@@ -88,5 +97,8 @@ int
 			break ;
 		}
 	}
+	/*
+	** TODO: Leaks!
+	*/
 	return (0);
 }

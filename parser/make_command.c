@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 04:20:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:05:33 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ char
 		*lst = (*lst)->next;
 	}
 	// printf("\n");
-	env_cont = getenv(env_var);
+	if (!ft_strncmp("?\0", env_var, 2))
+		printf("TODO: Manage $? expansion\n");
+	env_cont = ft_env_value(mini->l_env, env_var);
 	while (env_cont && *env_cont)
 		mini->buffer[(*pos)++] = *env_cont++;
-	(*pos)++;
 	return (env_var);
 }
 
@@ -146,8 +147,12 @@ void
 	cmd = calloc(1, sizeof(t_cmd));
 	mini->buffer = calloc(1024, sizeof(char));
 	i = 0;
+	/*
+	** TODO: Fix QUOTE. Error came and I don't know why
+	*/
 	while (lst)
 	{
+		// printf("Current char is '%c', flag: '%d'\n", ((t_chars*)lst->content)->c, ((t_chars*)lst->content)->flag);
 		if (((t_chars*)lst->content)->c == ' ' &&
 			(((((t_chars*)(lst)->content)->flag & QUOTE) == QUOTE) != 1)
 			&& (((((t_chars*)(lst)->content)->flag & DQUOTE) == DQUOTE) != 1))
@@ -160,8 +165,19 @@ void
 			mini->buffer = calloc(1024, sizeof(char));
 			i = 0;
 		}
+		if (((t_chars*)lst->content)->c == '$'
+			&& (((((t_chars*)(lst)->content)->flag & QUOTE) == QUOTE) != 1)
+			&& (((((t_chars*)(lst)->next->content)->flag & DQUOTE) == DQUOTE) == 1
+			|| ((((t_chars*)(lst)->next->content)->flag & QUOTE) == QUOTE) == 1))
+		{
+			lst = lst->next;
+			continue ;
+		}
 		if (((((t_chars*)(lst)->content)->flag & DOLLAR) == DOLLAR) == 1)
+		{
 			manage_dollar(mini, &lst, &i);
+			continue ;
+		}
 		if (((t_chars*)lst->content)->c == '|')
 		{
 			if (!cmd->l_argv)
@@ -185,6 +201,7 @@ void
 		if (((t_chars*)(lst)->content)->flag == OUT)
 			cmd->outfile = manage_out(mini, &lst, &i);
 		mini->buffer[i++] = ((t_chars*)lst->content)->c;
+		// printf("%d %c\n", i - 1, mini->buffer[i-1]);
 		if (((t_chars*)lst->content)->c == ' ' && (((((t_chars*)(lst)->content)->flag & QUOTE)
 				== QUOTE) != 1) && (((((t_chars*)(lst)->content)->flag
 				& DQUOTE) == DQUOTE) != 1))
@@ -193,6 +210,7 @@ void
 	}
 	ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
 	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
+	// Uncomment this to see what does l_argv have
 	// ft_lstiter(mini->cmds, iter_l_argv);
 	// ft_lstadd_back(&cmd->l_argv, ft_lstnew(str));
 	// printf("\n");

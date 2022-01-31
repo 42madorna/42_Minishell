@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:25:30 by madorna-          #+#    #+#             */
-/*   Updated: 2021/11/30 20:57:01 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 01:18:58 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int
 	// command.argv = malloc(sizeof(char*) * 2);
 	// command.argv[0] = "/usr/bin/man";
 	// command.argv[1] = "man";
+	// TODO: search in the PATH env variable for a match
+	/*
+	** if (!command)
+	** 	return (printf(command not found...))
+	*/
 	pid = fork();
 	if (pid == 0)
 	{

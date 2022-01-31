@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adorna_r <adorna_r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 04:20:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 00:35:13 by adorna_r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,13 @@ int
 		ft_lstadd_back(&mini->chars, ft_lstnew(chars));
 		mini->line_cpy++;
 	}
+	// FIXME: FLAGS NOT CLOSING
+	// if (chars->flag != 0 && chars->flag != DOLLAR)
+	// {
+	// 	printf("Expected token before \\0\n");
+	// 	return (1);
+	// 	// TODO: Free...
+	// }
 	chars = calloc(1, sizeof(t_chars*));
 	chars->flag = 0;
 	chars->c = '\0';
@@ -285,4 +292,5 @@ int
 	// ft_lstiter(mini->chars, print);
 	make_command(mini);
 	ft_lstclear(&mini->chars, free);
+	return (0);
 }
