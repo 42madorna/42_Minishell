@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 00:49:11 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 01:46:38 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@
 # define DOLLAR     0b00000111 // 7
 # define DQUOTE     0b00001000 // 8
 
+
+/*
+** General minishell struct
+*/
 typedef struct s_mini
 {
 	int		argc;
@@ -62,6 +66,9 @@ typedef struct s_mini
 	int		(*p[9])(struct s_mini*);
 }				t_mini;
 
+/*
+** Command structure (aka t_mini->cmds)
+*/
 typedef struct s_cmd
 {
 	int		argc;
@@ -72,12 +79,24 @@ typedef struct s_cmd
 	int		outfile;
 }				t_cmd;
 
+/*
+** Parser minishell struct (aka t_mini->chars)
+*/
 typedef struct s_chars
 {
 	char	c;
 	int		flag;
 	int		end;
 }				t_chars;
+
+/*
+** Environment variables struct (aka t_mini->l_env)
+*/
+typedef struct s_env
+{
+	char	*key;
+	char	*value;
+}				t_env;
 
 /*
 ** Parser functions
