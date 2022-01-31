@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:13:01 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 18:06:43 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 18:08:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** 	or optins as the subject says !
 */
 
-void
+static inline void
 	print_env_list(t_list *l_env)
 {
 	t_list	*env_node;
