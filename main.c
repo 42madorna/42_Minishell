@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 02:13:46 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 05:09:27 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,15 @@ int
 				// 	ft_search_cmd then ft_execve)
 				while (mini.cmds)
 				{
+					// ((t_cmd*)(mini.cmds->content))->env = env; // FIXME: MINS-79
 					if (builtin(argv, &mini))
 					{
-						if (ft_search_cmd(*(t_cmd*)(mini.cmds->content))) // TODO: Check if this works OK
+						if (ft_search_cmd(mini.l_env, (t_cmd*)(mini.cmds->content))) // TODO: Check if this works OK
+						{
 							printf("%s: %s: No such file or directory\n",
 									SHELL_NAME, ((t_cmd*)(mini.cmds->content))->argv[0]);
+							break ;
+						}
 						else
 							ft_execve(*(t_cmd*)(mini.cmds->content));
 					}

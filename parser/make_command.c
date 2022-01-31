@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 03:05:33 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 04:47:53 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ void
 		lst = lst->next;
 	}
 	ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
-	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
+	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd)); // TODO: Leaks
 	// Uncomment this to see what does l_argv have
 	// ft_lstiter(mini->cmds, iter_l_argv);
 	// ft_lstadd_back(&cmd->l_argv, ft_lstnew(str));

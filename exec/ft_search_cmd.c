@@ -6,15 +6,31 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:46:27 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 00:54:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 04:57:41 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int
-	ft_search_cmd(t_cmd cmd)
+	ft_search_cmd(t_list *l_env, t_cmd *cmd)
 {
-	// TODO: Search in the PATH env var
+	char	**env;
+	char	*path;
+
+	env = ft_split(ft_env_value(l_env, "PATH"), ':');
+	for (int i = 0; env[i]; i++)
+	{
+		path = ft_strjoin(env[i], cmd->argv[0]); // TODO: Leaks
+		// printf("Trying '%s'\n", path);
+		if (open(path, O_RDONLY) >= 0)
+		{
+			cmd->path = path;
+			free(env);
+			return (0);
+		}
+		free(path);
+	}
+	free(env);
 	return (1);
 }

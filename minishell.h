@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 03:05:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 04:55:16 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_cmd
 	t_list	*l_argv;
 	int		infile;
 	int		outfile;
+	char	*path;
 }				t_cmd;
 
 /*
@@ -126,6 +127,6 @@ void	make_argv(t_mini *mini);
 ** Exec functions
 */
 int		ft_execve(t_cmd command);
-int		ft_search_cmd(t_cmd cmd);
+int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
 
 #endif
