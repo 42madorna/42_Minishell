@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 04:55:16 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 15:45:22 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,10 @@ void	make_argv(t_mini *mini);
 */
 int		ft_execve(t_cmd command);
 int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
+
+/*
+** Utils functions
+*/
+char	*ft_strjoin_path(const char *s1, const char *s2);
 
 #endif

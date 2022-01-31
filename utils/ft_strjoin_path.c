@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_search_cmd.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 00:46:27 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 15:49:05 by madorna-         ###   ########.fr       */
+/*   Created: 2022/01/31 15:42:46 by madorna-          #+#    #+#             */
+/*   Updated: 2022/01/31 15:48:52 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int
-	ft_search_cmd(t_list *l_env, t_cmd *cmd)
+char
+	*ft_strjoin_path(const char *s1, const char *s2)
 {
-	char	**env;
-	char	*path;
+	char			*str;
+	unsigned int	i;
+	unsigned int	j;
 
-	env = ft_split(ft_env_value(l_env, "PATH"), ':');
-	for (int i = 0; env[i]; i++)
-	{
-		// FIXME: MINS-81
-		path = ft_strjoin_path(env[i], cmd->argv[0]); // TODO: Leaks
-		// printf("Trying '%s'\n", path);
-		if (open(path, O_RDONLY) >= 0)
-		{
-			cmd->path = path;
-			free(env);
-			return (0);
-		}
-		free(path);
-	}
-	free(env);
-	return (1);
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	str = malloc((sizeof(char) * ft_strlen(s1) + ft_strlen(s2)) + 2);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+		str[j++] = s1[i++];
+	str[j++] = '/';
+	i = 0;
+	while (s2[i])
+		str[j++] = s2[i++];
+	str[ft_strlen(s1) + ft_strlen(s2) + 1] = '\0';
+	return (str);
 }
