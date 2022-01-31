@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 02:10:22 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 02:17:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ inline static int
 {
 	if (chdir(argv[1]) <= -1)
 	{
-		ft_putstr_fd("\nminishell: cd: ", 1);
+		printf("\n%s: cd: ", SHELL_NAME);
 		ft_putstr_fd(argv[1], 1);
 		if (open(argv[1], O_RDONLY) > 0)
 		{

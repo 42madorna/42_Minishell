@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 00:59:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 02:13:46 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int
 	signal(SIGINT, signal_h);
 	signal(SIGQUIT, signal_h);
 	set_functions(&mini);
+	ft_env_to_lst(&mini);
 	while (1)
 	{
 		mini.flag = CLEAR;
@@ -77,8 +78,8 @@ int
 					if (builtin(argv, &mini))
 					{
 						if (ft_search_cmd(*(t_cmd*)(mini.cmds->content))) // TODO: Check if this works OK
-							printf("minishell: %s: No such file or directory\n",
-									((t_cmd*)(mini.cmds->content))->argv[0]);
+							printf("%s: %s: No such file or directory\n",
+									SHELL_NAME, ((t_cmd*)(mini.cmds->content))->argv[0]);
 						else
 							ft_execve(*(t_cmd*)(mini.cmds->content));
 					}

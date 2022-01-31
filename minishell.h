@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 01:46:38 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 02:31:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,12 @@ int		parse_delimiter(t_mini *mini);
 int		parse_in(t_mini *mini);
 int		parse_append(t_mini *mini);
 int		parse_out(t_mini *mini);
+
+/*
+** Environment variables functions
+*/
+void	ft_env_to_lst(t_mini *mini);
+char	*ft_env_value(t_mini *mini, const char *key);
 
 void	make_command(t_mini *mini);
 void	make_argv(t_mini *mini);
