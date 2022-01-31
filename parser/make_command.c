@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 02:32:26 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 03:05:33 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char
 	// printf("\n");
 	if (!ft_strncmp("?\0", env_var, 2))
 		printf("TODO: Manage $? expansion\n");
-	env_cont = ft_env_value(mini, env_var);
+	env_cont = ft_env_value(mini->l_env, env_var);
 	while (env_cont && *env_cont)
 		mini->buffer[(*pos)++] = *env_cont++;
 	return (env_var);
