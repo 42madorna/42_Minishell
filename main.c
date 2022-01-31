@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 05:09:27 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:47:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int
 					{
 						if (ft_search_cmd(mini.l_env, (t_cmd*)(mini.cmds->content))) // TODO: Check if this works OK
 						{
-							printf("%s: %s: No such file or directory\n",
+							printf("%s: %s: command not found\n",
 									SHELL_NAME, ((t_cmd*)(mini.cmds->content))->argv[0]);
 							break ;
 						}

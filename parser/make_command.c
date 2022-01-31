@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 16:42:42 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:57:04 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,12 @@ void
 // FIXME: Revisar creación de comandos
 /*
 ** At this moment, ARGV is constructed ok but
-** 	FIXME: Spaces after PIPE
+** 	FIXME: Spaces after PIPE [MINS-78]
 ** 	TODO: APPEND, DELIMITTER, IN, OUT
+*/
+
+/*
+** FIXME: [MINS-82]
 */
 void
 	make_command(t_mini *mini)
