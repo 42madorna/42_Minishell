@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adorna_r <adorna_r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/15 20:13:58 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/01/31 00:35:13 by adorna_r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,7 +289,7 @@ int
 	ft_lstadd_back(&mini->chars, ft_lstnew(chars));
 	free(p);
 	// Uncomment this to see what does mini->chars have
-	ft_lstiter(mini->chars, print);
+	// ft_lstiter(mini->chars, print);
 	make_command(mini);
 	ft_lstclear(&mini->chars, free);
 	return (0);
