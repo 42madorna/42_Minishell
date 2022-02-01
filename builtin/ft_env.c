@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 05:13:01 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 20:54:46 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:40:25 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ static inline void
 	env_node = l_env;
 	while (env_node)
 	{
-		printf("%s=%s\n", ((t_env *)(env_node->content))->key,
-			((t_env *)(env_node->content))->value);
+		if (((t_env *)(env_node->content))->value)
+			printf("%s=%s\n", ((t_env *)(env_node->content))->key,
+				((t_env *)(env_node->content))->value);
 		env_node = env_node->next;
 	}
 }
