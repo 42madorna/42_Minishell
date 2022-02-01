@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/01 19:35:47 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/02 00:55:30 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int
 	int		i;
 
 
+	(void)cpy;
 	/*
 	** FIXME: Export should not modify existing env vars
 	*/
