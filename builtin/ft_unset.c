@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 02:09:26 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:54:52 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,30 @@
 ** Unset takes just the first argument, ignores the rest.
 */
 
+/*
+** TODO: Remove env variable
+*/
+// void
+// 	del_env_vble(t_list *l_env, char *str)
+// {
+// 	t_list	*env_node;
+// 	t_list	*del;
+
+// 	env_node = l_env;
+// 	while (env_node)
+// 	{
+// 		if (ft_strncmp(((t_env *)env_node->content)->key, str, ft_strlen(((t_env *)env_node->content)->key)))
+// 		{
+// 			del = env_node;
+// 			break ;
+// 		}
+// 		env_node = env_node->next;
+// 	}
+// 	while (env_node && env_node->next != del)
+// }
+
 int
-	ft_unset(int argc, char **argv, t_list *env)
+	ft_unset(int argc, char **argv, t_list *l_env)
 {
 	write(1, "\n", 1);
 	// if (argc >= 2)
