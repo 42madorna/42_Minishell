@@ -6,3 +6,5 @@ minishell
 librl/
 ._readline*
 .nfs.*
+a.out
+loop.c
