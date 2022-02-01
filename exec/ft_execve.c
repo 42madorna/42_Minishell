@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:25:30 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/01 21:31:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 21:40:51 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void
 int
 	ft_execve(t_cmd command)
 {
-	pid_t	pid;
-	int		status;
+	pid_t				pid;
+	int					status;
 	struct sigaction	sig;
 
 	// command.argv = malloc(sizeof(char*) * 3);
