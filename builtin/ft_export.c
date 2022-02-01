@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/01 03:23:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 19:35:47 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ int
 		i = 1;
 		while (argv[i])
 		{
-			printf("argv[%d]: %s\n", i, argv[i]);
 			arg = ft_split(argv[i], '=');
 			ft_env_set_value(env, arg[0], arg[1]);
 			free_malloc(arg);

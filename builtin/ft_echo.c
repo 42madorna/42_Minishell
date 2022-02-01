@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 22:11:24 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 02:55:36 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:08:04 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 */
 
 int
-	ft_echo(int argc, char **argv)
+	ft_echo(int argc, char **argv, t_list *l_env)
 {
 	int	i;
 	int	option;
@@ -36,7 +36,13 @@ int
 	}
 	while (i < argc)
 	{
-		printf("%s", argv[i]);
+		if (!ft_strncmp(argv[i], "~", ft_strlen(argv[i])))
+		{
+			if (ft_env_value(l_env, "HOME"))
+				printf("%s", ft_env_value(l_env, "HOME"));
+		}
+		else
+			printf("%s", argv[i]);
 		++i;
 		if (argv[i])
 			printf(" ");

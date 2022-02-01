@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:53:49 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 02:37:59 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:06:09 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	ft_cd(int argc, char **argv, t_list *env);
 int	ft_env(int argc, char **argv, t_list *env);
 int	ft_unset(int argc, char **argv, t_list *env);
 int	ft_export(int argc, char **argv, t_list *env);
-int	ft_echo(int argc, char **argv);
+int	ft_echo(int argc, char **argv, t_list *l_env);
 
 #endif
