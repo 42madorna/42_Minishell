@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 03:06:28 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 19:33:31 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ inline static int
 	return (0);
 }
 
+inline static char
+	*ft_oldpwd(char *dir)
+{
+	printf("%s\n", ft_strrchr(dir, '/'));
+	return (dir);
+}
+
 /*
 ** builtin: cd -> cd usa getcwd, no PWD! -> chdir!
 ** 1.	Ver si directorio existe
@@ -50,6 +57,10 @@ inline static int
 ** cd solamente usa el primer argumento, el resto los ignora. (En Darwin)
 ** Si hay argumento pero está vacío ("", ''), cd no hace nada.
 ** Keep in mind that cd just has to work only with relative or absolute paths !
+*/
+
+/*
+** FIXME: cd builtin
 */
 
 int
@@ -73,8 +84,10 @@ int
 		p[ft_strlen(p) - 1] = '\0';
 	if (cd_check(argv, p, dir))
 		return (1);
-	write(1, "\n", 1);
 	dir = getcwd(dir, 0);
+	printf("p is %s\n", p);
+	ft_env_set_value(l_env, "OLDPWD", dir);
+	ft_env_set_value(l_env, "PWD", p);
 	// set_value(l_env, "OLDPWD", dir, (char *)__FUNCTION__);
 	// set_value(l_env, "PWD", argv[1], (char *)__FUNCTION__);
 	free_cd(p, dir);
