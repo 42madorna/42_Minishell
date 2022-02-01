@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/01 20:25:38 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 21:37:56 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ void
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	// TODO: SIGQUIT
-	if (signal == SIGQUIT)
-		printf("SIGQUIT RECEIVED; MUST HANDLE IT, ONLY WHEN EXECVE RUNNING\n");
 }
 
 void
@@ -59,7 +56,7 @@ int
 	mini.argv = argv;
 	mini.env = env;
 	signal(SIGINT, signal_h);
-	signal(SIGQUIT, signal_h);
+	signal(SIGQUIT, SIG_IGN);
 	set_functions(&mini);
 	ft_env_to_lst(&mini);
 	while (1)
@@ -89,6 +86,7 @@ int
 						}
 						else
 							mini.ret = ft_execve(*(t_cmd*)(mini.cmds->content));
+						// TODO: Leaks
 					}
 					mini.cmds = mini.cmds->next;
 				}
