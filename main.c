@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 20:43:13 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/01 20:25:38 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ void
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+	// TODO: SIGQUIT
 	if (signal == SIGQUIT)
-		printf("SIGQUIT RECEIVED; MUST HANDLE IT\n");
+		printf("SIGQUIT RECEIVED; MUST HANDLE IT, ONLY WHEN EXECVE RUNNING\n");
 }
 
 void
