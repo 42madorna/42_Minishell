@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 01:13:02 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 00:46:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,9 @@ static inline void
 	}
 }
 
+/*
+** [MINS-86]: export builtin not working when env not set
+*/
 int
 	ft_export(int argc, char **argv, t_list *env)
 {
