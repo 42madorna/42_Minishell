@@ -6,14 +6,14 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
-/*   Updated: 2021/12/01 03:16:59 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/02 01:00:49 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void
-	noname(t_cmd *cmd)
+	ft_list_to_argv(t_cmd *cmd)
 {
 	t_list	*l_argv;
 	int		n_argv;
@@ -39,7 +39,7 @@ void
 	cmds = mini->cmds;
 	while (cmds)
 	{
-		noname(cmds->content);
+		ft_list_to_argv(cmds->content);
 		cmds = cmds->next;
 	}
 }
