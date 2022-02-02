@@ -1,17 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_argv.c                                        :+:      :+:    :+:   */
+/*   make_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 01:00:49 by madorna-         ###   ########.fr       */
+/*   Created: 2022/02/02 01:01:48 by madorna-          #+#    #+#             */
+/*   Updated: 2022/02/02 01:13:14 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+
+/*
+** TODO: [MINS-85] Convert t_env to char **env
+*/
 void
 	ft_list_to_argv(t_cmd *cmd)
 {
@@ -32,7 +36,7 @@ void
 }
 
 void
-	make_argv(t_mini *mini)
+	make_env(t_mini *mini)
 {
 	t_list	*cmds;
 

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/01 20:00:14 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/02 01:14:04 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void
 }
 
 
-// FIXME: taking bad names
+// FIXME: [MINS-69] taking bad names
 char
 	*manage_dollar(t_mini *mini, t_list **lst, int *pos)
 {
@@ -142,12 +142,12 @@ void
 // FIXME: Revisar creación de comandos
 /*
 ** At this moment, ARGV is constructed ok but
-** 	FIXME: Spaces after PIPE [MINS-78]
+** 	FIXME: [MINS-78] Spaces after PIPE
 ** 	TODO: APPEND, DELIMITTER, IN, OUT
 */
 
 /*
-** FIXME: [MINS-82]
+** FIXME: [MINS-82] Fix environment vars exec (ls -la)
 */
 void
 	make_command(t_mini *mini)
@@ -210,7 +210,7 @@ void
 		if (((((t_chars*)(lst)->content)->flag & IN) == IN) == 1)
 			cmd->infile = manage_in(mini, &lst, &i);
 		if (((((t_chars*)(lst)->content)->flag & DELIMITER) == DELIMITER) == 1)
-			printf ("TODO: Manage delimitter [MINS-57]!\n");
+			printf ("TODO: [MINS-57] Manage delimitter!\n");
 		if (((t_chars*)(lst)->content)->flag == OUT)
 			cmd->outfile = manage_out(mini, &lst, &i);
 		mini->buffer[i++] = ((t_chars*)lst->content)->c;
