@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 00:37:57 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 00:38:34 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ inline static int
 ** Keep in mind that cd just has to work only with relative or absolute paths !
 */
 
-/*
-** FIXME: [MINS-84] cd builtin when env is unset
-*/
 int
 	ft_cd(int argc, char **argv, t_list *l_env)
 {
