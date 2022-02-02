@@ -6,13 +6,12 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:25:30 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 00:54:26 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/02 01:13:19 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// TODO: SIGQUIT
 void
 	signal_q()
 {
@@ -36,7 +35,7 @@ int
 	** 	return (printf(command not found...))
 	*/
 	// printf("command path %s\n",command.path);
-	// FIXME: MINS-79
+	// FIXME: [MINS-79] Fix WARNING: terminal is not fully functional (for example in man)
 	#ifdef __linux__
 		sig.sa_handler = signal_q;
 	#else

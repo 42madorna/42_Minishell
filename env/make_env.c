@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:01:48 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 01:07:04 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/02 01:13:14 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 /*
-** TODO: MINS-85 Convert t_env to char **env
+** TODO: [MINS-85] Convert t_env to char **env
 */
 void
 	ft_list_to_argv(t_cmd *cmd)
