@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 19:01:02 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 19:02:06 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void
 {
 	while (mini->cmds)
 	{
-		// ((t_cmd*)(mini->cmds->content))->env = env; // FIXME: MINS-79
 		if (!((t_cmd*)(mini->cmds->content))->argv[0][0])
 			break ;
 		if (builtin(((t_cmd*)(mini->cmds->content))->argv, mini))
