@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 19:24:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:35:34 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	pipex(t_mini *mini);
 /*
 ** Exec functions
 */
-int		ft_execve(t_cmd command);
+int		ft_execve(t_cmd *command);
 int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
 
 /*

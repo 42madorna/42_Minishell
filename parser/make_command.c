@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 18:01:40 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:35:18 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int
 		*lst = (*lst)->next;
 	}
 	// printf("\n");
-	fd = open(file, O_APPEND | O_CREAT | O_RDONLY | O_WRONLY);
+	fd = open(file, O_APPEND | O_CREAT | O_RDONLY | O_WRONLY, 0644);
 	// (*pos)++;
 	return (fd);
 }
@@ -116,11 +116,11 @@ int
 		== OUT) == 1 && ((t_chars*)(*lst)->content)->c)
 	{
 		file[i++] = ((t_chars*)(*lst)->content)->c;
-		printf("%c", ((t_chars*)(*lst)->content)->c);
+		// printf("%c", ((t_chars*)(*lst)->content)->c);
 		*lst = (*lst)->next;
 	}
 	// printf("\n");
-	fd = open(file, O_WRONLY | O_CREAT);
+	fd = open(file, O_WRONLY | O_CREAT, 0644);
 	// (*pos)++;
 	return (fd);
 }

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 18:19:30 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 23:41:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void
 	mini->p[DOLLAR] = parse_dollar;
 }
 
+/*
+** Minishell
+** Subject 
+*/
 int
 	main(int argc, char **argv, char **env)
 {
