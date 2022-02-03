@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:01:48 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 01:13:14 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 02:32:46 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,25 @@
 ** TODO: [MINS-85] Convert t_env to char **env
 */
 void
-	ft_list_to_argv(t_cmd *cmd)
+	ft_list_to_env(t_mini *mini)
 {
-	t_list	*l_argv;
-	int		n_argv;
+	t_list	*l_env;
+	t_env	*env_node;
+	int		n_env;
 	int		i;
 
-	l_argv = cmd->l_argv;
-	n_argv = ft_lstsize(l_argv);
-	cmd->argv = calloc(n_argv + 1, sizeof(char*));
+	l_env = mini->l_env;
+	n_env = ft_lstsize(l_env);
+	mini->env_cmd = calloc(n_env + 1, sizeof(char*));
 	i = 0;
-	while (l_argv)
+	while (l_env)
 	{
-		cmd->argv[i++] = l_argv->content;
-		l_argv = l_argv->next;
+		env_node = l_env->content;
+		mini->env_cmd[i] = ft_strjoin_env(env_node->key, env_node->value);
+		if (mini->env_cmd[i])
+			++i;
+		l_env = l_env->next;
 	}
-	cmd->argc = i;
 }
 
 void
@@ -41,9 +44,10 @@ void
 	t_list	*cmds;
 
 	cmds = mini->cmds;
+	ft_list_to_env(mini);
 	while (cmds)
 	{
-		ft_list_to_argv(cmds->content);
+		((t_cmd *)(cmds->content))->env = mini->env_cmd;
 		cmds = cmds->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 00:55:09 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 02:19:30 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_mini
 	t_list *chars;
 	int (*p[9])(struct s_mini *);
 	int ret;
+	char	**env_cmd;
 } t_mini;
 
 /*
@@ -124,6 +125,7 @@ void make_argv(t_mini *mini);
 void ft_env_to_lst(t_mini *mini);
 char *ft_env_value(t_list *l_env, const char *key);
 void ft_env_set_value(t_list *l_env, char *key, char *new_value);
+void	make_env(t_mini *mini);
 
 /*
 ** Exec functions
@@ -134,6 +136,7 @@ int ft_search_cmd(t_list *l_env, t_cmd *cmd);
 /*
 ** Utils functions
 */
-char *ft_strjoin_path(const char *s1, const char *s2);
+char	*ft_strjoin_path(const char *s1, const char *s2);
+char	*ft_strjoin_env(const char *s1, const char *s2);
 
 #endif
