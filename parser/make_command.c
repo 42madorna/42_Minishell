@@ -193,7 +193,7 @@ void
 		}
 		if (((t_chars*)lst->content)->c == '|')
 		{
-			if (!cmd->l_argv)
+			if (!*mini->buffer && !cmd->l_argv)
 			{
 				printf("Unexpected `|'\n");
 				return ;
@@ -202,7 +202,7 @@ void
 			ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
 			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 			cmd = calloc(1, sizeof(t_cmd));
-			mini->buffer = calloc(1024, sizeof(char));
+			mini->buffer = calloc(1024, sizeof(char*));
 			i = 0;
 		}
 		if (((t_chars*)(lst)->content)->flag== APPEND)
