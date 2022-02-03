@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 02:19:30 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:17:06 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,11 @@ void ft_env_to_lst(t_mini *mini);
 char *ft_env_value(t_list *l_env, const char *key);
 void ft_env_set_value(t_list *l_env, char *key, char *new_value);
 void	make_env(t_mini *mini);
+
+/*
+** Pipex functions
+*/
+void	pipex(t_mini *mini);
 
 /*
 ** Exec functions
