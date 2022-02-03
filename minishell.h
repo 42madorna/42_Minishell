@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 18:17:06 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 19:24:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,83 +48,84 @@
 /*
 ** General minishell struct
 */
-typedef struct s_mini
+typedef struct	s_mini
 {
-	int argc;
-	char **argv;
-	char **env;
-	char *line;
-	char *line_cpy;
-	char *buffer;
-	int flag;
+	int		argc;
+	char	**argv;
+	char	**env;
+	char	*line;
+	char	*line_cpy;
+	char	*buffer;
+	int		flag;
 	// int		errno;
-	int p_error;
-	t_list *l_env;
-	t_list *cmds;
-	t_list *delimiters;
-	t_list *chars;
-	int (*p[9])(struct s_mini *);
-	int ret;
+	int		p_error;
+	t_list	*l_env;
+	t_list	*cmds;
+	t_list	*delimiters;
+	t_list	*chars;
+	int		(*p[9])(struct s_mini *);
+	int		ret;
 	char	**env_cmd;
-} t_mini;
+}				t_mini;
 
 /*
 ** Command structure (aka t_mini->cmds)
 */
-typedef struct s_cmd
+typedef struct	s_cmd
 {
-	int argc;
-	char **argv;
-	char **env;
-	t_list *l_argv;
-	int infile;
-	int outfile;
-	char *path;
-} t_cmd;
+	int		argc;
+	char	**argv;
+	char	**env;
+	t_list	*l_argv;
+	int		infile;
+	int		outfile;
+	char	*path;
+	pid_t	pid;
+}				t_cmd;
 
 /*
 ** Parser minishell struct (aka t_mini->chars)
 */
-typedef struct s_chars
+typedef struct	s_chars
 {
-	char c;
-	int flag;
-	int end;
-} t_chars;
+	char	c;
+	int		flag;
+	int		end;
+}				t_chars;
 
 /*
 ** Environment variables struct (aka t_mini->l_env)
 */
-typedef struct s_env
+typedef struct	s_env
 {
-	char *key;
-	char *value;
-} t_env;
+	char	*key;
+	char	*value;
+}				t_env;
 
 /*
 ** Parser functions
 */
-int parse(t_mini *mini);
-int specials(t_mini *mini);
-int parse_clear(t_mini *mini);
-int parse_pipe(t_mini *mini);
-int parse_dquote(t_mini *mini);
-int parse_quote(t_mini *mini);
-int parse_dollar(t_mini *mini);
-int parse_delimiter(t_mini *mini);
-int parse_in(t_mini *mini);
-int parse_append(t_mini *mini);
-int parse_out(t_mini *mini);
+int		parse(t_mini *mini);
+int		specials(t_mini *mini);
+int		parse_clear(t_mini *mini);
+int		parse_pipe(t_mini *mini);
+int		parse_dquote(t_mini *mini);
+int		parse_quote(t_mini *mini);
+int		parse_dollar(t_mini *mini);
+int		parse_delimiter(t_mini *mini);
+int		parse_in(t_mini *mini);
+int		parse_append(t_mini *mini);
+int		parse_out(t_mini *mini);
 
-void make_command(t_mini *mini);
-void make_argv(t_mini *mini);
+void	make_command(t_mini *mini);
+void	make_argv(t_mini *mini);
 
 /*
 ** Environment variables functions
 */
-void ft_env_to_lst(t_mini *mini);
-char *ft_env_value(t_list *l_env, const char *key);
-void ft_env_set_value(t_list *l_env, char *key, char *new_value);
+void	ft_env_to_lst(t_mini *mini);
+char	*ft_env_value(t_list *l_env, const char *key);
+void	ft_env_set_value(t_list *l_env, char *key, char *new_value);
 void	make_env(t_mini *mini);
 
 /*
@@ -135,8 +136,8 @@ void	pipex(t_mini *mini);
 /*
 ** Exec functions
 */
-int ft_execve(t_cmd command);
-int ft_search_cmd(t_list *l_env, t_cmd *cmd);
+int		ft_execve(t_cmd command);
+int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
 
 /*
 ** Utils functions
