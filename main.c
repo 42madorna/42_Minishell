@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 02:32:52 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:27:28 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int
 	signal(SIGINT, signal_h);
 	signal(SIGQUIT, SIG_IGN);
 	set_functions(&mini);
-	ft_env_to_lst(&mini);
+	ft_env_to_lst(&mini); // TODO: Leaks
 	while (1)
 	{
 		mini.flag = CLEAR;

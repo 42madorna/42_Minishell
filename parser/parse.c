@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/01 20:00:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:56:11 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,7 @@ int
 	while (*mini->line_cpy)
 	{
 		mini->p[CLEAR](mini);
-		chars = calloc(1, sizeof(t_chars*));
+		chars = calloc(1, sizeof(t_chars));
 		chars->flag = specials(mini);
 		if (!*mini->line_cpy)
 		{
