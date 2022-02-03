@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 01:14:04 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:01:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int
 void
 	print2(void *content)
 {
-	printf("%s\n", (char*)content);
+	printf("'%s'\n", (char*)content);
 }
 
 void
@@ -158,7 +158,7 @@ void
 
 	lst = mini->chars;
 	cmd = calloc(1, sizeof(t_cmd));
-	mini->buffer = calloc(1024, sizeof(char));
+	mini->buffer = calloc(1024, sizeof(char*));
 	i = 0;
 	/*
 	** TODO: Fix QUOTE. Error came and I don't know why
@@ -175,7 +175,7 @@ void
 				cmd->l_argv = ft_lstnew(mini->buffer);
 			else
 				ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
-			mini->buffer = calloc(1024, sizeof(char));
+			mini->buffer = calloc(1024, sizeof(char*));
 			i = 0;
 		}
 		if (((t_chars*)lst->content)->c == '$'
@@ -193,7 +193,7 @@ void
 		}
 		if (((t_chars*)lst->content)->c == '|')
 		{
-			if (!cmd->l_argv)
+			if (!*mini->buffer && !cmd->l_argv)
 			{
 				printf("Unexpected `|'\n");
 				return ;
@@ -202,14 +202,14 @@ void
 			ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
 			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 			cmd = calloc(1, sizeof(t_cmd));
-			mini->buffer = calloc(1024, sizeof(char));
+			mini->buffer = calloc(1024, sizeof(char*));
 			i = 0;
 		}
-		if (((((t_chars*)(lst)->content)->flag & APPEND) == APPEND) == 1)
+		if (((t_chars*)(lst)->content)->flag== APPEND)
 			cmd->outfile = manage_append(mini, &lst, &i);
-		if (((((t_chars*)(lst)->content)->flag & IN) == IN) == 1)
+		if (((t_chars*)(lst)->content)->flag == IN)
 			cmd->infile = manage_in(mini, &lst, &i);
-		if (((((t_chars*)(lst)->content)->flag & DELIMITER) == DELIMITER) == 1)
+		if (((t_chars*)(lst)->content)->flag == DELIMITER)
 			printf ("TODO: [MINS-57] Manage delimitter!\n");
 		if (((t_chars*)(lst)->content)->flag == OUT)
 			cmd->outfile = manage_out(mini, &lst, &i);
