@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 17:06:44 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:01:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int
 void
 	print2(void *content)
 {
-	printf("%s\n", (char*)content);
+	printf("'%s'\n", (char*)content);
 }
 
 void
