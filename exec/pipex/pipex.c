@@ -6,12 +6,15 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 18:18:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 19:01:02 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+** TODO: [MINS-59] (PIPEX)
+*/
 void
 	pipex(t_mini *mini)
 {
