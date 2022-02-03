@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:01:48 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 02:32:46 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/03 02:34:32 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void
 	while (l_env)
 	{
 		env_node = l_env->content;
-		mini->env_cmd[i] = ft_strjoin_env(env_node->key, env_node->value);
+		mini->env_cmd[i] = ft_strjoin_env(env_node->key, env_node->value); // TODO: Leaks
 		if (mini->env_cmd[i])
 			++i;
 		l_env = l_env->next;
