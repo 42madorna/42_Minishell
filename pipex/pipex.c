@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 00:34:23 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:43:21 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,12 @@ void
 
 	while (mini->cmds)
 	{
-		saved_stdout = dup(1);
-		dup2(((t_cmd*)(mini->cmds->content))->outfile, 1);
 		if (!((t_cmd*)(mini->cmds->content))->argv[0][0])
 			break ;
+		saved_stdout = dup(STDOUT_FILENO);
+		saved_stdin = dup(STDIN_FILENO);
+		dup2(((t_cmd*)(mini->cmds->content))->outfile, STDOUT_FILENO);
+		dup2(((t_cmd*)(mini->cmds->content))->infile, STDIN_FILENO);
 		if (builtin(((t_cmd*)(mini->cmds->content))->argv, mini))
 		{
 			if (ft_search_cmd(mini->l_env, (t_cmd*)(mini->cmds->content))) // TODO: Check if this works OK
@@ -66,8 +68,10 @@ void
 			}
 			// TODO: Leaks
 		}
-		dup2(saved_stdout, 1);
+		dup2(saved_stdout, STDOUT_FILENO);
+		dup2(saved_stdin, STDIN_FILENO);
 		close(saved_stdout);
+		close(saved_stdin);
 		mini->cmds = mini->cmds->next;
 	}
 }
