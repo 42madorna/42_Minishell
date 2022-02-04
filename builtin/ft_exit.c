@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:50:18 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 01:21:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:03:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** builtin: exit
-** exit writes always "\nexit\n" and then checks:
+** exit writes always "exit\n" and then checks:
 ** 	1. Numeric first argument
 ** 	2. Arguments can not be >= 3
 ** If there is not a numeric argument, then calls exit(255), if the argument
@@ -37,7 +37,6 @@ int
 	{
 		if (ft_isalpha(argv[1][i]))
 		{
-			// FIXME: ? numeric argument on exit
 			printf("%s: exit: %s: numeric argument required\n",
 				SHELL_NAME, argv[1]);
 			i = -2;
