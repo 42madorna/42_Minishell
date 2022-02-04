@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/02 01:00:49 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 00:53:58 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void
 	int		i;
 
 	l_argv = cmd->l_argv;
+	/*
+	** FIXME: [MINS-78] Spaces going into argv
+	** ! WARNING: The next line ignores the actual argv[0] to prevent spaces
+	** 	from l_argv
+	*/
+	l_argv = l_argv->next;
 	n_argv = ft_lstsize(l_argv);
 	cmd->argv = calloc(n_argv + 1, sizeof(char*));
 	i = 0;
