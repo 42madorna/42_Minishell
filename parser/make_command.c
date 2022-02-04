@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 00:35:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 01:09:42 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,8 @@ void
 
 	lst = mini->chars;
 	cmd = calloc(1, sizeof(t_cmd));
+	cmd->infile = STDIN_FILENO;
+	cmd->outfile = STDOUT_FILENO;
 	mini->buffer = calloc(1024, sizeof(char*));
 	i = 0;
 	/*
@@ -202,6 +204,8 @@ void
 			ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
 			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 			cmd = calloc(1, sizeof(t_cmd));
+			cmd->infile = STDIN_FILENO;
+			cmd->outfile = STDOUT_FILENO;
 			mini->buffer = calloc(1024, sizeof(char*));
 			i = 0;
 		}

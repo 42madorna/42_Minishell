@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 00:43:21 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 01:10:14 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 ** 	· int argc (argument count for the command)
 ** 	· char **argv (command arguments)
 ** 	· char **env (command environment variables)
-** 	· int infile (the in fd. Defaults to 0)
-** 	· int outfile (the out fd. Defaults to 1)
+** 	· int infile (the in fd. Defaults to STDIN_FILENO)
+** 	· int outfile (the out fd. Defaults to STDOUT_FILENO)
 ** 	· char *path (the path of the command to execute)
 ** 	· pit_t pid (the PID of the command once executed, will be set in ft_execve)
 ** Pipex should handle the t_list *cmds of t_cmd and execute the commands in
