@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:50:18 by madorna-          #+#    #+#             */
-/*   Updated: 2022/01/31 02:17:19 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 01:21:41 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int
 
 	(void)env;
 	i = -1;
-	ft_putstr_fd("exit\n", 1);
+	printf("exit\n");
 	if (argc == 1)
 		exit(0);
 	while (argv[1][++i])
@@ -38,9 +38,8 @@ int
 		if (ft_isalpha(argv[1][i]))
 		{
 			// FIXME: ? numeric argument on exit
-			printf("%s: exit: ", SHELL_NAME);
-			ft_putstr_fd(argv[1], 1);
-			ft_putstr_fd(": numeric argument required\n", 1);
+			printf("%s: exit: %s: numeric argument required\n",
+				SHELL_NAME, argv[1]);
 			i = -2;
 			break ;
 		}
