@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 18:01:24 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/04 21:32:51 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,8 +270,11 @@ int
 			free(chars);
 			break ;
 		}
-		if (*mini->line_cpy == '|')
-			chars->flag = PIPE;
+		/*
+		** TODO: FIX PIPE
+		*/
+		// if (*mini->line_cpy == '|')
+		// 	chars->flag = PIPE;
 		chars->c = *mini->line_cpy;
 		ft_lstadd_back(&mini->chars, ft_lstnew(chars));
 		mini->line_cpy++;
