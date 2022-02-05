@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:12:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 03:16:50 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void
 		*lst = (*lst)->next;
 }
 
-
-// FIXME: [MINS-69] taking bad names
 char
 	*manage_dollar(t_mini *mini, t_list **lst, int *pos)
 {
