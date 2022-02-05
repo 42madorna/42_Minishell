@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:18:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:29:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 03:40:06 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int
 	{
 		if (((mini->flag & DOLLAR) == DOLLAR) == 1)
 			mini->flag -= DOLLAR;
-		mini->flag += PIPE;
+		mini->flag = PIPE;
 		mini->pipe_count++;
 		// mini->line_cpy++;
 	}
