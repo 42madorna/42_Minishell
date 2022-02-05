@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 22:11:24 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/01 20:08:04 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 02:56:13 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int
 	}
 	while (i < argc)
 	{
-		if (!ft_strncmp(argv[i], "~", ft_strlen(argv[i])))
+		if (!ft_strncmp(argv[i], "~", ft_strlen(argv[i]) + 1))
 		{
 			if (ft_env_value(l_env, "HOME"))
 				printf("%s", ft_env_value(l_env, "HOME"));
