@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:18:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 02:41:42 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 02:47:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int
 	{
 		if (((mini->flag & DOLLAR) == DOLLAR) == 1)
 			mini->flag -= DOLLAR;
-		printf("Entro en pipe...");
 		mini->flag += PIPE;
 		// mini->line_cpy++;
 	}
