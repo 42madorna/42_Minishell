@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:28:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 18:22:07 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct	s_env
 /*
 ** Parser functions
 */
+int		quote_finder(t_mini *mini);
 int		parse(t_mini *mini);
 int		specials(t_mini *mini);
 int		parse_clear(t_mini *mini);

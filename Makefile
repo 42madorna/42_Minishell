@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/03 23:22:04 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/05 18:21:38 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,20 @@ SRCS =	main.c																	\
 		env/make_env.c															\
 		exec/ft_execve.c														\
 		exec/ft_search_cmd.c													\
-		parser/append.c															\
-		parser/clear.c															\
-		parser/delimiter.c														\
-		parser/dollar.c															\
-		parser/dquote.c															\
-		parser/in.c																\
+		parser2/append.c														\
+		parser2/clear.c															\
+		parser2/delimiter.c														\
+		parser2/dollar.c														\
+		parser2/dquote.c														\
+		parser2/in.c															\
 		parser/make_argv.c														\
 		parser/make_command.c													\
-		parser/out.c															\
+		parser2/out.c															\
 		parser/parse.c															\
-		parser/pipe.c															\
+		parser2/pipe.c															\
+		parser2/quote.c															\
+		parser2/quote_finder.c													\
 		pipex/pipex.c															\
-		parser/quote.c															\
 		utils/ft_strjoin_env.c													\
 		utils/ft_strjoin_path.c
 
