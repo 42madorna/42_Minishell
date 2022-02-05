@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 01:38:49 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 00:57:59 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 01:02:57 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void
 		env_node->key = env_var[0];
 		env_node->value = env_var[1];
 		ft_lstadd_back(&mini->l_env, ft_lstnew(env_node)); // TODO: Leaks
-		// Uncoment this to see each env var key:value
+		// Uncomment this to see each env var key:value
 		// printf("key %s, value %s\n", env_node->key, env_node->value);
 	}
 	ft_add_basic_env(mini);
