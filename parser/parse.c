@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 21:32:51 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 02:38:34 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,7 +292,7 @@ int
 	ft_lstadd_back(&mini->chars, ft_lstnew(chars));
 	free(p);
 	// Uncomment this to see what does mini->chars have
-	// ft_lstiter(mini->chars, print);
+	ft_lstiter(mini->chars, print);
 	make_command(mini);
 	ft_lstclear(&mini->chars, free);
 	return (0);

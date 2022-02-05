@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 01:09:42 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 02:44:11 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,9 @@ void
 			manage_dollar(mini, &lst, &i);
 			continue ;
 		}
-		if (((t_chars*)lst->content)->c == '|')
+		if (((t_chars*)lst->content)->c == '|' && ((t_chars*)lst->content)->flag != QUOTE && ((t_chars*)lst->content)->flag != DQUOTE)
 		{
+			printf("Entro en make_command pipe");
 			if (!*mini->buffer && !cmd->l_argv)
 			{
 				printf("Unexpected `|'\n");

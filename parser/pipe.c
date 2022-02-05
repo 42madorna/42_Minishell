@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:18:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 21:33:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 02:41:42 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 int
 	parse_pipe(t_mini *mini)
 {
-	if (((mini->flag & QUOTE) == QUOTE) != 1
-		&& ((mini->flag & DQUOTE) == DQUOTE) != 1)
+	if (mini->flag != QUOTE && mini->flag != DQUOTE)
 	{
 		if (((mini->flag & DOLLAR) == DOLLAR) == 1)
 			mini->flag -= DOLLAR;
+		printf("Entro en pipe...");
 		mini->flag += PIPE;
-		mini->line_cpy++;
+		// mini->line_cpy++;
 	}
 	return (0);
 }
