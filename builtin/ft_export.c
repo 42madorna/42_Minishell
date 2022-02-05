@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 01:15:06 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 01:15:41 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_list
 ** 	sorted using their name using ascii.
 ** export (name) -> prints '\n' and then, adds (name) to env vars.
 ** More than the first parametter has to be handled
-** ! Although env prints just env variables with value, env prints everything
+** ! Although env prints just env variables with value, export prints everything
 ** 	even if there is no value set for that env variable.
 */
 
