@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 19:58:37 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 03:28:58 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int
 	{
 		signal(SIGQUIT, SIG_IGN);
 		mini.flag = CLEAR;
+		mini.pipe_count = 0;
 		promt(&mini, 0);
 		if (mini.line && *mini.line)
 		{
