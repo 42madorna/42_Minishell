@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 01:37:25 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/05 23:58:46 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void
 	t_list	*del;
 
 	env_node = l_env;
+	del = NULL;
 	while (env_node)
 	{
 		if (!ft_strncmp(((t_env *)env_node->content)->key, str, ft_strlen(((t_env *)env_node->content)->key)))

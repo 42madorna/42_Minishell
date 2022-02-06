@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   save_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 00:29:08 by madorna-         ###   ########.fr       */
+/*   Created: 2022/02/06 02:50:48 by madorna-          #+#    #+#             */
+/*   Updated: 2022/02/06 03:07:34 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** Add QUOTE content to buffer except when APPEND, DELIMITER, IN, OUT are
-** 	specified, in that case, the normal behaviour of these flags may occur!
-*/
 int
-	parse_quote(t_mini *mini)
+	save_char(t_mini *mini, t_chars *chars)
 {
-	if (mini->flag == QUOTE)
+	if (!*mini->line_cpy)
 	{
-		mini->flag -= QUOTE;
-		// mini->line_cpy++;
+		free(chars);
+		return (1);
 	}
-	else if (mini->flag != DQUOTE)
-	{
-		mini->flag = QUOTE;
-		// mini->line_cpy++;
-	}
+	chars->c = *mini->line_cpy;
+	chars->flag = mini->flag;
+	if (!mini->chars)
+		mini->chars = ft_lstnew(chars);
+	else
+		ft_lstadd_back(&mini->chars, ft_lstnew(chars));
+	if (*mini->line_cpy)
+		mini->line_cpy++;
 	return (0);
 }

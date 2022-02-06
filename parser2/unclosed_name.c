@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote.c                                            :+:      :+:    :+:   */
+/*   unclosed_name.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 00:29:08 by madorna-         ###   ########.fr       */
+/*   Created: 2022/02/06 01:07:59 by madorna-          #+#    #+#             */
+/*   Updated: 2022/02/06 01:10:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-/*
-** Add QUOTE content to buffer except when APPEND, DELIMITER, IN, OUT are
-** 	specified, in that case, the normal behaviour of these flags may occur!
-*/
-int
-	parse_quote(t_mini *mini)
+char
+	*unclosed_name(int flag)
 {
-	if (mini->flag == QUOTE)
-	{
-		mini->flag -= QUOTE;
-		// mini->line_cpy++;
-	}
-	else if (mini->flag != DQUOTE)
-	{
-		mini->flag = QUOTE;
-		// mini->line_cpy++;
-	}
-	return (0);
+	static char *flags_names[] = {"", "|", ">", "<<", "<", ">>",
+		"\'", "$", "\""};
+
+	return (flags_names[flag]);
 }

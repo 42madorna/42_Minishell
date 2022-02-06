@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 18:22:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 02:58:35 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct	s_env
 ** Parser functions
 */
 int		quote_finder(t_mini *mini);
+int		dollar_finder(t_mini *mini);
 int		parse(t_mini *mini);
 int		specials(t_mini *mini);
 int		parse_clear(t_mini *mini);
@@ -121,6 +122,12 @@ int		parse_out(t_mini *mini);
 
 void	make_command(t_mini *mini);
 void	make_argv(t_mini *mini);
+
+char	*unclosed_name(int flag);
+int		save_char(t_mini *mini, t_chars *chars);
+void	ft_del_chars(void *chars);
+
+void	flagger(t_mini *mini);
 
 /*
 ** Environment variables functions
