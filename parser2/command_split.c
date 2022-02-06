@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 07:12:42 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 07:15:35 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ static void
 	t_chars	*chars_node;
 
 	printf("Found |\n");
+	*chars = (*chars)->next;
 }
 
 void
