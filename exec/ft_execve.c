@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:25:30 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 23:51:30 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 22:36:20 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,11 @@ int
 {
 	int					status;
 	struct sigaction	sig;
-
-	// command.argv = malloc(sizeof(char*) * 3);
-	// command.argv[0] = "/usr/bin/man";
-	// command.argv[1] = "man";
-	// command.argv[2] = NULL;
-	// TODO: search in the PATH env variable for a match
 	/*
-	** if (!command)
-	** 	return (printf(command not found...))
+	** FIXME: [MINS-97] ^\ not working as intended
 	*/
-	// printf("command path %s\n",command.path);
-	// FIXME: [MINS-79] Fix WARNING: terminal is not fully functional (for example in man)
 	#ifdef __linux__
-		sig.sa_handler = signal_q;
+		sig.sa_handler = SIG_DFL;
 	#else
 		sig.__sigaction_u.__sa_handler = signal_q;
 	#endif

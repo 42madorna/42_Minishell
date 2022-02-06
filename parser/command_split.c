@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 21:23:52 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 22:13:09 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,11 @@ void
 	int		i;
 
 	chars = mini->chars;
+	if (!chars)
+		return ;
 	cmd = calloc(1, sizeof(t_cmd));
 	i = 0;
-	arg = calloc(1024, sizeof(char));
+	arg = calloc(1024, sizeof(char*));
 	chars_node = chars->content;
 	if (chars_node->c == '|')
 	{
@@ -180,7 +182,7 @@ void
 				if (*arg)
 					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 			}
-			arg = calloc(1024, sizeof(char));
+			arg = calloc(1024, sizeof(char*));
 			i = 0;
 			manage_pipe(mini, &chars);
 			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
@@ -204,7 +206,7 @@ void
 				if (*arg)
 					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 			}
-			arg = calloc(1024, sizeof(char));
+			arg = calloc(1024, sizeof(char*));
 			i = 0;
 			cmd->outfile = manage_out(mini, &chars);
 			continue ;
@@ -226,7 +228,7 @@ void
 				if (*arg)
 					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 			}
-			arg = calloc(1024, sizeof(char));
+			arg = calloc(1024, sizeof(char*));
 			i = 0;
 			cmd->infile = manage_in(mini, &chars);
 			continue ;
@@ -247,7 +249,7 @@ void
 						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 				}
 			}
-			arg = calloc(1024, sizeof(char));
+			arg = calloc(1024, sizeof(char*));
 			i = 0;
 			skip_lst_spaces(&chars);
 			continue ;
