@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:07:44 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 02:50:45 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 21:33:35 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int
 
 	mini->line_cpy = ft_strtrim(mini->line, " ");
 	buff_cpy = mini->line_cpy;
-	while (*mini->line_cpy)
+	while (*mini->line_cpy && !mini->parse_err)
 	{
 		chars = calloc(1, sizeof(t_chars));
 		if (*mini->line_cpy == '"')
@@ -92,6 +92,10 @@ int
 	// ft_lstiter(mini->chars, print);
 	unclosed = ft_search_unclosed_q(mini->chars);
 	if (unclosed)
-		printf("Unexpected %s\n", unclosed_name(unclosed));
-	dollar_finder(mini);
+	{
+		printf("Unexpected token near `%s'\n", unclosed_name(unclosed));
+		mini->parse_err = 1;
+	}
+	if (!mini->parse_err)
+		dollar_finder(mini);
 }

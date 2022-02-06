@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 07:56:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 21:38:37 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,16 @@ static inline void
 	env_var = calloc(1024, sizeof(char));
 	while ((*lst) && !ft_is_valid_char(((t_chars*)(*lst)->content)->c))
 	{
-		if (i == 0 && ft_isdigit(((t_chars*)(*lst)->content)->c))
+		if (i == 0 && ft_isdigit(((t_chars*)(*lst)->content)->c) && ((t_chars*)(*lst)->content)->c != '?')
+		{
 			printf("Unexpected token\n");
-		if (!ft_isalnum(((t_chars*)(*lst)->content)->c))
+			mini->parse_err = 1;
+		}
+		if (!ft_isalnum(((t_chars*)(*lst)->content)->c) && ((t_chars*)(*lst)->content)->c != '?')
+		{
 			printf("Unexpected token\n");
+			mini->parse_err = 1;
+		}
 		env_var[i++] = ((t_chars*)(*lst)->content)->c;
 		*lst = (*lst)->next;
 	}
@@ -63,7 +69,7 @@ int
 	l_chars = mini->chars;
 	mini->buffer = calloc(1024, sizeof(char*));
 	i = 0;
-	while (l_chars)
+	while (l_chars && !mini->parse_err)
 	{
 		chars_node = l_chars->content;
 		if (chars_node->c == '$' && chars_node->flag != QUOTE)
@@ -76,5 +82,6 @@ int
 		l_chars = l_chars->next;
 	}
 	// printf("mini->buff %s\n", mini->buffer);
-	flagger(mini);
+	if (!mini->parse_err)
+		flagger(mini);
 }

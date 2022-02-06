@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 20:55:26 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 21:24:33 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,19 @@ int
 	{
 		signal(SIGQUIT, SIG_IGN);
 		mini.flag = CLEAR;
-		mini.pipe_count = 0;
+		mini.parse_err = 0;
 		promt(&mini, 0);
 		if (mini.line && *mini.line)
 		{
 			add_history(mini.line);
 			quote_finder(&mini);
 			ft_delim(&mini);
-			// if (!parse(&mini))
-			// {
+			if (!mini.parse_err)
+			{
 				make_argv(&mini);
 				make_env(&mini);
 				pipex(&mini);
-			// }
+			}
 			mini.cmds = NULL;
 			mini.delimiters = NULL;
 			free(mini.line);

@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/06 08:45:10 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/06 21:32:08 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,25 +26,23 @@ SRCS =	main.c																	\
 		env/make_env.c															\
 		exec/ft_execve.c														\
 		exec/ft_search_cmd.c													\
-		parser2/append.c														\
-		parser2/clear.c															\
-		parser2/command_split.c													\
-		parser2/delimiter.c														\
-		parser2/dollar_finder.c													\
-		parser2/dollar.c														\
-		parser2/dquote.c														\
-		parser2/flagger.c														\
-		parser2/ft_del_chars.c													\
-		parser2/in.c															\
-		parser2/make_argv.c														\
-		parser2/make_command.c													\
-		parser2/out.c															\
-		parser/parse.c															\
-		parser2/pipe.c															\
-		parser2/quote.c															\
-		parser2/quote_finder.c													\
-		parser2/save_char.c														\
-		parser2/unclosed_name.c													\
+		parser/append.c															\
+		parser/clear.c															\
+		parser/command_split.c													\
+		parser/delimiter.c														\
+		parser/dollar_finder.c													\
+		parser/dollar.c															\
+		parser/dquote.c															\
+		parser/flagger.c														\
+		parser/ft_del_chars.c													\
+		parser/in.c																\
+		parser/make_argv.c														\
+		parser/out.c															\
+		parser/pipe.c															\
+		parser/quote.c															\
+		parser/quote_finder.c													\
+		parser/save_char.c														\
+		parser/unclosed_name.c													\
 		pipex/pipex.c															\
 		utils/ft_strjoin_env.c													\
 		utils/ft_strjoin_path.c

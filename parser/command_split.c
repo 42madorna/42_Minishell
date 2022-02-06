@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 21:15:12 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 21:23:52 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char
 			|| chars_node->c == '|' || chars_node->c == '\0')
 		{
 			printf("Unexpected token near `%s'\n", unclosed_name(flag));
+			mini->parse_err = 1;
 			break ;
 		}
 		if (!ft_isspace(chars_node->c))
@@ -77,7 +78,10 @@ static int
 	}
 	file = seek_name(mini, chars, OUT);
 	if (!file)
+	{
 		printf("Unexpected token near `%s'\n", unclosed_name(OUT));
+		mini->parse_err = 1;
+	}
 	fd = open(file, mini->open_style, 0644);
 	free(file);
 	return (fd);
@@ -101,7 +105,10 @@ static int
 	}
 	file = seek_name(mini, chars, IN);
 	if (!file)
+	{
 		printf("Unexpected token near `%s'\n", unclosed_name(IN));
+		mini->parse_err = 1;
+	}
 	if (flag == APPEND)
 	{
 		if (file)
@@ -110,7 +117,10 @@ static int
 	}
 	fd = open(file, mini->open_style, 0644);
 	if (fd < 0 && file)
+	{
 		printf("%s: %s: No such file or directory\n", SHELL_NAME, file);
+		mini->parse_err = 1;
+	}
 	free(file);
 	return (fd);
 }
@@ -121,11 +131,13 @@ static void
 	t_chars	*chars_node;
 
 	*chars = (*chars)->next;
-	mini->pipe_count++;
 	skip_lst_spaces(chars);
 	chars_node = *chars;
 	if (!chars_node || chars_node->c == '|')
+	{
 		printf("Unexpected token near `%s'\n", unclosed_name(PIPE));
+		mini->parse_err = 1;
+	}
 }
 
 void
@@ -145,9 +157,10 @@ void
 	if (chars_node->c == '|')
 	{
 		printf("Unexpected token near `%s'\n", unclosed_name(PIPE));
+		mini->parse_err = 1;
 		return ;
 	}
-	while (chars)
+	while (chars && !mini->parse_err)
 	{
 		chars_node = chars->content;
 		if (chars_node->c == '|' && chars_node->flag != QUOTE

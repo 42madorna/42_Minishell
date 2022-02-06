@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 06:56:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 21:31:04 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct	s_mini
 	int		(*p[9])(struct s_mini *);
 	int		ret;
 	char	**env_cmd;
+	int		parse_err;
 	int		pipe_count;
 	int		open_style;
 }				t_mini;
