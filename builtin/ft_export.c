@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 01:16:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 08:13:24 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,13 @@ int
 		while (argv[i])
 		{
 			arg = ft_split(argv[i], '=');
+			if (arg[1])
+			{
+				if (*arg[1] == '\'' || *arg[1] == '"')
+					ft_memcpy(arg[1], arg[1] + 1, ft_strlen(arg[1]));
+				if (arg[1][ft_strlen(arg[1]) - 1] == '\'' || arg[1][ft_strlen(arg[1]) - 1] == '"')
+					arg[1][ft_strlen(arg[1]) - 1] = '\0';
+			}
 			ft_env_set_value(env, arg[0], arg[1]);
 			free_malloc(arg);
 			++i;

@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/06 05:33:44 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/06 07:49:34 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,8 @@ SRCS =	main.c																	\
 		parser2/flagger.c														\
 		parser2/ft_del_chars.c													\
 		parser2/in.c															\
-		parser/make_argv.c														\
-		parser/make_command.c													\
+		parser2/make_argv.c														\
+		parser2/make_command.c													\
 		parser2/out.c															\
 		parser/parse.c															\
 		parser2/pipe.c															\

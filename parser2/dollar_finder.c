@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 03:35:32 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 07:56:41 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int
 		mini->buffer[i++] = chars_node->c;
 		l_chars = l_chars->next;
 	}
-	printf("mini->buff %s\n", mini->buffer);
+	// printf("mini->buff %s\n", mini->buffer);
 	flagger(mini);
 }

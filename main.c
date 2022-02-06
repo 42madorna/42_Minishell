@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 05:28:17 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 07:49:53 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int
 			quote_finder(&mini);
 			// if (!parse(&mini))
 			// {
-			// 	make_argv(&mini);
-			// 	make_env(&mini);
-			// 	pipex(&mini);
+				make_argv(&mini);
+				make_env(&mini);
+				pipex(&mini);
 			// }
 			mini.cmds = NULL;
 			free(mini.line);
