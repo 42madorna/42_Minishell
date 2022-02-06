@@ -6,11 +6,18 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 20:45:48 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 21:15:12 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static inline void
+	skip_lst_spaces(t_list **lst)
+{
+	while ((*lst) && ft_isspace(((t_chars*)(*lst)->content)->c))
+		*lst = (*lst)->next;
+}
 
 char
 	*seek_name(t_mini *mini, t_list **chars, int flag)
@@ -25,7 +32,7 @@ char
 		if (chars_node->c == '>' || chars_node->c == '<'
 			|| chars_node->c == '|' || chars_node->c == '\0')
 		{
-			printf("Unexpected token near %s\n", unclosed_name(flag));
+			printf("Unexpected token near `%s'\n", unclosed_name(flag));
 			break ;
 		}
 		if (!ft_isspace(chars_node->c))
@@ -70,7 +77,7 @@ static int
 	}
 	file = seek_name(mini, chars, OUT);
 	if (!file)
-		printf("Unexpected token near %s\n", unclosed_name(OUT));
+		printf("Unexpected token near `%s'\n", unclosed_name(OUT));
 	fd = open(file, mini->open_style, 0644);
 	free(file);
 	return (fd);
@@ -94,7 +101,7 @@ static int
 	}
 	file = seek_name(mini, chars, IN);
 	if (!file)
-		printf("Unexpected token near %s\n", unclosed_name(IN));
+		printf("Unexpected token near `%s'\n", unclosed_name(IN));
 	if (flag == APPEND)
 	{
 		if (file)
@@ -114,13 +121,11 @@ static void
 	t_chars	*chars_node;
 
 	*chars = (*chars)->next;
-}
-
-static inline void
-	skip_lst_spaces(t_list **lst)
-{
-	while ((*lst) && ft_isspace(((t_chars*)(*lst)->content)->c))
-		*lst = (*lst)->next;
+	mini->pipe_count++;
+	skip_lst_spaces(chars);
+	chars_node = *chars;
+	if (!chars_node || chars_node->c == '|')
+		printf("Unexpected token near `%s'\n", unclosed_name(PIPE));
 }
 
 void
@@ -136,6 +141,12 @@ void
 	cmd = calloc(1, sizeof(t_cmd));
 	i = 0;
 	arg = calloc(1024, sizeof(char));
+	chars_node = chars->content;
+	if (chars_node->c == '|')
+	{
+		printf("Unexpected token near `%s'\n", unclosed_name(PIPE));
+		return ;
+	}
 	while (chars)
 	{
 		chars_node = chars->content;
