@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 08:13:24 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 19:44:24 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static char
 	unsigned int	i;
 
 	i = 0;
+	if (!tab)
+		return (NULL);
 	while (tab[i])
 	{
 		free(tab[i]);
@@ -127,6 +129,12 @@ static inline void
 }
 
 int
+	ft_is_valid_identifier(char *str)
+{
+	return (!ft_isalpha(*str));
+}
+
+int
 	ft_export(int argc, char **argv, t_list *env)
 {
 	char	**arg;
@@ -137,20 +145,30 @@ int
 	(void)cpy;
 	if (argc >= 2)
 	{
-		i = 1;
-		while (argv[i])
+		i = 0;
+		while (argv[i++])
 		{
 			arg = ft_split(argv[i], '=');
-			if (arg[1])
+			if (arg && arg[0])
 			{
-				if (*arg[1] == '\'' || *arg[1] == '"')
-					ft_memcpy(arg[1], arg[1] + 1, ft_strlen(arg[1]));
-				if (arg[1][ft_strlen(arg[1]) - 1] == '\'' || arg[1][ft_strlen(arg[1]) - 1] == '"')
-					arg[1][ft_strlen(arg[1]) - 1] = '\0';
+				if (ft_is_valid_identifier(arg[0]))
+				{
+					printf("%s: export: `%s': not a valid identifier\n",
+						SHELL_NAME, arg[0]);
+					free_malloc(arg);
+					continue ;
+				}
+				if (arg[1])
+				{
+					if (*arg[1] == '\'' || *arg[1] == '"')
+						ft_memcpy(arg[1], arg[1] + 1, ft_strlen(arg[1]));
+					if (arg[1][ft_strlen(arg[1]) - 1] == '\''
+						|| arg[1][ft_strlen(arg[1]) - 1] == '"')
+						arg[1][ft_strlen(arg[1]) - 1] = '\0';
+				}
+				ft_env_set_value(env, arg[0], arg[1]);
 			}
-			ft_env_set_value(env, arg[0], arg[1]);
 			free_malloc(arg);
-			++i;
 		}
 		return (0);
 	}
