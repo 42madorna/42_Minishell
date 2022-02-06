@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 20:17:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 20:45:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char
 	{
 		chars_node = (*chars)->content;
 		if (chars_node->c == '>' || chars_node->c == '<'
-			|| chars_node->c == '|')
+			|| chars_node->c == '|' || chars_node->c == '\0')
 		{
 			printf("Unexpected token near %s\n", unclosed_name(flag));
 			break ;
@@ -61,12 +61,10 @@ static int
 	char	*file;
 	int		fd;
 
-	printf("Found >\n");
 	mini->open_style = O_WRONLY | O_CREAT | O_TRUNC;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '>')
 	{
-		printf("OH, it is an APPEND\n");
 		mini->open_style = O_APPEND | O_CREAT | O_WRONLY;
 		*chars = (*chars)->next;
 	}
@@ -86,13 +84,11 @@ static int
 	int		fd;
 	int		flag;
 
-	printf("Found <\n");
 	flag = IN;
 	mini->open_style = O_RDONLY;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '<')
 	{
-		printf("OH, it is a DELIMITER\nTODO: MINS-57 P-Delimiter\n");
 		flag = APPEND;
 		*chars = (*chars)->next;
 	}
@@ -101,11 +97,12 @@ static int
 		printf("Unexpected token near %s\n", unclosed_name(IN));
 	if (flag == APPEND)
 	{
-		ft_lstadd_back(&mini->delimiters, ft_lstnew(file));
+		if (file)
+			ft_lstadd_back(&mini->delimiters, ft_lstnew(file));
 		return (STDIN_FILENO);
 	}
 	fd = open(file, mini->open_style, 0644);
-	if (fd < 0)
+	if (fd < 0 && file)
 		printf("%s: %s: No such file or directory\n", SHELL_NAME, file);
 	free(file);
 	return (fd);
@@ -116,7 +113,6 @@ static void
 {
 	t_chars	*chars_node;
 
-	printf("Found |\n");
 	*chars = (*chars)->next;
 }
 
