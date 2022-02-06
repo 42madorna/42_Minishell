@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 02:48:26 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 03:13:42 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 03:26:17 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void
 	save_char(mini, chars);
 	// Uncomment this to see what does mini->chars have
 	// ft_lstiter(mini->chars, print);
+	ft_lstclear(&mini->chars, free);
 }
