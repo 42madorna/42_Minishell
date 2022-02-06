@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:36:55 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:49:47 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 05:19:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void
 		lst = lst->next;
 	}
 	ft_lstadd_back(&cmd->l_argv, ft_lstnew(mini->buffer));
-	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd)); // TODO: Leaks
+	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 	// printf("Pipe count: %d, Command count: %d\n", mini->pipe_count, ft_lstsize(mini->cmds));
 	if (mini->pipe_count + 1 != ft_lstsize(mini->cmds))
 		printf("Unexpected `|' TODO: MINS-94 Commands should be PIPE n+1. Handle this\n");

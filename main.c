@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 04:55:49 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 05:19:20 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int
 	mini.env = env;
 	signal(SIGINT, signal_h);
 	set_functions(&mini);
-	ft_env_to_lst(&mini); // TODO: Leaks
+	ft_env_to_lst(&mini);
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);

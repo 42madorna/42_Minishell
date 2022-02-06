@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 00:43:51 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:30:35 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 05:19:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@
 // 	// 	return (printf("Unexpected token\n"));
 // 	if (mini->flag > 0)
 // 		return (unexpected(mini));
-// 	ft_lstadd_back(&cmd.l_argv, ft_lstnew(mini->line_cpy)); // TODO: Leaks
+// 	ft_lstadd_back(&cmd.l_argv, ft_lstnew(mini->line_cpy));
 // 	// ft_lstiter(cmd.l_argv, print);
 // 	// ft_execve(cmd);
 // 	// execve(cmd.argv[0], cmd.argv, mini->env);
