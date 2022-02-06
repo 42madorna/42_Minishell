@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 02:33:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 04:55:49 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int
 			break ;
 		}
 	}
+	ft_lstclear(&mini.l_env, ft_free_env);
 	/*
 	** TODO: Leaks!
 	*/

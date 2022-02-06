@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 01:38:49 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 01:02:57 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 05:11:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ static inline void
 
 	if (!ft_has_env_var(mini, "OLDPWD"))
 	{
+		printf("OLDPWD\n");
 		env_node = calloc(1, sizeof(t_env));
 		env_node->key = ft_strdup("OLDPWD");
-		env_node->value = NULL;
+		env_node->value = ft_strdup("");
 		ft_lstadd_back(&mini->l_env, ft_lstnew(env_node));
 	}
 	if (!ft_has_env_var(mini, "PWD"))
 	{
+		printf("PWD\n");
 		env_node = calloc(1, sizeof(t_env));
 		env_node->key = ft_strdup("PWD");
 		env_node->value = getcwd(env_node->value, 0);
@@ -50,6 +52,7 @@ static inline void
 	}
 	if (!ft_has_env_var(mini, "SHLVL"))
 	{
+		printf("SHLVL\n");
 		env_node = calloc(1, sizeof(t_env));
 		env_node->key = ft_strdup("SHLVL");
 		env_node->value = ft_strdup("1");
@@ -60,19 +63,19 @@ static inline void
 void
 	ft_env_to_lst(t_mini *mini)
 {
-	char	**env_var;
 	t_env	*env_node;
 	int		i;
 
 	i = -1;
 	while (mini->env[++i])
 	{
-		env_var = ft_split(mini->env[i], '='); // TODO: leaks
 		env_node = calloc(1, sizeof(t_env));
+		printf("%s\n", mini->env[i]);
+		env_node->split_mem = ft_split(mini->env[i], '='); // TODO: leaks
 		// if (!env_node)
 		// 	printf("Error: Could not allocate memory for env_node");
-		env_node->key = env_var[0];
-		env_node->value = env_var[1];
+		env_node->key = env_node->split_mem[0];
+		env_node->value = env_node->split_mem[1];
 		ft_lstadd_back(&mini->l_env, ft_lstnew(env_node)); // TODO: Leaks
 		// Uncomment this to see each env var key:value
 		// printf("key %s, value %s\n", env_node->key, env_node->value);

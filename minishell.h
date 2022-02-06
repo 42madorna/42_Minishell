@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 02:58:35 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 04:56:16 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct	s_env
 {
 	char	*key;
 	char	*value;
+	char	**split_mem;
 }				t_env;
 
 /*
@@ -136,6 +137,7 @@ void	ft_env_to_lst(t_mini *mini);
 char	*ft_env_value(t_list *l_env, const char *key);
 void	ft_env_set_value(t_list *l_env, char *key, char *new_value);
 void	make_env(t_mini *mini);
+void	ft_free_env(void *env);
 
 /*
 ** Pipex functions
