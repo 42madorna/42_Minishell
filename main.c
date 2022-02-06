@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 07:49:53 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 08:36:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,12 @@ int
 	ft_lstclear(&mini.l_env, ft_free_env);
 	/*
 	** TODO: Leaks!
+	** At this moment:
+	** 	· l_argv
+	** 	· t_cmd
+	** 	· PATH
+	** 	· l_env/t_cmd env
+	** 	· t_cmd path
 	*/
 	return (0);
 }
