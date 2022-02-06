@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 20:06:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 20:17:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,19 +84,29 @@ static int
 	t_chars	*chars_node;
 	char	*file;
 	int		fd;
+	int		flag;
 
 	printf("Found <\n");
+	flag = IN;
 	mini->open_style = O_RDONLY;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '<')
 	{
-		printf("OH, it is a DELIMITER\nTODO: MINS-57 P-Delimiter");
+		printf("OH, it is a DELIMITER\nTODO: MINS-57 P-Delimiter\n");
+		flag = APPEND;
 		*chars = (*chars)->next;
 	}
 	file = seek_name(mini, chars, IN);
 	if (!file)
 		printf("Unexpected token near %s\n", unclosed_name(IN));
+	if (flag == APPEND)
+	{
+		ft_lstadd_back(&mini->delimiters, ft_lstnew(file));
+		return (STDIN_FILENO);
+	}
 	fd = open(file, mini->open_style, 0644);
+	if (fd < 0)
+		printf("%s: %s: No such file or directory\n", SHELL_NAME, file);
 	free(file);
 	return (fd);
 }

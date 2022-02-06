@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 08:36:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 20:33:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,33 @@ void
 	mini->p[DOLLAR] = parse_dollar;
 }
 
+void
+	ft_delim(t_mini *mini)
+{
+	t_list	*l_delim;
+	char	*delim;
+
+	l_delim = mini->delimiters;
+	while (l_delim)
+	{
+		if (!ft_strncmp(l_delim->content, mini->line, ft_strlen(mini->line) + 1))
+			l_delim = l_delim->next;
+		printf("Expecting '%s'\n", l_delim->content);
+		promt(mini, 1);
+		if (!mini->line || !*mini->line)
+		{
+			printf("%s: warning: (wanted `%s')\n", SHELL_NAME,
+				l_delim->content);
+			l_delim = l_delim->next;
+			continue ;
+		}
+		if (!ft_strncmp(l_delim->content, mini->line, ft_strlen(mini->line) + 1))
+			l_delim = l_delim->next;
+		else
+			l_delim = mini->delimiters;
+	}
+}
+
 /*
 ** Minishell
 ** Subject 
@@ -72,6 +99,7 @@ int
 		{
 			add_history(mini.line);
 			quote_finder(&mini);
+			ft_delim(&mini);
 			// if (!parse(&mini))
 			// {
 				make_argv(&mini);
@@ -79,6 +107,7 @@ int
 				pipex(&mini);
 			// }
 			mini.cmds = NULL;
+			mini.delimiters = NULL;
 			free(mini.line);
 		}
 		else if (!mini.line)
@@ -97,6 +126,7 @@ int
 	** 	· PATH
 	** 	· l_env/t_cmd env
 	** 	· t_cmd path
+	** 	· delimitters
 	*/
 	return (0);
 }
