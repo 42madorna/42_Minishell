@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 08:25:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 20:06:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ static int
 	int		fd;
 
 	printf("Found >\n");
-	mini->open_style = O_WRONLY | O_CREAT;
+	mini->open_style = O_WRONLY | O_CREAT | O_TRUNC;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '>')
 	{
 		printf("OH, it is an APPEND\n");
-		mini->open_style = O_APPEND | O_CREAT | O_RDONLY | O_WRONLY;
+		mini->open_style = O_APPEND | O_CREAT | O_WRONLY;
 		*chars = (*chars)->next;
 	}
 	file = seek_name(mini, chars, OUT);
