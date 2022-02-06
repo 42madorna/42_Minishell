@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 01:38:49 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 05:19:28 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 19:30:45 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static inline void
 
 	if (!ft_has_env_var(mini, "OLDPWD"))
 	{
-		printf("OLDPWD\n");
 		env_node = calloc(1, sizeof(t_env));
 		env_node->key = ft_strdup("OLDPWD");
 		env_node->value = ft_strdup("");
@@ -44,7 +43,6 @@ static inline void
 	}
 	if (!ft_has_env_var(mini, "PWD"))
 	{
-		printf("PWD\n");
 		env_node = calloc(1, sizeof(t_env));
 		env_node->key = ft_strdup("PWD");
 		env_node->value = getcwd(env_node->value, 0);
@@ -52,7 +50,6 @@ static inline void
 	}
 	if (!ft_has_env_var(mini, "SHLVL"))
 	{
-		printf("SHLVL\n");
 		env_node = calloc(1, sizeof(t_env));
 		env_node->key = ft_strdup("SHLVL");
 		env_node->value = ft_strdup("1");
