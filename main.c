@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 20:33:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 20:33:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int
 	** 	· PATH
 	** 	· l_env/t_cmd env
 	** 	· t_cmd path
-	** 	· delimitters
+	** 	· delimiters
 	*/
 	return (0);
 }
