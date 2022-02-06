@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 20:38:44 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 20:55:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ void
 	ft_delim(t_mini *mini)
 {
 	t_list	*l_delim;
+	t_list	*begin_node;
 	char	*delim;
 
 	l_delim = mini->delimiters;
+	begin_node = l_delim;
 	while (l_delim)
 	{
 		if (mini->line && *mini->line && !ft_strncmp(l_delim->content,
@@ -62,14 +64,15 @@ void
 		if (!mini->line || !*mini->line)
 		{
 			printf("%s: warning: (wanted `%s')\n", SHELL_NAME,
-				l_delim->content);
+				(char *)l_delim->content);
 			l_delim = l_delim->next;
+			begin_node = l_delim;
 			continue ;
 		}
 		if (!ft_strncmp(l_delim->content, mini->line, ft_strlen(mini->line) + 1))
 			l_delim = l_delim->next;
 		else
-			l_delim = mini->delimiters;
+			l_delim = begin_node;
 	}
 }
 
