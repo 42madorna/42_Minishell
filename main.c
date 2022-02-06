@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 05:19:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 05:28:17 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int
 			// }
 			mini.cmds = NULL;
 			free(mini.line);
-			mini.chars = NULL;
 		}
 		else if (!mini.line)
 		{

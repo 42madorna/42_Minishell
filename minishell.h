@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 05:24:53 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 06:56:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct	s_mini
 	int		ret;
 	char	**env_cmd;
 	int		pipe_count;
+	int		open_style;
 }				t_mini;
 
 /*
@@ -127,7 +128,9 @@ void	make_argv(t_mini *mini);
 char	*unclosed_name(int flag);
 int		save_char(t_mini *mini, t_chars *chars);
 void	ft_del_chars(void *chars);
+
 void	flagger(t_mini *mini);
+void	command_split(t_mini *mini);
 
 /*
 ** Environment variables functions
