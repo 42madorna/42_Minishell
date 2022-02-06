@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 05:19:52 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 08:27:09 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void
 
 	while (mini->cmds)
 	{
-		if (!((t_cmd*)(mini->cmds->content))->argv[0][0])
+		if (!((t_cmd*)(mini->cmds->content))->argv[0] || !((t_cmd*)(mini->cmds->content))->argv[0][0])
 			break ;
 		saved_stdout = dup(STDOUT_FILENO);
 		saved_stdin = dup(STDIN_FILENO);
