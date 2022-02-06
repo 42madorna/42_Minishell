@@ -8,3 +8,4 @@ librl/
 .nfs.*
 a.out
 loop.c
+*.txt

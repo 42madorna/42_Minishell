@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   in.c                                               :+:      :+:    :+:   */
+/*   unclosed_name.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:55:24 by madorna-         ###   ########.fr       */
+/*   Created: 2022/02/06 01:07:59 by madorna-          #+#    #+#             */
+/*   Updated: 2022/02/06 01:10:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-/*
-** If there is no file after IN (<), or file does not exist, error!
-** Add last file to cmds->infile and not to buffer.
-*/
-int
-	parse_in(t_mini *mini)
+char
+	*unclosed_name(int flag)
 {
-	if (mini->flag != QUOTE && ((mini->flag & DQUOTE) == DQUOTE) != 1)
-	{
-		if (((mini->flag & DOLLAR) == DOLLAR) == 1)
-			mini->flag -= DOLLAR;
-		mini->flag = IN;
-		mini->line_cpy++;
-	}
-	return (0);
+	static char *flags_names[] = {"", "|", ">", "<<", "<", ">>",
+		"\'", "$", "\""};
+
+	return (flags_names[flag]);
 }

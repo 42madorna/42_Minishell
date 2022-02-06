@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 18:19:30 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 07:49:53 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void
 	mini->p[DOLLAR] = parse_dollar;
 }
 
+/*
+** Minishell
+** Subject 
+*/
 int
 	main(int argc, char **argv, char **env)
 {
@@ -56,22 +60,24 @@ int
 	mini.argv = argv;
 	mini.env = env;
 	signal(SIGINT, signal_h);
-	signal(SIGQUIT, SIG_IGN);
 	set_functions(&mini);
-	ft_env_to_lst(&mini); // TODO: Leaks
+	ft_env_to_lst(&mini);
 	while (1)
 	{
+		signal(SIGQUIT, SIG_IGN);
 		mini.flag = CLEAR;
+		mini.pipe_count = 0;
 		promt(&mini, 0);
 		if (mini.line && *mini.line)
 		{
 			add_history(mini.line);
-			if (!parse(&mini))
-			{
+			quote_finder(&mini);
+			// if (!parse(&mini))
+			// {
 				make_argv(&mini);
 				make_env(&mini);
 				pipex(&mini);
-			}
+			// }
 			mini.cmds = NULL;
 			free(mini.line);
 		}
@@ -82,6 +88,7 @@ int
 			break ;
 		}
 	}
+	ft_lstclear(&mini.l_env, ft_free_env);
 	/*
 	** TODO: Leaks!
 	*/

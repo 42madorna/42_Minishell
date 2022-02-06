@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 00:46:48 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 08:13:24 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_list
 ** 	sorted using their name using ascii.
 ** export (name) -> prints '\n' and then, adds (name) to env vars.
 ** More than the first parametter has to be handled
-** ! Although env prints just env variables with value, env prints everything
+** ! Although env prints just env variables with value, export prints everything
 ** 	even if there is no value set for that env variable.
 */
 
@@ -126,9 +126,6 @@ static inline void
 	}
 }
 
-/*
-** [MINS-86]: export builtin not working when env not set
-*/
 int
 	ft_export(int argc, char **argv, t_list *env)
 {
@@ -138,15 +135,19 @@ int
 
 
 	(void)cpy;
-	/*
-	** FIXME: Export should not modify existing env vars
-	*/
 	if (argc >= 2)
 	{
 		i = 1;
 		while (argv[i])
 		{
 			arg = ft_split(argv[i], '=');
+			if (arg[1])
+			{
+				if (*arg[1] == '\'' || *arg[1] == '"')
+					ft_memcpy(arg[1], arg[1] + 1, ft_strlen(arg[1]));
+				if (arg[1][ft_strlen(arg[1]) - 1] == '\'' || arg[1][ft_strlen(arg[1]) - 1] == '"')
+					arg[1][ft_strlen(arg[1]) - 1] = '\0';
+			}
 			ft_env_set_value(env, arg[0], arg[1]);
 			free_malloc(arg);
 			++i;

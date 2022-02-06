@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/03 18:18:16 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/06 07:49:34 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,22 +22,30 @@ SRCS =	main.c																	\
 		env/ft_env_set_value.c													\
 		env/ft_env_to_lst.c														\
 		env/ft_env_value.c														\
+		env/ft_free_env.c														\
 		env/make_env.c															\
-		exec/pipex/pipex.c														\
 		exec/ft_execve.c														\
 		exec/ft_search_cmd.c													\
-		parser/append.c															\
-		parser/clear.c															\
-		parser/delimiter.c														\
-		parser/dollar.c															\
-		parser/dquote.c															\
-		parser/in.c																\
-		parser/make_argv.c														\
-		parser/make_command.c													\
-		parser/out.c															\
+		parser2/append.c														\
+		parser2/clear.c															\
+		parser2/command_split.c													\
+		parser2/delimiter.c														\
+		parser2/dollar_finder.c													\
+		parser2/dollar.c														\
+		parser2/dquote.c														\
+		parser2/flagger.c														\
+		parser2/ft_del_chars.c													\
+		parser2/in.c															\
+		parser2/make_argv.c														\
+		parser2/make_command.c													\
+		parser2/out.c															\
 		parser/parse.c															\
-		parser/pipe.c															\
-		parser/quote.c															\
+		parser2/pipe.c															\
+		parser2/quote.c															\
+		parser2/quote_finder.c													\
+		parser2/save_char.c														\
+		parser2/unclosed_name.c													\
+		pipex/pipex.c															\
 		utils/ft_strjoin_env.c													\
 		utils/ft_strjoin_path.c
 

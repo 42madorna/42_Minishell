@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   in.c                                               :+:      :+:    :+:   */
+/*   save_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:55:24 by madorna-         ###   ########.fr       */
+/*   Created: 2022/02/06 02:50:48 by madorna-          #+#    #+#             */
+/*   Updated: 2022/02/06 03:07:34 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-** If there is no file after IN (<), or file does not exist, error!
-** Add last file to cmds->infile and not to buffer.
-*/
 int
-	parse_in(t_mini *mini)
+	save_char(t_mini *mini, t_chars *chars)
 {
-	if (mini->flag != QUOTE && ((mini->flag & DQUOTE) == DQUOTE) != 1)
+	if (!*mini->line_cpy)
 	{
-		if (((mini->flag & DOLLAR) == DOLLAR) == 1)
-			mini->flag -= DOLLAR;
-		mini->flag = IN;
-		mini->line_cpy++;
+		free(chars);
+		return (1);
 	}
+	chars->c = *mini->line_cpy;
+	chars->flag = mini->flag;
+	if (!mini->chars)
+		mini->chars = ft_lstnew(chars);
+	else
+		ft_lstadd_back(&mini->chars, ft_lstnew(chars));
+	if (*mini->line_cpy)
+		mini->line_cpy++;
 	return (0);
 }

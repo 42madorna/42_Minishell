@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 19:24:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/06 06:56:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct	s_mini
 	int		(*p[9])(struct s_mini *);
 	int		ret;
 	char	**env_cmd;
+	int		pipe_count;
+	int		open_style;
 }				t_mini;
 
 /*
@@ -100,11 +102,14 @@ typedef struct	s_env
 {
 	char	*key;
 	char	*value;
+	char	**split_mem;
 }				t_env;
 
 /*
 ** Parser functions
 */
+int		quote_finder(t_mini *mini);
+int		dollar_finder(t_mini *mini);
 int		parse(t_mini *mini);
 int		specials(t_mini *mini);
 int		parse_clear(t_mini *mini);
@@ -120,6 +125,13 @@ int		parse_out(t_mini *mini);
 void	make_command(t_mini *mini);
 void	make_argv(t_mini *mini);
 
+char	*unclosed_name(int flag);
+int		save_char(t_mini *mini, t_chars *chars);
+void	ft_del_chars(void *chars);
+
+void	flagger(t_mini *mini);
+void	command_split(t_mini *mini);
+
 /*
 ** Environment variables functions
 */
@@ -127,6 +139,7 @@ void	ft_env_to_lst(t_mini *mini);
 char	*ft_env_value(t_list *l_env, const char *key);
 void	ft_env_set_value(t_list *l_env, char *key, char *new_value);
 void	make_env(t_mini *mini);
+void	ft_free_env(void *env);
 
 /*
 ** Pipex functions
@@ -136,7 +149,7 @@ void	pipex(t_mini *mini);
 /*
 ** Exec functions
 */
-int		ft_execve(t_cmd command);
+int		ft_execve(t_cmd *command);
 int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
 
 /*
