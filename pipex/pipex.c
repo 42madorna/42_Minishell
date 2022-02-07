@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/07 03:01:33 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:10:45 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void
 
 	i = 0;
 	while (g_pid[i])
-		kill(g_pid[i++], sig);
+	{
+		kill(g_pid[i], sig);
+		g_pid[i++] = 0;
+	}
 	if (sig == 3)
 		printf("Quit: %d\n", sig);
 	else
