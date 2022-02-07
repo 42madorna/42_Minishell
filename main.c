@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 21:24:33 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/07 01:44:20 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ int
 	mini.argc = argc;
 	mini.argv = argv;
 	mini.env = env;
-	signal(SIGINT, signal_h);
 	set_functions(&mini);
 	ft_env_to_lst(&mini);
 	while (1)
 	{
+		signal(SIGINT, signal_h);
 		signal(SIGQUIT, SIG_IGN);
 		mini.flag = CLEAR;
 		mini.parse_err = 0;

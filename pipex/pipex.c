@@ -6,11 +6,25 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 08:27:09 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/07 01:46:18 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void
+	signal_q(int sig)
+{
+	int	i;
+
+	i = 0;
+	while (g_pid[i])
+		kill(g_pid[i++], sig);
+	if (sig == 3)
+		printf("Quit: %d\n", sig);
+	else
+		printf("\n");
+}
 
 /*
 ** TODO: [MINS-59] (PIPEX)
@@ -46,6 +60,8 @@ void
 	int saved_stdout;
 	int saved_stdin;
 
+	signal(SIGQUIT, signal_q);
+	signal(SIGINT, signal_q);
 	while (mini->cmds)
 	{
 		if (!((t_cmd*)(mini->cmds->content))->argv[0] || !((t_cmd*)(mini->cmds->content))->argv[0][0])

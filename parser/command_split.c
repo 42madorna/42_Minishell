@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 22:13:09 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/07 01:29:56 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ static int
 	char	*file;
 	int		fd;
 
-	mini->open_style = O_WRONLY | O_CREAT | O_TRUNC;
+	mini->open_style = O_WRONLY | O_CREAT | O_TRUNC | S_IRWXU;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '>')
 	{
-		mini->open_style = O_APPEND | O_CREAT | O_WRONLY;
+		mini->open_style = O_APPEND | O_CREAT | O_WRONLY | S_IRWXU;
 		*chars = (*chars)->next;
 	}
 	file = seek_name(mini, chars, OUT);
@@ -96,7 +96,7 @@ static int
 	int		flag;
 
 	flag = IN;
-	mini->open_style = O_RDONLY;
+	mini->open_style = O_RDONLY | S_IRWXU;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '<')
 	{
@@ -185,6 +185,7 @@ void
 			arg = calloc(1024, sizeof(char*));
 			i = 0;
 			manage_pipe(mini, &chars);
+			cmd->num = ft_lstsize(mini->cmds);
 			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 			cmd = calloc(1, sizeof(t_cmd));
 			continue ;
@@ -269,5 +270,6 @@ void
 				ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 		}
 	}
+	cmd->num = ft_lstsize(mini->cmds);
 	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 }

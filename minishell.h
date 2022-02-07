@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 21:31:04 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/07 01:26:47 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct	s_cmd
 	int		outfile;
 	char	*path;
 	pid_t	pid;
+	int		num;
 }				t_cmd;
 
 /*
@@ -105,6 +106,11 @@ typedef struct	s_env
 	char	*value;
 	char	**split_mem;
 }				t_env;
+
+/*
+** Command PIDs
+*/
+pid_t g_pid[255];
 
 /*
 ** Parser functions
