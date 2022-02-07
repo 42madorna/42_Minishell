@@ -13,7 +13,9 @@ pipelines:
         - step:
             name: Build and Run
             script:
+              - make -n
               - make re
-              # Execute your C++ application after compilation to check success
+              - make
+              - ls -la minishell
               - ./minishell
               - make fclean
