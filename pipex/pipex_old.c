@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/07 22:39:35 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/07 03:01:33 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void
 
 	i = 0;
 	while (g_pid[i])
-	{
-		kill(g_pid[i], sig);
-		g_pid[i++] = 0;
-	}
+		kill(g_pid[i++], sig);
 	if (sig == 3)
 		printf("Quit: %d\n", sig);
 	else
@@ -75,24 +72,24 @@ void
 		saved_stdin = dup(STDIN_FILENO);
 		dup2(((t_cmd*)(mini->cmds->content))->infile, STDIN_FILENO);
 		pipe(pipes);
-		if (!builtin(((t_cmd*)(mini->cmds->content))->argv, mini))
-		{
-			mini->cmds = mini->cmds->next;
-			continue ;
-		}
 		g_pid[((t_cmd *)(mini->cmds->content))->num] = fork();
 		if (g_pid[((t_cmd *)(mini->cmds->content))->num] == 0)
 		{
 			close(pipes[READ_END]);
 			dup2(((t_cmd*)(mini->cmds->content))->outfile, STDOUT_FILENO);
-			if (ft_search_cmd(mini->l_env, (t_cmd*)(mini->cmds->content))) // TODO: Check if this works OK
+			if (builtin(((t_cmd*)(mini->cmds->content))->argv, mini))
 			{
-				printf("%s: %s: command not found\n", SHELL_NAME,
-					((t_cmd*)(mini->cmds->content))->argv[0]);
-				break ;
+				if (ft_search_cmd(mini->l_env, (t_cmd*)(mini->cmds->content))) // TODO: Check if this works OK
+				{
+					printf("%s: %s: command not found\n", SHELL_NAME,
+						((t_cmd*)(mini->cmds->content))->argv[0]);
+					break ;
+				}
+				else
+				{
+					mini->ret = ft_execve((t_cmd*)(mini->cmds->content));
+				}
 			}
-			else
-				mini->ret = ft_execve((t_cmd*)(mini->cmds->content));
 			mini->ret = 0;
 		}
 		else if (g_pid[((t_cmd *)(mini->cmds->content))->num] > 0)
