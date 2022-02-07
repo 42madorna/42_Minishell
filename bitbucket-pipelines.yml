@@ -4,7 +4,7 @@
 # The workflow allows running tests and code linting on the default branch.
 
 
-image: gcc:10.2
+image: gcc:9.3.0
 
 
 pipelines:
