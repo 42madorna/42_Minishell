@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/07 22:39:35 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 00:17:27 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,13 @@ void
 ** URL to PIPEX subject:
 ** 	https://cdn.intra.42.fr/pdf/pdf/38119/en.subject.pdf
 */
+
+int
+	execute(int **pipe, t_cmd cmd)
+{
+	execve(cmd.path, cmd.argv, cmd.env);
+}
+
 void
 	pipex(t_mini *mini)
 {
@@ -85,13 +92,7 @@ void
 		{
 			close(pipes[READ_END]);
 			dup2(((t_cmd*)(mini->cmds->content))->outfile, STDOUT_FILENO);
-			if (ft_search_cmd(mini->l_env, (t_cmd*)(mini->cmds->content))) // TODO: Check if this works OK
-			{
-				printf("%s: %s: command not found\n", SHELL_NAME,
-					((t_cmd*)(mini->cmds->content))->argv[0]);
-				break ;
-			}
-			else
+			if (((t_cmd*)(mini->cmds->content))->path)
 				mini->ret = ft_execve((t_cmd*)(mini->cmds->content));
 			mini->ret = 0;
 		}

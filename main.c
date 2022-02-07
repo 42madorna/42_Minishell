@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/07 01:44:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 00:18:21 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,26 @@ void
 	}
 }
 
+void
+	ft_check_command(t_mini *mini)
+{
+	t_list	*cmds;
+	t_cmd	*cmd_node;
+
+	cmds = mini->cmds;
+	while (cmds)
+	{
+		cmd_node = cmds->content;
+		/*
+		** TODO: Check builtins
+		*/
+		if (ft_search_cmd(mini->l_env, cmd_node))
+			printf("%s: %s: command not found\n",
+				SHELL_NAME, cmd_node->argv[0]);
+		cmds = cmds->next;
+	}
+}
+
 /*
 ** Minishell
 ** Subject 
@@ -107,6 +127,7 @@ int
 			{
 				make_argv(&mini);
 				make_env(&mini);
+				ft_check_command(&mini);
 				pipex(&mini);
 			}
 			mini.cmds = NULL;
