@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 05:20:16 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 05:56:23 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void
 		cmd_node = mini->cmds->content;
 		if (!cmd_node->argv[0] || !cmd_node->argv[0][0])
 		{
-			mini->cmds =mini->cmds->next;
+			mini->cmds = mini->cmds->next;
 			continue ;
 		}
 		pipe(pipes);
@@ -120,12 +120,9 @@ void
 		in_fd = pipes[STDIN_FILENO];
 		mini->cmds = mini->cmds->next;
 	}
-	// if (in_fd != 0)
-	// 	dup2(in_fd, 0);
 	if (mini->cmds)
 	{
 		cmd_node = mini->cmds->content;
-		// close(pipes[STDIN_FILENO]);
 		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
 		{
 			if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
@@ -136,5 +133,6 @@ void
 			}
 		}
 	}
-	// close(in_fd);
+	if (in_fd)
+		close(in_fd);
 }
