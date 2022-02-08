@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:52:20 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 01:32:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 04:01:01 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 
 int
-	builtin(char **argv, struct s_mini *mini)
+	builtin(char **argv, struct s_mini *mini, int in, int out)
 {
 	t_cmd	*cmd;
 

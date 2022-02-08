@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 00:18:21 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 03:31:58 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void
 		promt(mini, 1);
 		if (!mini->line || !*mini->line)
 		{
-			printf("%s: warning: (wanted `%s')\n", SHELL_NAME,
+			printf("%s: warning: unexpected '\\0' (wanted `%s')\n", SHELL_NAME,
 				(char *)l_delim->content);
 			l_delim = l_delim->next;
 			begin_node = l_delim;
@@ -86,12 +86,14 @@ void
 	while (cmds)
 	{
 		cmd_node = cmds->content;
+		cmd_node->notexists = 0;
 		/*
 		** TODO: Check builtins
 		*/
+		if (!cmd_node->outfile)
+			cmd_node->outfile = 1;
 		if (ft_search_cmd(mini->l_env, cmd_node))
-			printf("%s: %s: command not found\n",
-				SHELL_NAME, cmd_node->argv[0]);
+			cmd_node->notexists = 1;
 		cmds = cmds->next;
 	}
 }
@@ -133,6 +135,7 @@ int
 			mini.cmds = NULL;
 			mini.delimiters = NULL;
 			free(mini.line);
+			mini.line = NULL;
 		}
 		else if (!mini.line)
 		{

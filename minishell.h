@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/07 03:00:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 03:28:22 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct	s_cmd
 	char	*path;
 	pid_t	pid;
 	int		num;
+	int		notexists;
+	int		builtin;
 }				t_cmd;
 
 /*
