@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 03:31:58 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 05:05:29 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ void
 	{
 		cmd_node = cmds->content;
 		cmd_node->notexists = 0;
-		/*
-		** TODO: Check builtins
-		*/
 		if (!cmd_node->outfile)
 			cmd_node->outfile = 1;
 		if (ft_search_cmd(mini->l_env, cmd_node))
@@ -134,6 +131,7 @@ int
 			}
 			mini.cmds = NULL;
 			mini.delimiters = NULL;
+			mini.chars = NULL;
 			free(mini.line);
 			mini.line = NULL;
 		}

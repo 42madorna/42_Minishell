@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 03:50:59 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 05:12:20 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int
 void
 	pipex(t_mini *mini)
 {
-	int	in_fd;
-	int	status;
-	int	pipes[2];
+	int		in_fd;
+	int		status;
+	int		pipes[2];
 	t_cmd	*cmd_node;
 	pid_t	pid;
 
@@ -122,15 +122,18 @@ void
 	}
 	// if (in_fd != 0)
 	// 	dup2(in_fd, 0);
-	cmd_node = mini->cmds->content;
-	// close(pipes[STDIN_FILENO]);
-	if (cmd_node)
+	if (mini->cmds)
 	{
-		if (builtin(cmd_node->argv, mini, in_fd, pipes[STDERR_FILENO]))
+		cmd_node = mini->cmds->content;
+		// close(pipes[STDIN_FILENO]);
+		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
 		{
-			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
-			wait(&pid);
-			pid = WEXITSTATUS(pid);
+			if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
+			{
+				pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
+				wait(&pid);
+				pid = WEXITSTATUS(pid);
+			}
 		}
 	}
 	// close(in_fd);
