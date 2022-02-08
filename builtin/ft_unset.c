@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 23:58:46 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 06:29:56 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,47 @@ void
 /*
 ** TODO: Remove env variable
 */
-void
-	del_env_vble(t_list *l_env, char *str)
+inline static void
+	del_env_vble(t_list **l_env, char *str)
 {
 	t_list	*env_node;
+	t_list	*reseach;
 	t_list	*del;
 
-	env_node = l_env;
+	env_node = (*l_env);
 	del = NULL;
 	while (env_node)
 	{
-		if (!ft_strncmp(((t_env *)env_node->content)->key, str, ft_strlen(((t_env *)env_node->content)->key)))
+		if (!ft_strncmp(((t_env *)env_node->content)->key,
+			str, ft_strlen(((t_env *)env_node->content)->key)))
 		{
 			del = env_node;
 			break ;
 		}
 		env_node = env_node->next;
 	}
+	reseach = (*l_env);
+	if ((*l_env) == del)
+		(*l_env) = (*l_env)->next;
+	else
+		while (reseach && reseach->next && del)
+		{
+			if (reseach->next == del)
+			{
+				reseach->next = del->next;
+				break ;
+			}
+			reseach = reseach->next;
+		}
 	ft_lstdelone(del, ft_del_env_node);
 }
 
 int
-	ft_unset(int argc, char **argv, t_list *l_env)
+	ft_unset(int argc, char **argv, t_list **l_env)
 {
 	// write(1, "\n", 1);
-	// if (argc >= 2)
-	// 	del_env_vble(l_env, argv[1]);
-	printf("TODO: [MINS-77] unset builtin\n");
+	if (argc >= 2)
+		del_env_vble(l_env, argv[1]);
+	// printf("TODO: [MINS-77] unset builtin\n");
 	return (0);
 }

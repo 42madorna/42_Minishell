@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:52:20 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 05:57:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 06:30:15 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int
 	if (!ft_strncmp(cmd->argv[0], "env", 4))
 		return (ft_env(cmd->argc, cmd->argv, mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "unset", 6))
-		return (ft_unset(cmd->argc, cmd->argv, mini->l_env));
+		return (ft_unset(cmd->argc, cmd->argv, &mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "export", 7))
 		return (ft_export(cmd->argc, cmd->argv, mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "dsbksdgbksdghsh", 16))
