@@ -31,7 +31,6 @@ pipelines:
             script:
               - apt update
               - apt install -y build-essential git libreadline-dev
-              - ls -la
               - make line
-              - git shortlog -s > out.txt
+              - git rev-list --count <revision>
               - cat ./out.txt
