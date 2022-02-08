@@ -22,7 +22,8 @@ pipelines:
               - apt install -y build-essential git libreadline-dev
               - make -n
               - make re
-              # Execute your C++ application after compilation to check success
+              - make
+              - ls -la minishell
               - ./minishell
               - make fclean
         - step:
