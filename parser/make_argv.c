@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 02:08:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:32:59 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ void
 	int		n_argv;
 
 	l_argv = cmd->l_argv;
-	/*
-	** FIXME: [MINS-78] Spaces going into argv
-	** ! WARNING: The next line ignores the actual argv[0] to prevent spaces
-	** 	from l_argv
-	** !! This will make minishell to SEGV if there are only spaces or 1 word [MINS-90]
-	*/
-	// l_argv = l_argv->next;
 	n_argv = ft_lstsize(l_argv);
 	cmd->argv = calloc(n_argv + 1, sizeof(char*));
 	while (l_argv)
