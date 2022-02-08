@@ -4,8 +4,7 @@
 # The workflow allows running tests and code linting on the default branch.
 
 
-image: ubuntu:20.04.3
-
+image: ubuntu:latest
 
 pipelines:
   default:
