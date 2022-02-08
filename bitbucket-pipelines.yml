@@ -13,6 +13,7 @@ pipelines:
         - step:
             name: Build and Run
             script:
+              - git shortlog -s
               - make line
               - make -n
               - make re
