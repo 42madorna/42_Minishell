@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 07:05:46 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:20:00 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void
 		printf("\n");
 }
 
-/*
-** TODO: [MINS-59] (PIPEX)
-*/
 /*
 ** Pipex (minishell edition)
 ** How should this work?
@@ -97,7 +94,9 @@ void
 
 	signal(SIGQUIT, signal_q);
 	signal(SIGINT, signal_q);
-	in_fd = 0;
+	in_fd = STDIN_FILENO;
+	pipes[0] = STDIN_FILENO;
+	pipes[1] = STDOUT_FILENO;
 	while (mini->cmds && mini->cmds->next)
 	{
 		cmd_node = mini->cmds->content;
