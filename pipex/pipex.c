@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 05:12:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 05:20:16 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void
 		{
 			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
 			wait(&pid);
-			pid = WEXITSTATUS(pid);
+			mini->ret = WEXITSTATUS(pid);
 		}
 		close(pipes[STDOUT_FILENO]);
 		in_fd = pipes[STDIN_FILENO];
@@ -132,7 +132,7 @@ void
 			{
 				pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
 				wait(&pid);
-				pid = WEXITSTATUS(pid);
+				mini->ret = WEXITSTATUS(pid);
 			}
 		}
 	}
