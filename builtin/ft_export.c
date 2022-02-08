@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 19:44:24 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 22:22:25 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static inline int
 {
 	if (!a || !b)
 		return (0);
-	// if (!a->key)
-	// 	return (1);
-	// if (!b->key)
-	// 	return (0);
-	return (strcmp(a->key, b->key) > 0);
+	if (!a->key)
+		return (1);
+	if (!b->key)
+		return (0);
+	return (ft_strncmp(a->key, b->key, ft_strlen(b->key) + 1) > 0);
 }
 
 t_list
@@ -59,26 +59,26 @@ t_list
 t_list
 	*ft_lstsort(t_list *l_env)
 {
-	t_list	*sorted;
-	t_list	*max;
-	t_list	*env_node;
+	t_list	*index;
+	t_env	*temp;
 
+	if (!l_env)
+		return (NULL);
 	while (l_env)
 	{
-		max = ft_find_max(l_env);
-		if (max == l_env)
-			l_env = l_env->next;
-		else
+		index = l_env->next;
+		while (index)
 		{
-			env_node = l_env;
-			while (env_node->next != max)
-				env_node = env_node->next;
-			env_node->next = max->next;
+			if (cmp_env(l_env->content, index->content))
+			{
+				temp = l_env->content;
+				l_env->content = index->content;
+				index->content = temp;
+			}
+			index = index->next;
 		}
-		max->next = sorted;
-		sorted = max;
+		l_env = l_env->next;
 	}
-	return (sorted);
 }
 
 // void
@@ -128,6 +128,21 @@ static inline void
 	}
 }
 
+static inline t_list
+	*lst_cpy(t_list *lst)
+{
+	t_list	*cpy;
+	t_list	*lst_node;
+
+	lst_node = lst;
+	while (lst_node)
+	{
+		ft_lstadd_back(&cpy, ft_lstnew(lst_node->content));
+		lst_node = lst_node->next;
+	}
+	return (cpy);
+}
+
 int
 	ft_is_valid_identifier(char *str)
 {
@@ -175,9 +190,9 @@ int
 	/*
 	** FIXME: sorting makes minishell crash
 	*/
-	// cpy = calloc(1, sizeof(t_list));
+	cpy = lst_cpy(env);
 	// cpy = ft_memcpy(cpy, env, sizeof(t_list));
-	// ft_lstsort(cpy);
-	print_env_list(env);
+	ft_lstsort(cpy);
+	print_env_list(cpy);
 	return (0);
 }
