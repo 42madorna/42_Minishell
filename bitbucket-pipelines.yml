@@ -13,6 +13,7 @@ pipelines:
         - step:
             name: Build and Run
             script:
+              - make line
               - make -n
               - make re
               - make
@@ -23,5 +24,4 @@ pipelines:
             name: Info
             image: bitnami/git:latest
             script:
-              - make line
               - git shortlog -s
