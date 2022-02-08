@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 21:38:37 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:08:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static inline int
 ** TODO: Manage unvalid names
 */
 static inline void
-	*manage_dollar(t_mini *mini, t_list **lst, int *pos)
+	manage_dollar(t_mini *mini, t_list **lst, int *pos)
 {
 	char	*env_var;
 	char	*env_cont;
@@ -59,7 +59,7 @@ static inline void
 	free(env_cont_cpy);
 }
 
-int
+void
 	dollar_finder(t_mini *mini)
 {
 	t_list	*l_chars;

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/07 01:29:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:12:28 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char
 static int
 	manage_out(t_mini *mini, t_list **chars)
 {
-	t_chars	*chars_node;
 	char	*file;
 	int		fd;
 
@@ -77,7 +76,7 @@ static int
 		*chars = (*chars)->next;
 	}
 	file = seek_name(mini, chars, OUT);
-	if (!file)
+	if (!file && !mini->parse_err)
 	{
 		printf("Unexpected token near `%s'\n", unclosed_name(OUT));
 		mini->parse_err = 1;
@@ -90,7 +89,6 @@ static int
 static int
 	manage_in(t_mini *mini, t_list **chars)
 {
-	t_chars	*chars_node;
 	char	*file;
 	int		fd;
 	int		flag;
@@ -132,7 +130,7 @@ static void
 
 	*chars = (*chars)->next;
 	skip_lst_spaces(chars);
-	chars_node = *chars;
+	chars_node = (*chars)->content;
 	if (!chars_node || chars_node->c == '|')
 	{
 		printf("Unexpected token near `%s'\n", unclosed_name(PIPE));

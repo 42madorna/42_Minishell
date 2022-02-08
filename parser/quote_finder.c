@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:07:44 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 21:33:35 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:06:06 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int
 	return (0);
 }
 
-int
+void
 	quote_finder(t_mini *mini)
 {
 	t_chars	*chars;

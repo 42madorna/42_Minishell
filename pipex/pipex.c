@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 05:56:23 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:05:46 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void
 	pipex(t_mini *mini)
 {
 	int		in_fd;
-	int		status;
 	int		pipes[2];
 	t_cmd	*cmd_node;
 	pid_t	pid;

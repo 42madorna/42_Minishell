@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 03:28:22 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:08:18 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ pid_t g_pid[255];
 /*
 ** Parser functions
 */
-int		quote_finder(t_mini *mini);
-int		dollar_finder(t_mini *mini);
+void	quote_finder(t_mini *mini);
+void	dollar_finder(t_mini *mini);
 int		parse(t_mini *mini);
 int		specials(t_mini *mini);
 int		parse_clear(t_mini *mini);

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 05:05:29 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:07:50 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void
 {
 	t_list	*l_delim;
 	t_list	*begin_node;
-	char	*delim;
 
 	l_delim = mini->delimiters;
 	begin_node = l_delim;
@@ -121,9 +120,9 @@ int
 		{
 			add_history(mini.line);
 			quote_finder(&mini);
-			ft_delim(&mini);
 			if (!mini.parse_err)
 			{
+				ft_delim(&mini);
 				make_argv(&mini);
 				make_env(&mini);
 				ft_check_command(&mini);
