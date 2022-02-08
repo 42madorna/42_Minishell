@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 07:30:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 07:39:54 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,8 +183,6 @@ void
 					if (*arg)
 						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 				}
-				if (*arg)
-					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 			}
 			arg = calloc(1024, sizeof(char*));
 			i = 0;
