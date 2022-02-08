@@ -11,8 +11,8 @@ pipelines:
     - step:
         name: Configure ubuntu
         script:
-          - sudo apt install build-essential
-          - sudo apt install git
+          - apt install build-essential
+          - apt install git
     - parallel:
         - step:
             name: Build and Run
