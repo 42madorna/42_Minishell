@@ -32,5 +32,4 @@ pipelines:
               - apt update
               - apt install -y build-essential git libreadline-dev
               - make line
-              - git rev-list HEAD --count
-              - cat ./out.txt
+              - git rev-list --all --count
