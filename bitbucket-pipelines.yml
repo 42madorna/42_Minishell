@@ -8,33 +8,19 @@ image: ubuntu:latest
 
 pipelines:
   default:
-    - step:
-        name: Configure ubuntu
-        script:
-          - apt update
-          - apt install -y build-essential
-          - apt install -y git
-          - parallel:
-            - step:
-              name: Build and Run
-              script:
-                - make line
-                - make -n
-                - make re
-                - make
-                - ls -la minishell
-                - ./minishell
-                - make fclean
-          - step:
-              name: Info
-              script:
-                - git shortlog -s
-
+    # - step:
+    #     name: Configure ubuntu
+    #     script:
+    #       - apt update
+    #       - apt install -y build-essential
+    #       - apt install -y git
     - parallel:
         - step:
             name: Build and Run
             script:
-              - make line
+              - apt update
+              - apt install -y build-essential
+              - apt install -y git
               - make -n
               - make re
               - make
@@ -44,4 +30,8 @@ pipelines:
         - step:
             name: Info
             script:
+              - apt update
+              - apt install -y build-essential
+              - apt install -y git
+              - make line
               - git shortlog -s
