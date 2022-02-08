@@ -19,7 +19,7 @@ pipelines:
             name: Build and Run
             script:
               - apt update
-              - apt install -y build-essential git libreadline6 libreadline6-dev
+              - apt install -y build-essential git lib32readline7 lib32readline-dev
               - make -n
               - make re
               - make
@@ -30,6 +30,6 @@ pipelines:
             name: Info
             script:
               - apt update
-              - apt install -y build-essential git libreadline6 libreadline6-dev
+              - apt install -y build-essential git lib32readline7 lib32readline-dev
               - make line
               - git shortlog -s
