@@ -8,11 +8,12 @@ image: ubuntu:latest
 
 pipelines:
   default:
-    # - step:
-    #     name: Configure ubuntu
-    #     script:
-    #       - apt install build-essential
-    #       - apt install git
+    - step:
+        name: Configure ubuntu
+        script:
+          - apt update
+          - apt install -y build-essential
+          - apt install -y git
     - parallel:
         - step:
             name: Build and Run
