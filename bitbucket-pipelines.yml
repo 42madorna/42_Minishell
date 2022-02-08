@@ -4,11 +4,16 @@
 # The workflow allows running tests and code linting on the default branch.
 
 
-image: gcc:9.3.0
+image: ubuntu:20.04.3
 
 
 pipelines:
   default:
+    - step:
+        name: Configure ubuntu
+        script:
+          - sudo apt install build-essential
+          - sudo apt install git
     - parallel:
         - step:
             name: Build and Run
@@ -22,6 +27,5 @@ pipelines:
               - make fclean
         - step:
             name: Info
-            image: bitnami/git:latest
             script:
               - git shortlog -s
