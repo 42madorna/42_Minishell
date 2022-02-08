@@ -14,6 +14,22 @@ pipelines:
           - apt update
           - apt install -y build-essential
           - apt install -y git
+          - parallel:
+            - step:
+              name: Build and Run
+              script:
+                - make line
+                - make -n
+                - make re
+                - make
+                - ls -la minishell
+                - ./minishell
+                - make fclean
+          - step:
+              name: Info
+              script:
+                - git shortlog -s
+
     - parallel:
         - step:
             name: Build and Run
