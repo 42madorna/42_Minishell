@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 05:56:23 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/07 03:01:33 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void
 
 	i = 0;
 	while (g_pid[i])
-	{
-		kill(g_pid[i], sig);
-		g_pid[i++] = 0;
-	}
+		kill(g_pid[i++], sig);
 	if (sig == 3)
 		printf("Quit: %d\n", sig);
 	else
@@ -57,82 +54,65 @@ void
 ** URL to PIPEX subject:
 ** 	https://cdn.intra.42.fr/pdf/pdf/38119/en.subject.pdf
 */
-
-int
-	execute(int in, int out, t_cmd *cmd)
-{
-	pid_t	pid;
-
-	pid = fork();
-	if (pid == 0)
-	{
-		if (in != STDIN_FILENO)
-		{
-			dup2(in, STDIN_FILENO);
-			close(in);
-		}
-		if (out != STDOUT_FILENO)
-		{
-			dup2(out, STDOUT_FILENO);
-			close(out);
-		}
-		if (!cmd->notexists)
-			return execve(cmd->path, cmd->argv, cmd->env);
-		ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
-		ft_putstr_fd(cmd->argv[0], STDERR_FILENO);
-		ft_putstr_fd(": command not found\n", STDERR_FILENO);
-		exit (127);
-	}
-	return (pid);
-}
-
 void
 	pipex(t_mini *mini)
 {
-	int		in_fd;
-	int		status;
-	int		pipes[2];
-	t_cmd	*cmd_node;
-	pid_t	pid;
+	int saved_stdout;
+	int saved_stdin;
+	int	status;
+	int	pipes[2];
 
 	signal(SIGQUIT, signal_q);
 	signal(SIGINT, signal_q);
-	in_fd = 0;
-	while (mini->cmds && mini->cmds->next)
+	while (mini->cmds)
 	{
-		cmd_node = mini->cmds->content;
-		if (!cmd_node->argv[0] || !cmd_node->argv[0][0])
-		{
-			mini->cmds = mini->cmds->next;
-			continue ;
-		}
+		if (!((t_cmd*)(mini->cmds->content))->argv[0] || !((t_cmd*)(mini->cmds->content))->argv[0][0])
+			break ;
+		saved_stdout = dup(STDOUT_FILENO);
+		saved_stdin = dup(STDIN_FILENO);
+		dup2(((t_cmd*)(mini->cmds->content))->infile, STDIN_FILENO);
 		pipe(pipes);
-		// TODO: Execute builtins
-		// TODO: Redirect input/output
-		if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
+		g_pid[((t_cmd *)(mini->cmds->content))->num] = fork();
+		if (g_pid[((t_cmd *)(mini->cmds->content))->num] == 0)
 		{
-			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
-			wait(&pid);
-			mini->ret = WEXITSTATUS(pid);
+			close(pipes[READ_END]);
+			dup2(((t_cmd*)(mini->cmds->content))->outfile, STDOUT_FILENO);
+			if (builtin(((t_cmd*)(mini->cmds->content))->argv, mini))
+			{
+				if (ft_search_cmd(mini->l_env, (t_cmd*)(mini->cmds->content))) // TODO: Check if this works OK
+				{
+					printf("%s: %s: command not found\n", SHELL_NAME,
+						((t_cmd*)(mini->cmds->content))->argv[0]);
+					break ;
+				}
+				else
+				{
+					mini->ret = ft_execve((t_cmd*)(mini->cmds->content));
+				}
+			}
+			mini->ret = 0;
 		}
-		close(pipes[STDOUT_FILENO]);
-		in_fd = pipes[STDIN_FILENO];
+		else if (g_pid[((t_cmd *)(mini->cmds->content))->num] > 0)
+			g_pid[((t_cmd *)(mini->cmds->content))->num] = wait(&status);
+		status = WEXITSTATUS(status);
+		// kill(g_pid[((t_cmd *)(mini->cmds->content))->num], SIGINT);
+		// if (builtin(((t_cmd*)(mini->cmds->content))->argv, mini))
+		// {
+		// 	if (ft_search_cmd(mini->l_env, (t_cmd*)(mini->cmds->content))) // TODO: Check if this works OK
+		// 	{
+		// 		printf("%s: %s: command not found\n", SHELL_NAME,
+		// 			((t_cmd*)(mini->cmds->content))->argv[0]);
+		// 		break ;
+		// 	}
+		// 	else
+		// 	{
+		// 		mini->ret = ft_execve((t_cmd*)(mini->cmds->content));
+		// 	}
+		// }
+		dup2(saved_stdout, STDOUT_FILENO);
+		dup2(saved_stdin, STDIN_FILENO);
+		close(saved_stdout);
+		close(saved_stdin);
 		mini->cmds = mini->cmds->next;
 	}
-	if (mini->cmds)
-	{
-		cmd_node = mini->cmds->content;
-		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
-		{
-			if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
-			{
-				pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
-				wait(&pid);
-				mini->ret = WEXITSTATUS(pid);
-			}
-		}
-	}
-	if (in_fd)
-		close(in_fd);
 }

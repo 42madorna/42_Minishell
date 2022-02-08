@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:52:20 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 01:32:10 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 05:57:05 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 
 int
-	builtin(char **argv, struct s_mini *mini)
+	builtin(char **argv, struct s_mini *mini, int in, int out)
 {
 	t_cmd	*cmd;
 
@@ -33,5 +33,7 @@ int
 		return (ft_unset(cmd->argc, cmd->argv, mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "export", 7))
 		return (ft_export(cmd->argc, cmd->argv, mini->l_env));
+	if (!ft_strncmp(cmd->argv[0], "dsbksdgbksdghsh", 16))
+		return (ft_dsbksdgbksdghsh());
 	return (1);
 }

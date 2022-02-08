@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/07 01:44:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/08 05:05:29 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void
 		promt(mini, 1);
 		if (!mini->line || !*mini->line)
 		{
-			printf("%s: warning: (wanted `%s')\n", SHELL_NAME,
+			printf("%s: warning: unexpected '\\0' (wanted `%s')\n", SHELL_NAME,
 				(char *)l_delim->content);
 			l_delim = l_delim->next;
 			begin_node = l_delim;
@@ -73,6 +73,25 @@ void
 			l_delim = l_delim->next;
 		else
 			l_delim = begin_node;
+	}
+}
+
+void
+	ft_check_command(t_mini *mini)
+{
+	t_list	*cmds;
+	t_cmd	*cmd_node;
+
+	cmds = mini->cmds;
+	while (cmds)
+	{
+		cmd_node = cmds->content;
+		cmd_node->notexists = 0;
+		if (!cmd_node->outfile)
+			cmd_node->outfile = 1;
+		if (ft_search_cmd(mini->l_env, cmd_node))
+			cmd_node->notexists = 1;
+		cmds = cmds->next;
 	}
 }
 
@@ -107,11 +126,14 @@ int
 			{
 				make_argv(&mini);
 				make_env(&mini);
+				ft_check_command(&mini);
 				pipex(&mini);
 			}
 			mini.cmds = NULL;
 			mini.delimiters = NULL;
+			mini.chars = NULL;
 			free(mini.line);
+			mini.line = NULL;
 		}
 		else if (!mini.line)
 		{

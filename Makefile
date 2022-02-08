@@ -6,13 +6,14 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/06 21:32:08 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/08 05:26:11 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	main.c																	\
 		builtin/builtin.c														\
 		builtin/ft_cd.c															\
+		builtin/ft_dsbksdgbksdghsh.c											\
 		builtin/ft_echo.c														\
 		builtin/ft_env.c														\
 		builtin/ft_exit.c														\
@@ -46,13 +47,6 @@ SRCS =	main.c																	\
 		pipex/pipex.c															\
 		utils/ft_strjoin_env.c													\
 		utils/ft_strjoin_path.c
-
-# builtin/ft_cd.c														
-# builtin/ft_echo.c														
-# builtin/ft_env.c														
-# builtin/ft_export.c													
-# builtin/ft_pwd.c														
-# builtin/ft_unset.c													
 
 NAME = minishell
 
@@ -130,5 +124,8 @@ debug:		$(NAME)
 debug:		CFLAGS += $(SANITIZE)
 debug:		LDFLAGS += $(SANITIZE)
 
+line:
+			@cat $(SRCS) minishell.h builtin/builtin.h | wc
+
 #.SILENT:	all clean fclean re $(NAME)
-.PHONY:		all clean fclean re debug
+.PHONY:		all clean fclean re debug line

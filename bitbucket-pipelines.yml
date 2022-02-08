@@ -4,16 +4,31 @@
 # The workflow allows running tests and code linting on the default branch.
 
 
-image: gcc:9.3.0
-
+image: ubuntu:latest
 
 pipelines:
   default:
+    # - step:
+    #     name: Configure ubuntu
+    #     script:
+    #       - apt update
+    #       - apt install -y build-essential
+    #       - apt install -y git
     - parallel:
         - step:
             name: Build and Run
             script:
+              - apt update
+              - apt install -y build-essential git libreadline-dev
+              - make -n
               - make re
               # Execute your C++ application after compilation to check success
               - ./minishell
               - make fclean
+        - step:
+            name: Info
+            script:
+              - apt update
+              - apt install -y build-essential git libreadline-dev
+              - make line
+              - git rev-list --all --count
