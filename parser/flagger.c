@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 02:48:26 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 07:13:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 07:30:04 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void
 	chars = calloc(1, sizeof(t_chars));
 	save_char(mini, chars);
 	// Uncomment this to see what does mini->chars have
-	ft_lstiter(mini->chars, print);
+	// ft_lstiter(mini->chars, print);
 	free(mini->buffer);
 	mini->buffer = NULL;
 	command_split(mini);
