@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 06:16:03 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 18:34:43 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ void
 {
 	dup2(saved_fd[0], STDIN_FILENO);
 	dup2(saved_fd[1], STDOUT_FILENO);
-	close(saved_fd[0]);
-	close(saved_fd[1]);
+	if (saved_fd[0] != STDIN_FILENO)
+		close(saved_fd[0]);
+	if (saved_fd[STDOUT_FILENO] != STDOUT_FILENO)
+		close(saved_fd[1]);
 }
 
 int
-	execute(int in, int out, t_cmd *cmd)
+	execute(int in, int out, t_cmd *cmd, t_mini *mini)
 {
 	pid_t	pid;
 	int		saved_fd[2];
@@ -87,6 +89,11 @@ int
 		dup2(STDOUT_FILENO, saved_fd[1]);
 		dup2(cmd->infile, STDIN_FILENO);
 		dup2(cmd->outfile, STDOUT_FILENO);
+		if (!builtin(cmd->argv, mini, in, &out))
+		{
+			close_dup(saved_fd);
+			return (0);
+		}
 		if (!cmd->notexists)
 		{
 			execve(cmd->path, cmd->argv, cmd->env);
@@ -127,12 +134,9 @@ void
 		pipe(pipes);
 		// TODO: Execute builtins
 		// TODO: Redirect input/output
-		if (builtin(cmd_node->argv, mini, in_fd, &pipes[STDOUT_FILENO]))
-		{
-			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
-			wait(&pid);
-			mini->ret = WEXITSTATUS(pid);
-		}
+		pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node, mini);
+		wait(&pid);
+		mini->ret = WEXITSTATUS(pid);
 		close(pipes[STDOUT_FILENO]);
 		in_fd = pipes[STDIN_FILENO];
 		mini->cmds = mini->cmds->next;
@@ -142,12 +146,9 @@ void
 		cmd_node = mini->cmds->content;
 		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
 		{
-			if (builtin(cmd_node->argv, mini, in_fd, &pipes[STDOUT_FILENO]))
-			{
-				pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
-				wait(&pid);
-				mini->ret = WEXITSTATUS(pid);
-			}
+			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node, mini);
+			wait(&pid);
+			mini->ret = WEXITSTATUS(pid);
 		}
 	}
 	if (in_fd)

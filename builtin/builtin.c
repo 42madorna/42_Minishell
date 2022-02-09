@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:52:20 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 06:20:01 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:03:28 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,8 @@ int
 	}
 	if (!ft_strncmp(cmd->argv[0], "pwd", 4))
 	{
-		if (in != STDIN_FILENO)
-		{
-			dup2(in, STDIN_FILENO);
-			// close(in);
-		}
-		if (*out != STDOUT_FILENO)
-		{
-			dup2(*out, STDOUT_FILENO);
-			saved_fd[1] = *out;
-			// close(*out);
-		}
-		// dup2(STDIN_FILENO, saved_fd[0]);
-		// dup2(STDOUT_FILENO, saved_fd[1]);
-		if (cmd->outfile != STDOUT_FILENO)
-			dup2(cmd->outfile, STDOUT_FILENO);
-		else
-			dup2(*out, STDOUT_FILENO);
-		if (cmd->infile != STDIN_FILENO)
-			dup2(cmd->infile, STDIN_FILENO);
-		else
-			dup2(in, STDIN_FILENO);
 		ft_pwd(cmd->argc, cmd->argv, mini->l_env);
-		*out = saved_fd[1];
-		// close_dup(saved_fd);
-		return (0);
+		exit (0);
 	}
 	if (!ft_strncmp(cmd->argv[0], "cd", 3))
 	{
@@ -89,7 +66,10 @@ int
 		return (0);
 	}
 	if (!ft_strncmp(cmd->argv[0], "echo", 5))
-		return (ft_echo(cmd->argc, cmd->argv, mini->l_env));
+	{
+		ft_echo(cmd->argc, cmd->argv, mini->l_env);
+		exit (0);
+	}
 	if (!ft_strncmp(cmd->argv[0], "env", 4))
 		return (ft_env(cmd->argc, cmd->argv, mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "unset", 6))
@@ -97,6 +77,9 @@ int
 	if (!ft_strncmp(cmd->argv[0], "export", 7))
 		return (ft_export(cmd->argc, cmd->argv, mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "dsbksdgbksdghsh", 16))
-		return (ft_dsbksdgbksdghsh());
+	{
+		ft_dsbksdgbksdghsh();
+		exit (127);
+	}
 	return (1);
 }
