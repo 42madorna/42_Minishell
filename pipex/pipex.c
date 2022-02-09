@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 07:20:00 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 06:16:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,20 @@ void
 ** 	https://cdn.intra.42.fr/pdf/pdf/38119/en.subject.pdf
 */
 
+void
+	close_dup(int saved_fd[2])
+{
+	dup2(saved_fd[0], STDIN_FILENO);
+	dup2(saved_fd[1], STDOUT_FILENO);
+	close(saved_fd[0]);
+	close(saved_fd[1]);
+}
+
 int
 	execute(int in, int out, t_cmd *cmd)
 {
 	pid_t	pid;
+	int		saved_fd[2];
 
 	pid = fork();
 	if (pid == 0)
@@ -73,12 +83,21 @@ int
 			dup2(out, STDOUT_FILENO);
 			close(out);
 		}
+		dup2(STDIN_FILENO, saved_fd[0]);
+		dup2(STDOUT_FILENO, saved_fd[1]);
+		dup2(cmd->infile, STDIN_FILENO);
+		dup2(cmd->outfile, STDOUT_FILENO);
 		if (!cmd->notexists)
-			return execve(cmd->path, cmd->argv, cmd->env);
+		{
+			execve(cmd->path, cmd->argv, cmd->env);
+			close_dup(saved_fd);
+			return (0);
+		}
 		ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
 		ft_putstr_fd(": ", STDERR_FILENO);
 		ft_putstr_fd(cmd->argv[0], STDERR_FILENO);
 		ft_putstr_fd(": command not found\n", STDERR_FILENO);
+		close_dup(saved_fd);
 		exit (127);
 	}
 	return (pid);
@@ -108,7 +127,7 @@ void
 		pipe(pipes);
 		// TODO: Execute builtins
 		// TODO: Redirect input/output
-		if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
+		if (builtin(cmd_node->argv, mini, in_fd, &pipes[STDOUT_FILENO]))
 		{
 			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
 			wait(&pid);
@@ -123,7 +142,7 @@ void
 		cmd_node = mini->cmds->content;
 		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
 		{
-			if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
+			if (builtin(cmd_node->argv, mini, in_fd, &pipes[STDOUT_FILENO]))
 			{
 				pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
 				wait(&pid);
