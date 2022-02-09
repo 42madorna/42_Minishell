@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 22:22:25 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 04:28:20 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,11 @@ static inline t_list
 	t_list	*cpy;
 	t_list	*lst_node;
 
+	if (!lst)
+		return (NULL);
 	lst_node = lst;
+	cpy = ft_lstnew(lst_node->content);
+	lst_node = lst_node->next;
 	while (lst_node)
 	{
 		ft_lstadd_back(&cpy, ft_lstnew(lst_node->content));
