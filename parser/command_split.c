@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 06:39:00 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 06:52:06 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ static inline void
 {
 	while ((*lst) && ft_isspace(((t_chars*)(*lst)->content)->c))
 		*lst = (*lst)->next;
+}
+
+static inline int
+	ft_is_valid_char(char c)
+{
+	return (c == ' ' || c == '\'' || c == '"' || c == '\t'
+		|| c == '|' || c == '>' || c == '<' || c == '/');
 }
 
 char
@@ -49,9 +56,8 @@ char
 	while (*chars)
 	{
 		chars_node = (*chars)->content;
-		if ((ft_isspace(chars_node->c) || chars_node->c == '>'
-			|| chars_node->c == '<' || chars_node->c == '|')
-			&& chars_node->flag != DQUOTE && chars_node->flag  != QUOTE)
+		if (ft_is_valid_char(chars_node->c)
+			&& chars_node->flag != DQUOTE && chars_node->flag != QUOTE)
 			break ;
 		name[i++] = chars_node->c;
 		(*chars) = (*chars)->next;
