@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 06:49:31 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 06:54:20 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ static inline int
 		|| c == '|' || c == '>' || c == '<' || c == '/');
 }
 
-/*
-** TODO: Manage unvalid names
-*/
 static inline void
 	manage_dollar(t_mini *mini, t_list **lst, int *pos)
 {
