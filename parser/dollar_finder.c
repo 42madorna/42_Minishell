@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 07:12:35 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 07:52:23 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static inline void
 	env_cont_cpy = env_cont;
 	if (!ft_strncmp("?\0", env_var, 2))
 		env_cont = ft_itoa(mini->ret);
-	if (i == 0 && ((t_chars*)(*lst)->content)->c != '"' && ((t_chars*)(*lst)->content)->c != '\'')
+	if (i == 0 && (!*lst || (((t_chars*)(*lst)->content)->c != '"' && ((t_chars*)(*lst)->content)->c != '\'')))
 		env_cont = "$";
 	while (env_cont && *env_cont)
 		mini->buffer[(*pos)++] = *env_cont++;
