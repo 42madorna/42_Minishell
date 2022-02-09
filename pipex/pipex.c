@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 05:24:47 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 06:16:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,9 @@ int
 		dup2(cmd->outfile, STDOUT_FILENO);
 		if (!cmd->notexists)
 		{
+			execve(cmd->path, cmd->argv, cmd->env);
 			close_dup(saved_fd);
-			return execve(cmd->path, cmd->argv, cmd->env);
+			return (0);
 		}
 		ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
 		ft_putstr_fd(": ", STDERR_FILENO);
@@ -126,7 +127,7 @@ void
 		pipe(pipes);
 		// TODO: Execute builtins
 		// TODO: Redirect input/output
-		if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
+		if (builtin(cmd_node->argv, mini, in_fd, &pipes[STDOUT_FILENO]))
 		{
 			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
 			wait(&pid);
@@ -141,7 +142,7 @@ void
 		cmd_node = mini->cmds->content;
 		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
 		{
-			if (builtin(cmd_node->argv, mini, in_fd, pipes[STDOUT_FILENO]))
+			if (builtin(cmd_node->argv, mini, in_fd, &pipes[STDOUT_FILENO]))
 			{
 				pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node);
 				wait(&pid);

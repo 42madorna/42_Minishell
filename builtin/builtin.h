@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:53:49 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 06:30:30 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 06:15:05 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 struct	s_mini;
 
-int	builtin(char **argv, struct s_mini *mini, int in, int out);
+int	builtin(char **argv, struct s_mini *mini, int in, int *out);
 int	ft_pwd(int argc, char **argv, t_list *env);
 int	ft_exit(int argc, char **argv, t_list *env, struct s_mini *mini);
 int	ft_cd(int argc, char **argv, t_list *env);
