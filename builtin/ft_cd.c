@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/03 00:38:34 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:33:14 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ inline static int
 		{
 			printf("Not a directory\n");
 			free_cd(dir);
-			return (0);
+			return (1);
 		}
 		printf("No such file or directory\n");
 		free_cd(dir);
+		return (1);
 	}
 	return (0);
 }
@@ -61,7 +62,7 @@ int
 		if (!argv[1])
 		{
 			printf("%s: cd: HOME not set\n", SHELL_NAME);
-			return (0);
+			return (1);
 		}
 	}
 	if (!ft_strncmp(argv[1], "\"\"", ft_strlen(argv[1]))

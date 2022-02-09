@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 07:08:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:42:51 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include <signal.h>
 #include <errno.h>
 #include <sys/wait.h>
+#include <dirent.h>
 
 #define SHELL_NAME "minishell"
 

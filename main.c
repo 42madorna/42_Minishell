@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 07:07:50 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:51:07 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ void
 		cmd_node->notexists = 0;
 		if (!cmd_node->outfile)
 			cmd_node->outfile = 1;
-		if (ft_search_cmd(mini->l_env, cmd_node))
-			cmd_node->notexists = 1;
+		cmd_node->notexists = ft_search_cmd(mini->l_env, cmd_node);
 		cmds = cmds->next;
 	}
 }

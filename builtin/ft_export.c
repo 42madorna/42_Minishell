@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 04:28:20 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:36:07 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,6 @@ static inline void
 	env_node = l_env;
 	while (env_node)
 	{
-		// if (!((t_env *)(env_node->content)))
-		// 	break ;
 		if (((t_env *)(env_node->content))->value)
 			printf("declare -x %s=\"%s\"\n", ((t_env *)(env_node->content))->key,
 				((t_env *)(env_node->content))->value);

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 06:29:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:35:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ void
 		env_node->value = NULL;
 	}
 }
-/*
-** TODO: Remove env variable
-*/
+
 inline static void
 	del_env_vble(t_list **l_env, char *str)
 {
@@ -81,9 +79,7 @@ inline static void
 int
 	ft_unset(int argc, char **argv, t_list **l_env)
 {
-	// write(1, "\n", 1);
 	if (argc >= 2)
 		del_env_vble(l_env, argv[1]);
-	// printf("TODO: [MINS-77] unset builtin\n");
 	return (0);
 }
