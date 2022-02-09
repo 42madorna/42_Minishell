@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 05:53:08 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/09 06:39:00 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ char
 	while (*chars)
 	{
 		chars_node = (*chars)->content;
-		if (ft_isspace(chars_node->c) && chars_node->flag != DQUOTE
-			&& chars_node->flag  != QUOTE)
+		if ((ft_isspace(chars_node->c) || chars_node->c == '>'
+			|| chars_node->c == '<' || chars_node->c == '|')
+			&& chars_node->flag != DQUOTE && chars_node->flag  != QUOTE)
 			break ;
 		name[i++] = chars_node->c;
 		(*chars) = (*chars)->next;
