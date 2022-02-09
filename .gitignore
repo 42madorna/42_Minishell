@@ -9,3 +9,4 @@ librl/
 a.out
 loop.c
 *.txt
+*.tmp
