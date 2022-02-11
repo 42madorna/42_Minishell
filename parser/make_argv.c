@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 06:35:25 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 07:32:59 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:34:39 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void
 
 	l_argv = cmd->l_argv;
 	n_argv = ft_lstsize(l_argv);
-	cmd->argv = calloc(n_argv + 1, sizeof(char*));
+	cmd->argv = calloc(n_argv + 1, sizeof(char *));
 	while (l_argv)
 	{
 		cmd->argv[cmd->argc++] = l_argv->content;

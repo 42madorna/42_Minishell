@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 00:21:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:35:04 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,8 @@ int
 	parse_dquote(t_mini *mini)
 {
 	if (mini->flag == DQUOTE)
-	{
 		mini->flag -= DQUOTE;
-		// mini->line_cpy++;
-	}
 	else if (mini->flag != QUOTE)
-	{
 		mini->flag = DQUOTE;
-		// mini->line_cpy++;
-	}
 	return (0);
 }

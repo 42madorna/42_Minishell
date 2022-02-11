@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 06:28:42 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:38:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int
 		}
 		if (cmd->notexists)
 		{
-			
 			ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
 			ft_putstr_fd(": ", STDERR_FILENO);
 			ft_putstr_fd(cmd->argv[0], STDERR_FILENO);

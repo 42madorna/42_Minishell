@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 06:05:40 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:35:25 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static inline void
 	skip_lst_spaces(t_list **lst)
 {
-	while ((*lst) && ft_isspace(((t_chars*)(*lst)->content)->c))
+	while ((*lst) && ft_isspace(((t_chars *)(*lst)->content)->c))
 		*lst = (*lst)->next;
 }
 
@@ -165,7 +165,7 @@ void
 		return ;
 	cmd = calloc(1, sizeof(t_cmd));
 	i = 0;
-	arg = calloc(1024, sizeof(char*));
+	arg = calloc(1024, sizeof(char *));
 	chars_node = chars->content;
 	if (chars_node->c == '|')
 	{
@@ -185,13 +185,14 @@ void
 					ft_memcpy(arg, arg + 1, i);
 				if (ft_strlen(arg) > 0)
 				{
-					if (arg[ft_strlen(arg) - 1] == '\'' || arg[ft_strlen(arg) - 1] == '"')
+					if (arg[ft_strlen(arg) - 1] == '\''
+						|| arg[ft_strlen(arg) - 1] == '"')
 						arg[ft_strlen(arg) - 1] = '\0';
 					if (*arg)
 						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 				}
 			}
-			arg = calloc(1024, sizeof(char*));
+			arg = calloc(1024, sizeof(char *));
 			i = 0;
 			manage_pipe(mini, &chars);
 			cmd->num = ft_lstsize(mini->cmds);
@@ -208,7 +209,8 @@ void
 					ft_memcpy(arg, arg + 1, i);
 				if (ft_strlen(arg) > 0)
 				{
-					if (arg[ft_strlen(arg) - 1] == '\'' || arg[ft_strlen(arg) - 1] == '"')
+					if (arg[ft_strlen(arg) - 1] == '\''
+						|| arg[ft_strlen(arg) - 1] == '"')
 						arg[ft_strlen(arg) - 1] = '\0';
 					if (*arg)
 						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
@@ -216,7 +218,7 @@ void
 				if (*arg)
 					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 			}
-			arg = calloc(1024, sizeof(char*));
+			arg = calloc(1024, sizeof(char *));
 			i = 0;
 			cmd->outfile = manage_out(mini, &chars);
 			continue ;
@@ -230,7 +232,8 @@ void
 					ft_memcpy(arg, arg + 1, i);
 				if (ft_strlen(arg) > 0)
 				{
-					if (arg[ft_strlen(arg) - 1] == '\'' || arg[ft_strlen(arg) - 1] == '"')
+					if (arg[ft_strlen(arg) - 1] == '\''
+						|| arg[ft_strlen(arg) - 1] == '"')
 						arg[ft_strlen(arg) - 1] = '\0';
 					if (*arg)
 						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
@@ -238,7 +241,7 @@ void
 				if (*arg)
 					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 			}
-			arg = calloc(1024, sizeof(char*));
+			arg = calloc(1024, sizeof(char *));
 			i = 0;
 			cmd->infile = manage_in(mini, &chars);
 			continue ;
@@ -246,20 +249,20 @@ void
 		if (chars_node->c == ' ' && chars_node->flag != QUOTE
 			&& chars_node->flag != DQUOTE)
 		{
-			
 			if (arg)
 			{
 				if (*arg == '\'' || *arg == '"')
 					ft_memcpy(arg, arg + 1, i);
 				if (ft_strlen(arg) > 0)
 				{
-					if (arg[ft_strlen(arg) - 1] == '\'' || arg[ft_strlen(arg) - 1] == '"')
+					if (arg[ft_strlen(arg) - 1] == '\''
+						|| arg[ft_strlen(arg) - 1] == '"')
 						arg[ft_strlen(arg) - 1] = '\0';
 					if (*arg)
 						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
 				}
 			}
-			arg = calloc(1024, sizeof(char*));
+			arg = calloc(1024, sizeof(char *));
 			i = 0;
 			skip_lst_spaces(&chars);
 			continue ;
@@ -267,8 +270,9 @@ void
 		/*
 		** WARNING: FIXME: MINS-106 This condition won't pass bonus
 		*/
-		if (!(chars_node->c == '"' && (chars_node->flag == DQUOTE || chars_node->flag == 0))
-			&& !(chars_node->c == '\'' && (chars_node->flag == QUOTE || chars_node->flag == 0)))
+		if (!(chars_node->c == '"' && (chars_node->flag == DQUOTE
+					|| chars_node->flag == 0)) && !(chars_node->c == '\''
+				&& (chars_node->flag == QUOTE || chars_node->flag == 0)))
 			arg[i++] = chars_node->c;
 		chars = chars->next;
 	}
@@ -278,7 +282,8 @@ void
 			ft_memcpy(arg, arg + 1, i);
 		if (ft_strlen(arg) > 0)
 		{
-			if (arg[ft_strlen(arg) - 1] == '\'' || arg[ft_strlen(arg) - 1] == '"')
+			if (arg[ft_strlen(arg) - 1] == '\''
+				|| arg[ft_strlen(arg) - 1] == '"')
 				arg[ft_strlen(arg) - 1] = '\0';
 			if (*arg)
 				ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));

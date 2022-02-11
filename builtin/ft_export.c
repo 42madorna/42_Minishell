@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 19:36:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:36:50 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_list
 	min = l_env;
 	while (l_env)
 	{
-		if (cmp_env(((t_env*)(l_env)->content), ((t_env*)(min)->content)))
+		if (cmp_env(((t_env *)(l_env)->content), ((t_env *)(min)->content)))
 			min = l_env;
 		l_env = l_env->next;
 	}
@@ -158,7 +158,6 @@ int
 	t_list	*cpy;
 	int		i;
 
-
 	(void)cpy;
 	if (argc >= 2)
 	{
@@ -189,11 +188,7 @@ int
 		}
 		return (0);
 	}
-	/*
-	** FIXME: sorting makes minishell crash
-	*/
 	cpy = lst_cpy(env);
-	// cpy = ft_memcpy(cpy, env, sizeof(t_list));
 	ft_lstsort(cpy);
 	print_env_list(cpy);
 	return (0);

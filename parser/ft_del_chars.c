@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 02:54:28 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 02:58:08 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:34:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void
 	ft_del_chars(void *chars)
 {
-	t_chars *chars_node;
+	t_chars	*chars_node;
 
 	chars_node = chars;
-	// if ()
+	(void)chars_node;
 }

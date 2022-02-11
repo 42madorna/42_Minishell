@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:11:23 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 04:32:21 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:37:12 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void
 	ft_env_new(t_list *l_env, char *new_key, char *new_value)
 {
-	t_env *env_node;
+	t_env	*env_node;
 
 	env_node = calloc(1, sizeof(t_env));
 	env_node->key = ft_strdup(new_key);

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 01:38:49 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 19:30:45 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:38:14 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,9 @@ void
 	{
 		env_node = calloc(1, sizeof(t_env));
 		env_node->split_mem = ft_split(mini->env[i], '=');
-		// if (!env_node)
-		// 	printf("Error: Could not allocate memory for env_node");
 		env_node->key = env_node->split_mem[0];
 		env_node->value = env_node->split_mem[1];
 		ft_lstadd_back(&mini->l_env, ft_lstnew(env_node));
-		// Uncomment this to see each env var key:value
-		// printf("key %s, value %s\n", env_node->key, env_node->value);
 	}
 	ft_add_basic_env(mini);
 }

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 05:49:00 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:21:15 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,30 @@ static inline void
 
 	i = 0;
 	env_var = calloc(1024, sizeof(char));
-	while ((*lst) && !ft_is_valid_char(((t_chars*)(*lst)->content)->c) && !mini->parse_err)
+	while ((*lst) && !ft_is_valid_char(((t_chars *)(*lst)->content)->c)
+		&& !mini->parse_err)
 	{
-		if (i == 0 && ft_isdigit(((t_chars*)(*lst)->content)->c))
+		if (i == 0 && ft_isdigit(((t_chars *)(*lst)->content)->c))
 		{
 			printf("Unexpected token\n");
 			mini->parse_err = 1;
 		}
-		if (!ft_isalnum(((t_chars*)(*lst)->content)->c)
-			&& ((t_chars*)(*lst)->content)->c != '?'
-			&& ((t_chars*)(*lst)->content)->c != '_')
+		if (!ft_isalnum(((t_chars *)(*lst)->content)->c)
+			&& ((t_chars *)(*lst)->content)->c != '?'
+			&& ((t_chars *)(*lst)->content)->c != '_')
 		{
 			printf("Unexpected token\n");
 			mini->parse_err = 1;
 		}
-		env_var[i++] = ((t_chars*)(*lst)->content)->c;
+		env_var[i++] = ((t_chars *)(*lst)->content)->c;
 		*lst = (*lst)->next;
 	}
 	env_cont = ft_env_value(mini->l_env, env_var);
 	env_cont_cpy = env_cont;
 	if (!ft_strncmp("?\0", env_var, 2))
 		env_cont = ft_itoa(mini->ret);
-	if (i == 0 && (!*lst || (((t_chars*)(*lst)->content)->c != '"' && ((t_chars*)(*lst)->content)->c != '\'')))
+	if (i == 0 && (!*lst || (((t_chars *)(*lst)->content)->c != '"'
+			&& ((t_chars *)(*lst)->content)->c != '\'')))
 		env_cont = "$";
 	while (env_cont && *env_cont)
 		mini->buffer[(*pos)++] = *env_cont++;
@@ -66,7 +68,7 @@ void
 	int		i;
 
 	l_chars = mini->chars;
-	mini->buffer = calloc(1024, sizeof(char*));
+	mini->buffer = calloc(1024, sizeof(char *));
 	i = 0;
 	while (l_chars && !mini->parse_err)
 	{
@@ -80,7 +82,6 @@ void
 		mini->buffer[i++] = chars_node->c;
 		l_chars = l_chars->next;
 	}
-	// printf("mini->buff %s\n", mini->buffer);
 	if (!mini->parse_err)
 		flagger(mini);
 }

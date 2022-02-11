@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 19:35:40 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:10:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ inline static void
 	while (env_node)
 	{
 		if (!ft_strncmp(((t_env *)env_node->content)->key,
-			str, ft_strlen(((t_env *)env_node->content)->key)))
+				str, ft_strlen(((t_env *)env_node->content)->key)))
 		{
 			del = env_node;
 			break ;
@@ -64,6 +64,7 @@ inline static void
 	if ((*l_env) == del)
 		(*l_env) = (*l_env)->next;
 	else
+	{
 		while (reseach && reseach->next && del)
 		{
 			if (reseach->next == del)
@@ -73,6 +74,7 @@ inline static void
 			}
 			reseach = reseach->next;
 		}
+	}
 	ft_lstdelone(del, ft_del_env_node);
 }
 

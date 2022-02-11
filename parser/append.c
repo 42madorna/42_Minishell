@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:25:46 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 04:03:00 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:12:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,5 @@ int
 		mini->flag = APPEND;
 		mini->line_cpy += 2;
 	}
-	// Error OPEN!
-	// if ((mini->p_error = open(mini->line_cpy, O_CREAT | O_WRONLY | O_APPEND)) == -1)
-	// 	printf(SHELL_NAME ": %s: %s\n", mini->line_cpy, strerror(errno));
 	return (0);
 }

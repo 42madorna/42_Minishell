@@ -6,14 +6,14 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:07:59 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 01:10:26 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:11:45 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char
 	*unclosed_name(int flag)
 {
-	static char *flags_names[] = {"", "|", ">", "<<", "<", ">>",
+	static char	*flags_names[] = {"", "|", ">", "<<", "<", ">>",
 		"\'", "$", "\""};
 
 	return (flags_names[flag]);

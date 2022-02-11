@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 23:18:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/05 03:40:06 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:34:50 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int
 			mini->flag -= DOLLAR;
 		mini->flag = PIPE;
 		mini->pipe_count++;
-		// mini->line_cpy++;
 	}
 	return (0);
 }

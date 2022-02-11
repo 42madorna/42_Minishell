@@ -6,12 +6,11 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:01:48 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 05:19:33 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:37:39 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 /*
 ** TODO: [MINS-85] Convert t_env to char **env
@@ -26,7 +25,7 @@ void
 
 	l_env = mini->l_env;
 	n_env = ft_lstsize(l_env);
-	mini->env_cmd = calloc(n_env + 1, sizeof(char*));
+	mini->env_cmd = calloc(n_env + 1, sizeof(char *));
 	i = 0;
 	while (l_env)
 	{
