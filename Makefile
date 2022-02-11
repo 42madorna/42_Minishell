@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/11 06:39:20 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/11 19:41:57 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRCS =	main.c																	\
 		env/ft_env_value.c														\
 		env/ft_free_env.c														\
 		env/make_env.c															\
-		exec/ft_execve.c														\
 		exec/ft_search_cmd.c													\
 		parser/append.c															\
 		parser/clear.c															\

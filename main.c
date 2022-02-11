@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 19:51:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:55:29 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void
 	while (l_delim)
 	{
 		if (mini->line && *mini->line && !ft_strncmp(l_delim->content,
-			mini->line, ft_strlen(mini->line) + 1))
+				mini->line, ft_strlen(mini->line) + 1))
 			l_delim = l_delim->next;
 		promt(mini, 1);
 		if (!mini->line || !*mini->line)
@@ -68,7 +68,8 @@ void
 			begin_node = l_delim;
 			continue ;
 		}
-		if (!ft_strncmp(l_delim->content, mini->line, ft_strlen(mini->line) + 1))
+		if (!ft_strncmp(l_delim->content, mini->line,
+			ft_strlen(mini->line) + 1))
 			l_delim = l_delim->next;
 		else
 			l_delim = begin_node;
