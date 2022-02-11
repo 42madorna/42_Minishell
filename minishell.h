@@ -6,26 +6,26 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 19:42:51 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 19:00:27 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-#define MINISHELL_H
+# define MINISHELL_H
 
-#include "libft.h"
-#include "builtin.h"
-#define _GNU_SOURCE
-#include <stdio.h>
-#include <fcntl.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <errno.h>
-#include <sys/wait.h>
-#include <dirent.h>
+# include "libft.h"
+# include "builtin.h"
+# define _GNU_SOURCE
+# include <stdio.h>
+# include <fcntl.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <errno.h>
+# include <sys/wait.h>
+# include <dirent.h>
 
-#define SHELL_NAME "minishell"
+# define SHELL_NAME "minishell"
 
 // # define PIPE "|"
 // # define DQUOTE "\""
@@ -36,23 +36,23 @@
 // # define APPEND ">>"
 // # define OUT ">"
 
-#define CLEAR 0b00000000	 // 0
-#define PIPE 0b00000001		 // 1
-#define OUT 0b00000010		 // 2
-#define DELIMITER 0b00000011 // 3
-#define IN 0b00000100		 // 4
-#define APPEND 0b00000101	 // 5
-#define QUOTE 0b00000110	 // 6
-#define DOLLAR 0b00000111	 // 7
-#define DQUOTE 0b00001000	 // 8
+# define CLEAR 0b00000000	 // 0
+# define PIPE 0b00000001		 // 1
+# define OUT 0b00000010		 // 2
+# define DELIMITER 0b00000011 // 3
+# define IN 0b00000100		 // 4
+# define APPEND 0b00000101	 // 5
+# define QUOTE 0b00000110	 // 6
+# define DOLLAR 0b00000111	 // 7
+# define DQUOTE 0b00001000	 // 8
 
-#define READ_END 0
-#define WRITE_END 1
+# define READ_END 0
+# define WRITE_END 1
 
 /*
 ** General minishell struct
 */
-typedef struct	s_mini
+typedef struct s_mini
 {
 	int		argc;
 	char	**argv;
@@ -61,7 +61,6 @@ typedef struct	s_mini
 	char	*line_cpy;
 	char	*buffer;
 	int		flag;
-	// int		errno;
 	int		p_error;
 	t_list	*l_env;
 	t_list	*cmds;
@@ -78,7 +77,7 @@ typedef struct	s_mini
 /*
 ** Command structure (aka t_mini->cmds)
 */
-typedef struct	s_cmd
+typedef struct s_cmd
 {
 	int		argc;
 	char	**argv;
@@ -96,7 +95,7 @@ typedef struct	s_cmd
 /*
 ** Parser minishell struct (aka t_mini->chars)
 */
-typedef struct	s_chars
+typedef struct s_chars
 {
 	char	c;
 	int		flag;
@@ -106,7 +105,7 @@ typedef struct	s_chars
 /*
 ** Environment variables struct (aka t_mini->l_env)
 */
-typedef struct	s_env
+typedef struct s_env
 {
 	char	*key;
 	char	*value;
@@ -116,7 +115,7 @@ typedef struct	s_env
 /*
 ** Command PIDs
 */
-pid_t g_pid[255];
+pid_t	g_pid[255];
 
 /*
 ** Parser functions
