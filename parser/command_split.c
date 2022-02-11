@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 06:03:03 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:05:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ static int
 	char	*file;
 	int		fd;
 
-	mini->open_style = O_WRONLY | O_CREAT | O_TRUNC | S_IRWXU;
+	mini->open_style = O_WRONLY | O_CREAT | O_TRUNC;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '>')
 	{
-		mini->open_style = O_APPEND | O_CREAT | O_WRONLY | S_IRWXU;
+		mini->open_style = O_APPEND | O_CREAT | O_WRONLY;
 		*chars = (*chars)->next;
 	}
 	file = seek_name(mini, chars, OUT);
