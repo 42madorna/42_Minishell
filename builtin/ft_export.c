@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 19:36:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 07:24:52 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ t_list
 	return (min);
 }
 
-t_list
-	*ft_lstsort(t_list *l_env)
+inline static void
+	ft_lstsort(t_list *l_env)
 {
 	t_list	*index;
 	t_env	*temp;
 
 	if (!l_env)
-		return (NULL);
+		return ;
 	while (l_env)
 	{
 		index = l_env->next;

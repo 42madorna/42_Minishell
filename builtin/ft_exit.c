@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:50:18 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/04 18:03:48 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 07:24:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 */
 
 int
-	ft_exit(int argc, char **argv, t_list *env, t_mini *mini)
+	ft_exit(int argc, char **argv, t_list *env)
 {
 	int		i;
 

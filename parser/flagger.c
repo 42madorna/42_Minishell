@@ -6,21 +6,21 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 02:48:26 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 07:30:04 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 07:25:02 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void
-	print(void *lst)
-{
-	t_chars	*chars;
+// static void
+// 	print(void *lst)
+// {
+// 	t_chars	*chars;
 
-	chars = lst;
-	printf("node content '%c%c', flag '%d'\n", chars->c == 0 ? '\\' : chars->c,
-		chars->c == 0 ? '0' : '\0', chars->flag);
-}
+// 	chars = lst;
+// 	printf("node content '%c%c', flag '%d'\n", chars->c == 0 ? '\\' : chars->c,
+// 		chars->c == 0 ? '0' : '\0', chars->flag);
+// }
 
 void
 	flagger(t_mini *mini)

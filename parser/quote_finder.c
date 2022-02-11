@@ -6,21 +6,21 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:07:44 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/08 07:06:06 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 07:25:47 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void
-	print(void *lst)
-{
-	t_chars	*chars;
+// static void
+// 	print(void *lst)
+// {
+// 	t_chars	*chars;
 
-	chars = lst;
-	printf("node content '%c%c', flag '%d'\n", chars->c == 0 ? '\\' : chars->c,
-		chars->c == 0 ? '0' : '\0', chars->flag);
-}
+// 	chars = lst;
+// 	printf("node content '%c%c', flag '%d'\n", chars->c == 0 ? '\\' : chars->c,
+// 		chars->c == 0 ? '0' : '\0', chars->flag);
+// }
 
 int
 	ft_search_pair(t_list **l_chars, int flag, char find)
