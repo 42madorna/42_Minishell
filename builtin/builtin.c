@@ -6,20 +6,11 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:52:20 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 06:41:27 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:49:31 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
-
-static void
-	close_dup(int saved_fd[2])
-{
-	dup2(saved_fd[0], STDIN_FILENO);
-	dup2(saved_fd[1], STDOUT_FILENO);
-	close(saved_fd[0]);
-	close(saved_fd[1]);
-}
 
 int
 	builtin(char **argv, struct s_mini *mini, int in, int *out)
