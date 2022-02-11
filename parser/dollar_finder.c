@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 07:52:23 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 05:49:00 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ static inline void
 
 	i = 0;
 	env_var = calloc(1024, sizeof(char));
-	while ((*lst) && !ft_is_valid_char(((t_chars*)(*lst)->content)->c))
+	while ((*lst) && !ft_is_valid_char(((t_chars*)(*lst)->content)->c) && !mini->parse_err)
 	{
 		if (i == 0 && ft_isdigit(((t_chars*)(*lst)->content)->c))
 		{
 			printf("Unexpected token\n");
 			mini->parse_err = 1;
 		}
-		if (!ft_isalnum(((t_chars*)(*lst)->content)->c) && ((t_chars*)(*lst)->content)->c != '?')
+		if (!ft_isalnum(((t_chars*)(*lst)->content)->c)
+			&& ((t_chars*)(*lst)->content)->c != '?'
+			&& ((t_chars*)(*lst)->content)->c != '_')
 		{
 			printf("Unexpected token\n");
 			mini->parse_err = 1;

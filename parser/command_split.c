@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 07:55:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:03:03 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int
 	int		flag;
 
 	flag = IN;
-	mini->open_style = O_RDONLY | S_IRWXU;
+	mini->open_style = O_RDONLY;
 	*chars = (*chars)->next;
 	if (*chars && ((t_chars *)((*chars)->content))->c == '<')
 	{
