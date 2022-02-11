@@ -6,21 +6,20 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:52:20 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 06:49:31 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 07:27:49 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
 int
-	builtin(char **argv, struct s_mini *mini, int in, int *out)
+	builtin(t_mini *mini)
 {
 	t_cmd	*cmd;
-	int		saved_fd[2];
 
 	cmd = mini->cmds->content;
 	if (!ft_strncmp(cmd->argv[0], "exit", 5))
-		ft_exit(cmd->argc, cmd->argv, mini->l_env, mini);
+		ft_exit(cmd->argc, cmd->argv, mini->l_env);
 	if (!ft_strncmp(cmd->argv[0], "pwd", 4))
 		exit(ft_pwd(cmd->argc, cmd->argv, mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "cd", 3))
@@ -39,10 +38,9 @@ int
 }
 
 int
-	builtin_parent(char **argv, struct s_mini *mini, int in, int *out)
+	builtin_parent(t_mini *mini)
 {
 	t_cmd	*cmd;
-	int		saved_fd[2];
 
 	cmd = mini->cmds->content;
 	if (!ft_strncmp(cmd->argv[0], "cd", 3))

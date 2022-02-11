@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/11 19:41:57 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/11 21:11:58 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ RM 				=	rm -f
 
 SANITIZE		=	-fsanitize=address -g3 -O0
 
-CFLAGS 			?=	-Wall #-Wextra -Werror
+CFLAGS 			?=	-Wall -Wextra -Werror
 CFLAGS			+=	$(INCLUDES)
 
 LDFLAGS 		=	$(PATH_LIBS) $(LIBS)

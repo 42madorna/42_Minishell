@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 06:37:29 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 19:35:49 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 21:13:45 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,6 @@ static char
 ** ! Although env prints just env variables with value, export prints everything
 ** 	even if there is no value set for that env variable.
 */
-
-static inline t_list
-	*lst_cpy(t_list *lst)
-{
-	t_list	*cpy;
-	t_list	*lst_node;
-
-	if (!lst)
-		return (NULL);
-	lst_node = lst;
-	cpy = ft_lstnew(lst_node->content);
-	lst_node = lst_node->next;
-	while (lst_node)
-	{
-		ft_lstadd_back(&cpy, ft_lstnew(lst_node->content));
-		lst_node = lst_node->next;
-	}
-	return (cpy);
-}
-
 static inline int
 	ft_is_valid_identifier(char *str)
 {

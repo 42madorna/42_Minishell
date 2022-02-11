@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 19:38:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 21:12:05 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int
 		dup2(STDOUT_FILENO, saved_fd[1]);
 		dup2(cmd->infile, STDIN_FILENO);
 		dup2(cmd->outfile, STDOUT_FILENO);
-		if (!builtin(cmd->argv, mini, in, &out))
+		if (!builtin(mini))
 		{
 			close_dup(saved_fd);
 			return (0);
@@ -110,7 +110,7 @@ int
 		close_dup(saved_fd);
 		return (0);
 	}
-	builtin_parent(cmd->argv, mini, in, &out);
+	builtin_parent(mini);
 	return (pid);
 }
 
@@ -149,7 +149,7 @@ void
 		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
 		{
 			if (!ft_strncmp(cmd_node->argv[0], "exit", 5))
-				builtin(cmd_node->argv, mini, in_fd, &pipes[STDOUT_FILENO]);
+				builtin(mini);
 			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node, mini);
 			wait(&pid);
 			mini->ret = WEXITSTATUS(pid);
