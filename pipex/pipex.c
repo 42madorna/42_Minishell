@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 05:57:12 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:28:42 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int
 		close_dup(saved_fd);
 		return (0);
 	}
+	builtin_parent(cmd->argv, mini, in, &out);
 	return (pid);
 }
 

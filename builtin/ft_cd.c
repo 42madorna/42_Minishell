@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 19:33:14 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/11 06:33:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ inline static int
 {
 	if (chdir(argv[1]) <= -1)
 	{
-		printf("%s: cd: %s: ", SHELL_NAME, argv[1]);
+		dprintf(2, "%s: cd: %s: ", SHELL_NAME, argv[1]);
 		if (open(argv[1], O_RDONLY) > 0)
 		{
-			printf("Not a directory\n");
+			dprintf(2, "Not a directory\n");
 			free_cd(dir);
 			return (1);
 		}
-		printf("No such file or directory\n");
+		dprintf(2, "No such file or directory\n");
 		free_cd(dir);
 		return (1);
 	}
@@ -61,7 +61,7 @@ int
 		argv[1] = ft_env_value(l_env, "HOME");
 		if (!argv[1])
 		{
-			printf("%s: cd: HOME not set\n", SHELL_NAME);
+			dprintf(2, "%s: cd: HOME not set\n", SHELL_NAME);
 			return (1);
 		}
 	}
