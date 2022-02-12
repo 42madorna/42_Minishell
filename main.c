@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 19:55:29 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/12 05:18:30 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,16 +128,16 @@ int
 				ft_check_command(&mini);
 				pipex(&mini);
 			}
-			mini.cmds = NULL;
-			mini.delimiters = NULL;
+			ft_lstclear(&mini.cmds, ft_free_cmd);
+			ft_lstclear(&mini.delimiters, free);
 			mini.chars = NULL;
 			free(mini.line);
 			mini.line = NULL;
 		}
 		else if (!mini.line)
 		{
-			printf("exit\n");
 			rl_clear_history();
+			printf("exit\n");
 			break ;
 		}
 	}

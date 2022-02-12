@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env_value.c                                     :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 02:22:17 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/12 04:33:40 by madorna-         ###   ########.fr       */
+/*   Created: 2022/02/12 04:29:44 by madorna-          #+#    #+#             */
+/*   Updated: 2022/02/12 04:30:06 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
 char
-	*ft_env_value(t_list *l_env, const char *key)
+	**ft_free_tab(char **tab)
 {
-	t_list	*env_node;
-	int		key_len;
+	unsigned int	i;
 
-	key_len = ft_strlen(key) + 1;
-	env_node = l_env;
-	while (env_node)
+	i = 0;
+	while (tab[i])
 	{
-		if (!ft_strncmp(((t_env *)env_node->content)->key, key, key_len))
-		{
-			if ((((t_env *)env_node->content)->value))
-				return (ft_strdup((((t_env *)env_node->content)->value)));
-			return (NULL);
-		}
-		env_node = env_node->next;
+		free(tab[i]);
+		i++;
 	}
+	free(tab);
 	return (NULL);
 }

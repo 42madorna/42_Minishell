@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 00:46:27 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/09 19:52:15 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/12 04:34:53 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int
 {
 	char	**env;
 	char	*path;
+	char	*path_val;
 	int		fd;
 	DIR		*dir;
 
@@ -34,7 +35,9 @@ int
 		}
 		return (1);
 	}
-	env = ft_split(ft_env_value(l_env, "PATH"), ':'); // TODO: Leaks?
+	path_val = ft_env_value(l_env, "PATH");
+	env = ft_split(path_val, ':');
+	free(path_val);
 	if (!env)
 		return (1);
 	for (int i = 0; env[i]; i++)
@@ -44,13 +47,13 @@ int
 		if (fd >= 0)
 		{
 			cmd->path = path;
-			free(env);
+			ft_free_tab(env);
 			close(fd);
 			return (0);
 		}
 		close(fd);
 		free(path);
 	}
-	free(env);
+	ft_free_tab(env);
 	return (1);
 }

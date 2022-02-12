@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 13:12:25 by agaliste          #+#    #+#             */
-/*   Updated: 2022/02/06 06:31:08 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/12 04:30:25 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void				ft_freestr(char **str);
 void				*ft_realloc(void *ptr, size_t size);
 void				ft_skip_spaces(char **str);
 int					ft_isspace(char c);
+char				**ft_free_tab(char **tab);
 
 #endif

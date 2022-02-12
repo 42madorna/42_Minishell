@@ -42,7 +42,8 @@ SRCS =	ft_isdigit.c \
 		ft_split.c \
 		ft_realloc.c \
 		ft_skip_spaces.c \
-		ft_isspace.c
+		ft_isspace.c \
+		ft_free_tab.c
 
 BONUS =	ft_lstnew.c \
 		ft_lstadd_front.c \

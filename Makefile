@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/11 21:11:58 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/12 04:47:23 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	main.c																	\
 		builtin/ft_export_noprint.c												\
 		builtin/ft_pwd.c														\
 		builtin/ft_unset.c														\
+		cleanup/ft_free_cmd.c													\
 		env/ft_env_set_value.c													\
 		env/ft_env_to_lst.c														\
 		env/ft_env_value.c														\
@@ -58,7 +59,7 @@ NAME_LIBFT		=	libft.a
 PATH_LIBFT		=	libft
 LIBFT			=	$(PATH_LIBFT)/$(NAME_LIBFT)
 
-INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin
+INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin -Icleanup
 
 PATH_LIBS		=	-L$(PATH_LIBFT)
 
