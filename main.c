@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/12 05:18:30 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/12 05:40:39 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void
 				mini->line, ft_strlen(mini->line) + 1))
 			l_delim = l_delim->next;
 		promt(mini, 1);
-		if (!mini->line || !*mini->line)
+		if (!mini->line && !*mini->line)
 		{
 			printf("%s: warning: unexpected '\\0' (wanted `%s')\n", SHELL_NAME,
 				(char *)l_delim->content);
