@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}",
                 "${workspaceFolder}/libft",
-                "${workspaceFolder}/builtin"
+                "${workspaceFolder}/builtin",
+                "${workspaceFolder}/cleanup"
             ],
             "defines": [],
             "macFrameworkPath": [

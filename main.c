@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/13 04:25:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 05:33:32 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void
 	mini->line = readline(names[type]);
 }
 
+void
+	ft_strc_init(t_mini *mini)
+{
+	set_functions(mini);
+	ft_env_to_lst(mini);
+}
+
 /*
 ** Minishell
 ** Subject https://cdn.intra.42.fr/pdf/pdf/34911/en.subject.pdf
@@ -55,8 +62,7 @@ int
 	mini.argc = argc;
 	mini.argv = argv;
 	mini.env = env;
-	set_functions(&mini);
-	ft_env_to_lst(&mini);
+	ft_strc_init(&mini);
 	while (1)
 	{
 		signal(SIGINT, signal_h);
