@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/13 05:58:02 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 20:56:29 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,20 +151,11 @@ int
 			{
 				if (ft_is_valid_identifier(arg[0]))
 				{
-					printf("%s: export: `%s': not a valid identifier\n",
+					dprintf(2, "%s: export: `%s': not a valid identifier\n",
 						SHELL_NAME, arg[0]);
 					free_malloc(arg);
 					continue ;
 				}
-				if (arg[1])
-				{
-					if (*arg[1] == '\'' || *arg[1] == '"')
-						ft_memcpy(arg[1], arg[1] + 1, ft_strlen(arg[1]));
-					if (arg[1][ft_strlen(arg[1]) - 1] == '\''
-						|| arg[1][ft_strlen(arg[1]) - 1] == '"')
-						arg[1][ft_strlen(arg[1]) - 1] = '\0';
-				}
-				ft_env_set_value(env, arg[0], arg[1]);
 			}
 			free_malloc(arg);
 		}

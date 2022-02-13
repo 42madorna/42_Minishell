@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:07:44 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 21:12:35 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/14 00:15:57 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ int
 	return (0);
 }
 
+int
+	ft_check_unclosed(int unclosed, t_mini *mini)
+{
+	if (unclosed)
+	{
+		printf("Unexpected token near `%s'\n", unclosed_name(unclosed));
+		mini->parse_err = 1;
+	}
+}
+
 void
 	quote_finder(t_mini *mini)
 {
@@ -79,11 +89,7 @@ void
 	save_char(mini, chars);
 	free(buff_cpy);
 	unclosed = ft_search_unclosed_q(mini->chars);
-	if (unclosed)
-	{
-		printf("Unexpected token near `%s'\n", unclosed_name(unclosed));
-		mini->parse_err = 1;
-	}
+	ft_check_unclosed(unclosed, mini);
 	if (!mini->parse_err)
 		dollar_finder(mini);
 }

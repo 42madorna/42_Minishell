@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/13 05:57:23 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 20:54:05 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,45 @@ void
 		close(saved_fd[1]);
 }
 
+void
+	ft_check_existence(t_cmd *cmd, int saved_fd[2])
+{
+	if (cmd->notexists)
+	{
+		ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+		ft_putstr_fd(cmd->argv[0], STDERR_FILENO);
+		if (cmd->notexists == 1)
+			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+		else
+			ft_putstr_fd(": is a directory\n", STDERR_FILENO);
+		close_dup(saved_fd);
+		if (cmd->notexists == 1)
+			exit(127);
+		else
+			exit(126);
+	}
+}
+
+void
+	ft_in_out(int in, int out, int saved_fd[2], t_cmd *cmd)
+{
+	if (in != STDIN_FILENO)
+	{
+		dup2(in, STDIN_FILENO);
+		close(in);
+	}
+	if (out != STDOUT_FILENO)
+	{
+		dup2(out, STDOUT_FILENO);
+		close(out);
+	}
+	dup2(STDIN_FILENO, saved_fd[0]);
+	dup2(STDOUT_FILENO, saved_fd[1]);
+	dup2(cmd->infile, STDIN_FILENO);
+	dup2(cmd->outfile, STDOUT_FILENO);
+}
+
 int
 	execute(int in, int out, t_cmd *cmd, t_mini *mini)
 {
@@ -75,40 +114,13 @@ int
 	pid = fork();
 	if (pid == 0)
 	{
-		if (in != STDIN_FILENO)
-		{
-			dup2(in, STDIN_FILENO);
-			close(in);
-		}
-		if (out != STDOUT_FILENO)
-		{
-			dup2(out, STDOUT_FILENO);
-			close(out);
-		}
-		dup2(STDIN_FILENO, saved_fd[0]);
-		dup2(STDOUT_FILENO, saved_fd[1]);
-		dup2(cmd->infile, STDIN_FILENO);
-		dup2(cmd->outfile, STDOUT_FILENO);
+		ft_in_out(in, out, saved_fd, cmd);
 		if (!builtin(mini))
 		{
 			close_dup(saved_fd);
 			return (0);
 		}
-		if (cmd->notexists)
-		{
-			ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
-			ft_putstr_fd(": ", STDERR_FILENO);
-			ft_putstr_fd(cmd->argv[0], STDERR_FILENO);
-			if (cmd->notexists == 1)
-				ft_putstr_fd(": command not found\n", STDERR_FILENO);
-			else
-				ft_putstr_fd(": is a directory\n", STDERR_FILENO);
-			close_dup(saved_fd);
-			if (cmd->notexists == 1)
-				exit(127);
-			else
-				exit(126);
-		}
+		ft_check_existence(cmd, saved_fd);
 		execve(cmd->path, cmd->argv, cmd->env);
 		close_dup(saved_fd);
 		return (0);
@@ -117,13 +129,17 @@ int
 	return (pid);
 }
 
+// void
+// 	ft_exit_stat()
+// {
+// }
+
 void
 	pipex(t_mini *mini)
 {
 	int		in_fd;
 	int		pipes[2];
 	t_cmd	*cmd_node;
-	pid_t	pid;
 	t_list	*cmds;
 
 	signal(SIGQUIT, signal_q);
@@ -135,15 +151,11 @@ void
 	while (mini->cmds && mini->cmds->next)
 	{
 		cmd_node = mini->cmds->content;
-		if (!cmd_node->argv[0] || !cmd_node->argv[0][0])
-		{
-			mini->cmds = mini->cmds->next;
-			continue ;
-		}
 		pipe(pipes);
-		pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node, mini);
-		wait(&pid);
-		mini->ret = WEXITSTATUS(pid);
+		g_pid[cmd_node->num] = execute(in_fd,
+				pipes[STDOUT_FILENO], cmd_node, mini);
+		wait(&g_pid[cmd_node->num]);
+		mini->ret = WEXITSTATUS(g_pid[cmd_node->num]);
 		close(pipes[STDOUT_FILENO]);
 		in_fd = pipes[STDIN_FILENO];
 		mini->cmds = mini->cmds->next;
@@ -155,9 +167,10 @@ void
 		{
 			if (!ft_strncmp(cmd_node->argv[0], "exit", 5))
 				builtin(mini);
-			pid = execute(in_fd, pipes[STDOUT_FILENO], cmd_node, mini);
-			wait(&pid);
-			mini->ret = WEXITSTATUS(pid);
+			g_pid[cmd_node->num] = execute(in_fd, pipes[STDOUT_FILENO],
+					cmd_node, mini);
+			wait(&g_pid[cmd_node->num]);
+			mini->ret = WEXITSTATUS(g_pid[cmd_node->num]);
 		}
 	}
 	if (in_fd)
