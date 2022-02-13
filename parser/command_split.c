@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 19:35:25 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 05:59:24 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,9 +267,6 @@ void
 			skip_lst_spaces(&chars);
 			continue ;
 		}
-		/*
-		** WARNING: FIXME: MINS-106 This condition won't pass bonus
-		*/
 		if (!(chars_node->c == '"' && (chars_node->flag == DQUOTE
 					|| chars_node->flag == 0)) && !(chars_node->c == '\''
 				&& (chars_node->flag == QUOTE || chars_node->flag == 0)))

@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/13 03:34:32 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 05:57:23 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ int
 			else
 				ft_putstr_fd(": is a directory\n", STDERR_FILENO);
 			close_dup(saved_fd);
-			cmd->notexists == 1 ? exit (127) : exit(126);
+			if (cmd->notexists == 1)
+				exit(127);
+			else
+				exit(126);
 		}
 		execve(cmd->path, cmd->argv, cmd->env);
 		close_dup(saved_fd);

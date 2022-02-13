@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 21:12:43 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 05:58:02 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,6 @@ inline static void
 		l_env = l_env->next;
 	}
 }
-
-// void
-// 	clear_env(void *env)
-// {
-// 	t_env	*clear;
-
-// 	clear = env;
-// 	if (clear->name)
-// 	{
-// 		free(clear->name);
-// 		clear->name = NULL;
-// 	}
-// 	if (clear->value)
-// 	{
-// 		free(clear->value);
-// 		clear->value = NULL;
-// 	}
-// }
 
 /*
 ** builtin: export
