@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:07:44 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/14 00:15:57 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/14 00:33:05 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int
 	return (0);
 }
 
-int
+void
 	ft_check_unclosed(int unclosed, t_mini *mini)
 {
 	if (unclosed)
