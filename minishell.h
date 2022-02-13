@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/12 04:45:19 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 04:24:12 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,10 +160,24 @@ void	ft_free_env(void *env);
 void	pipex(t_mini *mini);
 
 /*
+** Core loop
+*/
+void	mini_loop(t_mini *mini);
+void	promt(t_mini *mini, int type);
+
+void	ft_delim(t_mini *mini);
+
+/*
+** Init
+*/
+void	set_functions(t_mini *mini);
+
+/*
 ** Exec functions
 */
 int		ft_execve(t_cmd *command);
 int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
+void	ft_check_command(t_mini *mini);
 
 /*
 ** Utils functions

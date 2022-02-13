@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/12 04:47:23 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/13 04:24:36 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,11 @@ SRCS =	main.c																	\
 		env/ft_env_value.c														\
 		env/ft_free_env.c														\
 		env/make_env.c															\
+		exec/ft_check_command.c													\
+		exec/ft_delim.c															\
 		exec/ft_search_cmd.c													\
+		exec/pipex.c															\
+		loop/mini_loop.c														\
 		parser/append.c															\
 		parser/clear.c															\
 		parser/command_split.c													\
@@ -45,9 +49,9 @@ SRCS =	main.c																	\
 		parser/quote_finder.c													\
 		parser/save_char.c														\
 		parser/unclosed_name.c													\
-		pipex/pipex.c															\
 		utils/ft_strjoin_env.c													\
-		utils/ft_strjoin_path.c
+		utils/ft_strjoin_path.c													\
+		utils/set_functions.c
 
 NAME = minishell
 
