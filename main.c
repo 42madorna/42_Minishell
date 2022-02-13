@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:49:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/12 05:40:39 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 03:45:13 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,19 @@ void
 				mini->line, ft_strlen(mini->line) + 1))
 			l_delim = l_delim->next;
 		promt(mini, 1);
-		if (!mini->line && !*mini->line)
+		if (mini->line)
 		{
-			printf("%s: warning: unexpected '\\0' (wanted `%s')\n", SHELL_NAME,
-				(char *)l_delim->content);
-			l_delim = l_delim->next;
-			begin_node = l_delim;
+			if (!ft_strncmp(l_delim->content, mini->line,
+				ft_strlen(mini->line) + 1))
+				l_delim = l_delim->next;
+			else
+				l_delim = begin_node;
 			continue ;
 		}
-		if (!ft_strncmp(l_delim->content, mini->line,
-			ft_strlen(mini->line) + 1))
-			l_delim = l_delim->next;
-		else
-			l_delim = begin_node;
+		printf("%s: warning: unexpected '\\0' (wanted `%s')\n", SHELL_NAME,
+			(char *)l_delim->content);
+		l_delim = l_delim->next;
+		begin_node = l_delim;
 	}
 }
 
@@ -128,7 +128,9 @@ int
 				ft_check_command(&mini);
 				pipex(&mini);
 			}
-			ft_lstclear(&mini.cmds, ft_free_cmd);
+			mini.cmds = NULL;
+			if (mini.env_cmd)
+				ft_free_tab(mini.env_cmd);
 			ft_lstclear(&mini.delimiters, free);
 			mini.chars = NULL;
 			free(mini.line);

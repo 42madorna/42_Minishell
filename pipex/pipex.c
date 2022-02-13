@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 21:12:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 03:34:32 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,14 @@ void
 	int		pipes[2];
 	t_cmd	*cmd_node;
 	pid_t	pid;
+	t_list	*cmds;
 
 	signal(SIGQUIT, signal_q);
 	signal(SIGINT, signal_q);
 	in_fd = STDIN_FILENO;
 	pipes[0] = STDIN_FILENO;
 	pipes[1] = STDOUT_FILENO;
+	cmds = mini->cmds;
 	while (mini->cmds && mini->cmds->next)
 	{
 		cmd_node = mini->cmds->content;
@@ -157,4 +159,5 @@ void
 	}
 	if (in_fd)
 		close(in_fd);
+	ft_lstclear(&cmds, ft_free_cmd);
 }

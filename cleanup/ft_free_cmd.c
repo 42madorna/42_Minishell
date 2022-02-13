@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 04:36:50 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/12 05:16:58 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/13 03:46:11 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void
 	cmd_node = cmd;
 	if (cmd_node->argv)
 		free(cmd_node->argv);
-	if (cmd_node->env)
-		ft_free_tab(cmd_node->env);
 	if (cmd_node->path)
 		free(cmd_node->path);
 	ft_lstclear(&cmd_node->l_argv, free);
