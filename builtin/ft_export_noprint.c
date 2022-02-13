@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 06:37:29 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 21:13:45 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/14 00:26:11 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,6 @@ int
 				{
 					free_malloc(arg);
 					continue ;
-				}
-				if (arg[1])
-				{
-					if (*arg[1] == '\'' || *arg[1] == '"')
-						ft_memcpy(arg[1], arg[1] + 1, ft_strlen(arg[1]));
-					if (arg[1][ft_strlen(arg[1]) - 1] == '\''
-						|| arg[1][ft_strlen(arg[1]) - 1] == '"')
-						arg[1][ft_strlen(arg[1]) - 1] = '\0';
 				}
 				ft_env_set_value(env, arg[0], arg[1]);
 			}
