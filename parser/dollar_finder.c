@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/14 00:23:49 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/14 00:59:23 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void
 	while ((*lst) && !ft_is_valid_char(((t_chars *)(*lst)->content)->c)
 		&& !mini->parse_err)
 	{
-		if (*i == 0 && ft_isdigit(((t_chars *)(*lst)->content)->c))
+		if ((*i) == 0 && ft_isdigit(((t_chars *)(*lst)->content)->c))
 		{
 			printf("Unexpected token\n");
 			mini->parse_err = 1;
@@ -37,7 +37,7 @@ void
 			printf("Unexpected token\n");
 			mini->parse_err = 1;
 		}
-		env_var[*i++] = ((t_chars *)(*lst)->content)->c;
+		env_var[(*i)++] = ((t_chars *)(*lst)->content)->c;
 		*lst = (*lst)->next;
 	}
 }

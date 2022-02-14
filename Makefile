@@ -6,7 +6,7 @@
 #    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/13 04:24:36 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/14 00:50:47 by madorna-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,9 @@ SRCS =	main.c																	\
 		builtin/ft_echo.c														\
 		builtin/ft_env.c														\
 		builtin/ft_exit.c														\
-		builtin/ft_export.c														\
 		builtin/ft_export_noprint.c												\
+		builtin/ft_export_sort.c												\
+		builtin/ft_export.c														\
 		builtin/ft_pwd.c														\
 		builtin/ft_unset.c														\
 		cleanup/ft_free_cmd.c													\

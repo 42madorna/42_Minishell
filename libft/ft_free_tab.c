@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 04:29:44 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/12 04:30:06 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/14 01:01:09 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char
 	unsigned int	i;
 
 	i = 0;
+	if (!tab)
+		return (NULL);
 	while (tab[i])
 	{
 		free(tab[i]);

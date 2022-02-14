@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/13 04:24:12 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/14 00:56:18 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,12 @@ void	ft_check_command(t_mini *mini);
 */
 char	*ft_strjoin_path(const char *s1, const char *s2);
 char	*ft_strjoin_env(const char *s1, const char *s2);
+
+/*
+** Export sort
+*/
+t_list	*ft_find_max(t_list *l_env);
+int		cmp_env(t_env *a, t_env *b);
+void	ft_lstsort(t_list *l_env);
 
 #endif
