@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 19:10:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/14 01:14:49 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,10 @@ void
 }
 
 inline static void
-	del_env_vble(t_list **l_env, char *str)
+	ft_repoint(t_list **l_env, t_list *del)
 {
-	t_list	*env_node;
 	t_list	*reseach;
-	t_list	*del;
 
-	env_node = (*l_env);
-	del = NULL;
-	while (env_node)
-	{
-		if (!ft_strncmp(((t_env *)env_node->content)->key,
-				str, ft_strlen(((t_env *)env_node->content)->key)))
-		{
-			del = env_node;
-			break ;
-		}
-		env_node = env_node->next;
-	}
 	reseach = (*l_env);
 	if ((*l_env) == del)
 		(*l_env) = (*l_env)->next;
@@ -75,6 +61,27 @@ inline static void
 			reseach = reseach->next;
 		}
 	}
+}
+
+inline static void
+	del_env_vble(t_list **l_env, char *str)
+{
+	t_list	*env_node;
+	t_list	*del;
+
+	env_node = (*l_env);
+	del = NULL;
+	while (env_node)
+	{
+		if (!ft_strncmp(((t_env *)env_node->content)->key,
+				str, ft_strlen(((t_env *)env_node->content)->key)))
+		{
+			del = env_node;
+			break ;
+		}
+		env_node = env_node->next;
+	}
+	ft_repoint(l_env, del);
 	ft_lstdelone(del, ft_del_env_node);
 }
 
