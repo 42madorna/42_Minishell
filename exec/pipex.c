@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/16 07:27:40 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/16 07:51:53 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int
 	pid_t	pid;
 	int		saved_fd[2];
 
+	if (!cmd->argv || !cmd->argv[0] || !cmd->argv[0][0])
+		return (0);
 	pid = fork();
 	if (pid == 0)
 	{
