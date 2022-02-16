@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/14 00:56:18 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/16 07:30:47 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,8 @@ void	set_functions(t_mini *mini);
 int		ft_execve(t_cmd *command);
 int		ft_search_cmd(t_list *l_env, t_cmd *cmd);
 void	ft_check_command(t_mini *mini);
+void	ft_check_existence(t_cmd *cmd, int saved_fd[2]);
+void	close_dup(int saved_fd[2]);
 
 /*
 ** Utils functions
@@ -191,5 +193,10 @@ char	*ft_strjoin_env(const char *s1, const char *s2);
 t_list	*ft_find_max(t_list *l_env);
 int		cmp_env(t_env *a, t_env *b);
 void	ft_lstsort(t_list *l_env);
+
+/*
+** Signals
+*/
+void	signal_q(int sig);
 
 #endif

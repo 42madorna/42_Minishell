@@ -6,28 +6,11 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/13 20:54:05 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/16 07:27:40 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void
-	signal_q(int sig)
-{
-	int	i;
-
-	i = 0;
-	while (g_pid[i])
-	{
-		kill(g_pid[i], sig);
-		g_pid[i++] = 0;
-	}
-	if (sig == 3)
-		printf("Quit: %d\n", sig);
-	else
-		printf("\n");
-}
 
 /*
 ** Pipex (minishell edition)
@@ -64,26 +47,6 @@ void
 		close(saved_fd[0]);
 	if (saved_fd[STDOUT_FILENO] != STDOUT_FILENO)
 		close(saved_fd[1]);
-}
-
-void
-	ft_check_existence(t_cmd *cmd, int saved_fd[2])
-{
-	if (cmd->notexists)
-	{
-		ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
-		ft_putstr_fd(": ", STDERR_FILENO);
-		ft_putstr_fd(cmd->argv[0], STDERR_FILENO);
-		if (cmd->notexists == 1)
-			ft_putstr_fd(": command not found\n", STDERR_FILENO);
-		else
-			ft_putstr_fd(": is a directory\n", STDERR_FILENO);
-		close_dup(saved_fd);
-		if (cmd->notexists == 1)
-			exit(127);
-		else
-			exit(126);
-	}
 }
 
 void
@@ -129,10 +92,15 @@ int
 	return (pid);
 }
 
-// void
-// 	ft_exit_stat()
-// {
-// }
+void
+	ft_init_pipex(int *in_fd, int pipes[2])
+{
+	signal(SIGQUIT, signal_q);
+	signal(SIGINT, signal_q);
+	(*in_fd) = STDIN_FILENO;
+	(pipes)[0] = STDIN_FILENO;
+	(pipes)[1] = STDOUT_FILENO;
+}
 
 void
 	pipex(t_mini *mini)
@@ -142,36 +110,21 @@ void
 	t_cmd	*cmd_node;
 	t_list	*cmds;
 
-	signal(SIGQUIT, signal_q);
-	signal(SIGINT, signal_q);
-	in_fd = STDIN_FILENO;
-	pipes[0] = STDIN_FILENO;
-	pipes[1] = STDOUT_FILENO;
+	ft_init_pipex(&in_fd, pipes);
 	cmds = mini->cmds;
-	while (mini->cmds && mini->cmds->next)
+	while (mini->cmds)
 	{
 		cmd_node = mini->cmds->content;
-		pipe(pipes);
+		if (mini->cmds->next)
+			pipe(pipes);
 		g_pid[cmd_node->num] = execute(in_fd,
 				pipes[STDOUT_FILENO], cmd_node, mini);
 		wait(&g_pid[cmd_node->num]);
 		mini->ret = WEXITSTATUS(g_pid[cmd_node->num]);
-		close(pipes[STDOUT_FILENO]);
+		if (mini->cmds->next)
+			close(pipes[STDOUT_FILENO]);
 		in_fd = pipes[STDIN_FILENO];
 		mini->cmds = mini->cmds->next;
-	}
-	if (mini->cmds)
-	{
-		cmd_node = mini->cmds->content;
-		if (cmd_node && cmd_node->argv && cmd_node->argv[0])
-		{
-			if (!ft_strncmp(cmd_node->argv[0], "exit", 5))
-				builtin(mini);
-			g_pid[cmd_node->num] = execute(in_fd, pipes[STDOUT_FILENO],
-					cmd_node, mini);
-			wait(&g_pid[cmd_node->num]);
-			mini->ret = WEXITSTATUS(g_pid[cmd_node->num]);
-		}
 	}
 	if (in_fd)
 		close(in_fd);
