@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/21 09:35:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:42:57 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,26 @@ static void
 }
 
 void
+	arg_fix(char **arg, int *i, t_cmd *cmd)
+{
+	if (arg && *arg && **arg)
+	{
+		if (**arg == '\'' || **arg == '"')
+			ft_memcpy(*arg, *arg + 1, *i);
+		if (*i > 0)
+		{
+			if (*(*(arg) + (*i - 1)) == '\'' || *(*(arg) + (*i - 1)) == '"')
+				*(*(arg) + (*i - 1)) = '\0';
+			if (**arg)
+				ft_lstadd_back(&cmd->l_argv, ft_lstnew(ft_strdup(*arg)));
+		}
+	}
+	free(*arg);
+	*arg = calloc(1024, sizeof(char *));
+	*i = 0;
+}
+
+void
 	command_split(t_mini *mini)
 {
 	t_list	*chars;
@@ -179,22 +199,8 @@ void
 		if (chars_node->c == '|' && chars_node->flag != QUOTE
 			&& chars_node->flag != DQUOTE)
 		{
-			if (arg)
-			{
-				if (*arg == '\'' || *arg == '"')
-					ft_memcpy(arg, arg + 1, i);
-				if (ft_strlen(arg) > 0)
-				{
-					if (arg[ft_strlen(arg) - 1] == '\''
-						|| arg[ft_strlen(arg) - 1] == '"')
-						arg[ft_strlen(arg) - 1] = '\0';
-					if (*arg)
-						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
-				}
-			}
-			arg = calloc(1024, sizeof(char *));
-			i = 0;
 			manage_pipe(mini, &chars);
+			arg_fix(&arg, &i, cmd);
 			cmd->num = ft_lstsize(mini->cmds);
 			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
 			cmd = calloc(1, sizeof(t_cmd));
@@ -203,68 +209,22 @@ void
 		if (chars_node->c == '>' && chars_node->flag != QUOTE
 			&& chars_node->flag != DQUOTE)
 		{
-			if (arg)
-			{
-				if (*arg == '\'' || *arg == '"')
-					ft_memcpy(arg, arg + 1, i);
-				if (ft_strlen(arg) > 0)
-				{
-					if (arg[ft_strlen(arg) - 1] == '\''
-						|| arg[ft_strlen(arg) - 1] == '"')
-						arg[ft_strlen(arg) - 1] = '\0';
-					if (*arg)
-						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
-				}
-				if (*arg)
-					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
-			}
-			arg = calloc(1024, sizeof(char *));
-			i = 0;
 			cmd->outfile = manage_out(mini, &chars);
+			arg_fix(&arg, &i, cmd);
 			continue ;
 		}
 		if (chars_node->c == '<' && chars_node->flag != QUOTE
 			&& chars_node->flag != DQUOTE)
 		{
-			if (arg)
-			{
-				if (*arg == '\'' || *arg == '"')
-					ft_memcpy(arg, arg + 1, i);
-				if (ft_strlen(arg) > 0)
-				{
-					if (arg[ft_strlen(arg) - 1] == '\''
-						|| arg[ft_strlen(arg) - 1] == '"')
-						arg[ft_strlen(arg) - 1] = '\0';
-					if (*arg)
-						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
-				}
-				if (*arg)
-					ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
-			}
-			arg = calloc(1024, sizeof(char *));
-			i = 0;
 			cmd->infile = manage_in(mini, &chars);
+			arg_fix(&arg, &i, cmd);
 			continue ;
 		}
 		if (chars_node->c == ' ' && chars_node->flag != QUOTE
 			&& chars_node->flag != DQUOTE)
 		{
-			if (arg)
-			{
-				if (*arg == '\'' || *arg == '"')
-					ft_memcpy(arg, arg + 1, i);
-				if (ft_strlen(arg) > 0)
-				{
-					if (arg[ft_strlen(arg) - 1] == '\''
-						|| arg[ft_strlen(arg) - 1] == '"')
-						arg[ft_strlen(arg) - 1] = '\0';
-					if (*arg)
-						ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
-				}
-			}
-			arg = calloc(1024, sizeof(char *));
-			i = 0;
 			skip_lst_spaces(&chars);
+			arg_fix(&arg, &i, cmd);
 			continue ;
 		}
 		if (!(chars_node->c == '"' && (chars_node->flag == DQUOTE
@@ -277,14 +237,15 @@ void
 	{
 		if (*arg == '\'' || *arg == '"')
 			ft_memcpy(arg, arg + 1, i);
-		if (ft_strlen(arg) > 0)
+		if (i > 0)
 		{
-			if (arg[ft_strlen(arg) - 1] == '\''
-				|| arg[ft_strlen(arg) - 1] == '"')
-				arg[ft_strlen(arg) - 1] = '\0';
+			if (arg[i - 1] == '\''
+				|| arg[i - 1] == '"')
+				arg[i - 1] = '\0';
 			if (*arg)
-				ft_lstadd_back(&cmd->l_argv, ft_lstnew(arg));
+				ft_lstadd_back(&cmd->l_argv, ft_lstnew(ft_strdup(arg)));
 		}
+		free(arg);
 	}
 	cmd->num = ft_lstsize(mini->cmds);
 	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));

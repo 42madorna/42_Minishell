@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 04:16:57 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/21 09:40:07 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/21 20:41:18 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void
 		ft_check_command(mini);
 		pipex(mini);
 	}
+	ft_lstclear(&mini->cmds, ft_free_cmd);
 	mini->cmds = NULL;
 	if (mini->env_cmd)
 		ft_free_tab(mini->env_cmd);
