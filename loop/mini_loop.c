@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 04:16:57 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/13 04:23:17 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/21 09:40:07 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void
 	mini->chars = NULL;
 	free(mini->line);
 	mini->line = NULL;
+	mini->env_cmd = NULL;
 }
