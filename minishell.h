@@ -6,7 +6,7 @@
 /*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/27 17:11:08 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/02/27 18:38:35 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_mini
 	int		parse_err;
 	int		pipe_count;
 	int		open_style;
+	char	*arg;
 }				t_mini;
 
 /*
