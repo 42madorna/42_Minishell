@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/16 07:30:47 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:11:08 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "builtin.h"
 # include "cleanup.h"
+# include "command_split.h"
 # define _GNU_SOURCE
 # include <stdio.h>
 # include <fcntl.h>
@@ -26,7 +27,7 @@
 # include <sys/wait.h>
 # include <dirent.h>
 
-# define SHELL_NAME "minishell"
+# define SHELL_NAME "putishell"
 
 // # define PIPE "|"
 // # define DQUOTE "\""

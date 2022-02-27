@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_finder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/14 00:59:23 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:19:44 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static inline int
-	ft_is_valid_char(char c)
-{
-	return (c == ' ' || c == '\'' || c == '"' || c == '\t'
-		|| c == '|' || c == '>' || c == '<' || c == '/');
-}
 
 void
 	ft_save_name(t_list **lst, t_mini *mini, int *i, char *env_var)

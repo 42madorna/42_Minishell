@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+         #
+#    By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/16 07:29:22 by madorna-         ###   ########.fr        #
+#    Updated: 2022/02/27 17:31:19 by agaliste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,10 @@ SRCS =	main.c																	\
 		loop/mini_loop.c														\
 		parser/append.c															\
 		parser/clear.c															\
-		parser/command_split.c													\
+		parser/command_split/command_split.c									\
+		parser/command_split/manager.c											\
+		parser/command_split/seeker.c											\
+		parser/command_split/helpers.c											\
 		parser/delimiter.c														\
 		parser/dollar_finder.c													\
 		parser/dollar.c															\
@@ -65,7 +68,7 @@ NAME_LIBFT		=	libft.a
 PATH_LIBFT		=	libft
 LIBFT			=	$(PATH_LIBFT)/$(NAME_LIBFT)
 
-INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin -Icleanup
+INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin -Icleanup -Iparser/command_split
 
 PATH_LIBS		=	-L$(PATH_LIBFT)
 
