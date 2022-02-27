@@ -6,7 +6,7 @@
 /*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 17:06:29 by agaliste          #+#    #+#             */
-/*   Updated: 2022/02/27 18:11:15 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/02/27 18:23:31 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static inline char
 	i = 0;
 	if (*chars && !ft_isspace(((t_chars *)((*chars)->content))->c)
 		&& ((t_chars *)((*chars)->content))->c != '>')
-		*name = ft_calloc(1024, sizeof(char));
+		(*name) = ft_calloc(1024, sizeof(char));
 	else
 		return (NULL);
 	while (*chars)
@@ -29,15 +29,15 @@ static inline char
 		if (ft_is_valid_char((*chars_node)->c)
 			&& (*chars_node)->flag != DQUOTE && (*chars_node)->flag != QUOTE)
 			break ;
-		*name[i++] = (*chars_node)->c;
+		((*name))[i++] = (*chars_node)->c;
 		(*chars) = (*chars)->next;
 	}
-	if (**name == '\'' || **name == '"')
-		ft_memcpy(*name, *name + 1, i);
-	if (*name[ft_strlen(*name) - 1] == '\''
-		|| *name[ft_strlen(*name) - 1] == '"')
-		*name[ft_strlen(*name) - 1] = '\0';
-	return (*name);
+	if ((**name) == '\'' || (**name) == '"')
+		ft_memcpy((*name), (*name) + 1, i);
+	if ((*name)[ft_strlen((*name)) - 1] == '\''
+		|| (*name)[ft_strlen((*name)) - 1] == '"')
+		(*name)[ft_strlen((*name)) - 1] = '\0';
+	return ((*name));
 }
 
 char
