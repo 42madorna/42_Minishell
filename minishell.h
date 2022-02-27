@@ -27,7 +27,7 @@
 # include <sys/wait.h>
 # include <dirent.h>
 
-# define SHELL_NAME "minishell"
+# define SHELL_NAME "🥵❤️‍🔥putishell❤️‍🔥🥵"
 
 // # define PIPE "|"
 // # define DQUOTE "\""
