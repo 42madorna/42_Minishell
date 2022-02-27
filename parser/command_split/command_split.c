@@ -6,7 +6,7 @@
 /*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/27 17:30:20 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/02/27 18:10:23 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,75 @@ void
 	free(*arg);
 	*arg = calloc(1024, sizeof(char *));
 	*i = 0;
+}
+
+static inline int
+	command_split_while1(t_chars **chars_node, t_mini *mini, t_list **chars, char **arg, int *i, t_cmd **cmd)
+{
+	(*chars_node) = (*chars)->content;
+	if ((*chars_node)->c == '|' && (*chars_node)->flag != QUOTE
+		&& (*chars_node)->flag != DQUOTE)
+	{
+		manage_pipe(mini, &(*chars));
+		arg_fix(&(*arg), &(*i), (*cmd));
+		(*cmd)->num = ft_lstsize(mini->cmds);
+		ft_lstadd_back(&mini->cmds, ft_lstnew((*cmd)));
+		(*cmd) = calloc(1, sizeof(t_cmd));
+		return (1);
+	}
+	if ((*chars_node)->c == '>' && (*chars_node)->flag != QUOTE
+		&& (*chars_node)->flag != DQUOTE)
+	{
+		(*cmd)->outfile = manage_out(mini, &(*chars));
+		arg_fix(&(*arg), &(*i), (*cmd));
+		return (1);
+	}
+	return (0);
+}
+
+static inline void
+	command_split_while2(t_chars **chars_node, t_mini *mini, t_list **chars, char **arg, int *i, t_cmd **cmd)
+{
+	if ((*chars_node)->c == '<' && (*chars_node)->flag != QUOTE
+		&& (*chars_node)->flag != DQUOTE)
+	{
+		(*cmd)->infile = manage_in(mini, &(*chars));
+		arg_fix(&(*arg), &(*i), (*cmd));
+		return ;
+	}
+	if ((*chars_node)->c == ' ' && (*chars_node)->flag != QUOTE
+		&& (*chars_node)->flag != DQUOTE)
+	{
+		skip_lst_spaces(&(*chars));
+		arg_fix(&(*arg), &(*i), (*cmd));
+		return ;
+	}
+	if (!((*chars_node)->c == '"' && ((*chars_node)->flag == DQUOTE
+				|| (*chars_node)->flag == 0)) && !((*chars_node)->c == '\''
+			&& ((*chars_node)->flag == QUOTE || (*chars_node)->flag == 0)))
+		(*arg)[(*i)++] = (*chars_node)->c;
+	*chars = (*chars)->next;
+}
+
+static inline void
+	command_split3(char **arg, t_cmd **cmd, int *i, t_mini *mini)
+{
+	if ((*arg))
+	{
+		if ((**arg) == '\'' || (**arg) == '"')
+			ft_memcpy((*arg), (*arg) + 1, (*i));
+		if ((*i) > 0)
+		{
+			if ((*arg)[(*i) - 1] == '\''
+				|| (*arg)[(*i) - 1] == '"')
+				(*arg)[(*i) - 1] = '\0';
+			if ((**arg))
+				ft_lstadd_back(&(*cmd)->l_argv, ft_lstnew(ft_strdup((*arg))));
+		}
+		free(*arg);
+	}
+	(*cmd)->num = ft_lstsize(mini->cmds);
+	ft_lstadd_back(&mini->cmds, ft_lstnew((*cmd)));
 }
 
 void
@@ -56,58 +125,8 @@ void
 	}
 	while (chars && !mini->parse_err)
 	{
-		chars_node = chars->content;
-		if (chars_node->c == '|' && chars_node->flag != QUOTE
-			&& chars_node->flag != DQUOTE)
-		{
-			manage_pipe(mini, &chars);
-			arg_fix(&arg, &i, cmd);
-			cmd->num = ft_lstsize(mini->cmds);
-			ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
-			cmd = calloc(1, sizeof(t_cmd));
-			continue ;
-		}
-		if (chars_node->c == '>' && chars_node->flag != QUOTE
-			&& chars_node->flag != DQUOTE)
-		{
-			cmd->outfile = manage_out(mini, &chars);
-			arg_fix(&arg, &i, cmd);
-			continue ;
-		}
-		if (chars_node->c == '<' && chars_node->flag != QUOTE
-			&& chars_node->flag != DQUOTE)
-		{
-			cmd->infile = manage_in(mini, &chars);
-			arg_fix(&arg, &i, cmd);
-			continue ;
-		}
-		if (chars_node->c == ' ' && chars_node->flag != QUOTE
-			&& chars_node->flag != DQUOTE)
-		{
-			skip_lst_spaces(&chars);
-			arg_fix(&arg, &i, cmd);
-			continue ;
-		}
-		if (!(chars_node->c == '"' && (chars_node->flag == DQUOTE
-					|| chars_node->flag == 0)) && !(chars_node->c == '\''
-				&& (chars_node->flag == QUOTE || chars_node->flag == 0)))
-			arg[i++] = chars_node->c;
-		chars = chars->next;
+		if (command_split_while1(&chars_node, mini, &chars, &arg, &i, &cmd) == 0)
+			command_split_while2(&chars_node, mini, &chars, &arg, &i, &cmd);
 	}
-	if (arg)
-	{
-		if (*arg == '\'' || *arg == '"')
-			ft_memcpy(arg, arg + 1, i);
-		if (i > 0)
-		{
-			if (arg[i - 1] == '\''
-				|| arg[i - 1] == '"')
-				arg[i - 1] = '\0';
-			if (*arg)
-				ft_lstadd_back(&cmd->l_argv, ft_lstnew(ft_strdup(arg)));
-		}
-		free(arg);
-	}
-	cmd->num = ft_lstsize(mini->cmds);
-	ft_lstadd_back(&mini->cmds, ft_lstnew(cmd));
+	command_split3(&arg, &cmd, &i, mini);
 }
