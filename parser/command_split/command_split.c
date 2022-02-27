@@ -6,7 +6,7 @@
 /*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/27 18:10:23 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/02/27 18:30:40 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static inline void
 }
 
 static inline void
-	command_split3(char **arg, t_cmd **cmd, int *i, t_mini *mini)
+	command_split_helper(char **arg, t_cmd **cmd, int *i, t_mini *mini)
 {
 	if ((*arg))
 	{
@@ -125,8 +125,8 @@ void
 	}
 	while (chars && !mini->parse_err)
 	{
-		if (command_split_while1(&chars_node, mini, &chars, &arg, &i, &cmd) == 0)
+		if (!command_split_while1(&chars_node, mini, &chars, &arg, &i, &cmd))
 			command_split_while2(&chars_node, mini, &chars, &arg, &i, &cmd);
 	}
-	command_split3(&arg, &cmd, &i, mini);
+	command_split_helper(&arg, &cmd, &i, mini);
 }
