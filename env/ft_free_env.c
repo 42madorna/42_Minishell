@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 04:19:49 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/06 05:16:13 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/01 22:18:13 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static inline char
 {
 	unsigned int	i;
 
+	(void)env_node;
 	i = 0;
 	while (tab[i])
 	{
@@ -24,8 +25,6 @@ static inline char
 		tab[i] = NULL;
 		i++;
 	}
-	env_node->key = NULL;
-	env_node->value = NULL;
 	free(tab);
 	tab = NULL;
 	return (NULL);
