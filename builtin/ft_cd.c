@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 06:33:26 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:14:14 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ inline static int
 		dprintf(2, "%s: cd: %s: ", SHELL_NAME, argv[1]);
 		if (open(argv[1], O_RDONLY) > 0)
 		{
-			dprintf(2, "Not a directory\n");
+			ft_putstr_fd("Not a directory\n", 2);
 			free_cd(dir);
 			return (1);
 		}
-		dprintf(2, "No such file or directory\n");
+		ft_putstr_fd("No such file or directory\n", 2);
 		free_cd(dir);
 		return (1);
 	}
