@@ -6,7 +6,7 @@
 #    By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/02/27 17:31:19 by agaliste         ###   ########.fr        #
+#    Updated: 2022/03/02 17:46:07 by agaliste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,10 @@ SRCS =	main.c																	\
 		signal/signal_handler.c													\
 		utils/ft_strjoin_env.c													\
 		utils/ft_strjoin_path.c													\
-		utils/set_functions.c
+		utils/set_functions.c													\
+		utils/ft_free_tab.c														\
+		utils/ft_skip_spaces.c													\
+		utils/ft_isspace.c
 
 NAME = minishell
 
@@ -109,7 +112,7 @@ $(NAME):	$(LIBFT) $(OBJS)
 				$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 $(LIBFT):
-				make -C $(PATH_LIBFT) bonus
+				make -C $(PATH_LIBFT)
 #-C -->Cambia al directorio PATH_LIBFT antes de leer la orden,
 #y es en ese directorio donde ejecuta lo pedido
 #Normalmente se usa con invocaciones recursivas de make

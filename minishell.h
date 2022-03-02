@@ -6,7 +6,7 @@
 /*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/27 18:38:35 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:45:50 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,9 @@ void	close_dup(int saved_fd[2]);
 */
 char	*ft_strjoin_path(const char *s1, const char *s2);
 char	*ft_strjoin_env(const char *s1, const char *s2);
+char	**ft_free_tab(char **tab);
+void	ft_skip_spaces(char **str);
+int		ft_isspace(char c);
 
 /*
 ** Export sort
