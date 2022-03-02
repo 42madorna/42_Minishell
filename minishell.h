@@ -6,7 +6,7 @@
 /*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/02 17:45:50 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:02:27 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "builtin.h"
 # include "cleanup.h"
 # include "command_split.h"
+# include "pipex.h"
 # define _GNU_SOURCE
 # include <stdio.h>
 # include <fcntl.h>

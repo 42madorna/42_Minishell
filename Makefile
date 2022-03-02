@@ -6,7 +6,7 @@
 #    By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/03/02 17:46:07 by agaliste         ###   ########.fr        #
+#    Updated: 2022/03/02 18:03:36 by agaliste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS =	main.c																	\
 		exec/ft_check_command.c													\
 		exec/ft_delim.c															\
 		exec/ft_search_cmd.c													\
-		exec/pipex.c															\
+		exec/pipex/pipex.c														\
+		exec/pipex/fd.c															\
 		loop/mini_loop.c														\
 		parser/append.c															\
 		parser/clear.c															\
@@ -71,7 +72,7 @@ NAME_LIBFT		=	libft.a
 PATH_LIBFT		=	libft
 LIBFT			=	$(PATH_LIBFT)/$(NAME_LIBFT)
 
-INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin -Icleanup -Iparser/command_split
+INCLUDES		=	-I. -I$(PATH_LIBFT) -Ibuiltin -Icleanup -Iparser/command_split -Iexec/pipex
 
 PATH_LIBS		=	-L$(PATH_LIBFT)
 
