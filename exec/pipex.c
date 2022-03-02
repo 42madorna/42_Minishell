@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:14:05 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/02 11:40:56 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:49:06 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void
 		cmd_node = mini->cmds->content;
 		if (mini->cmds->next)
 			pipe(pipes);
-		else if (!ft_strncmp(cmd_node->argv[0], "exit", 5))
+		else if (cmd_node->argv[0] && !ft_strcmp(cmd_node->argv[0], "exit"))
 			builtin(mini);
 		g_pid[cmd_node->num] = execute(in_fd,
 				pipes[STDOUT_FILENO], cmd_node, mini);
