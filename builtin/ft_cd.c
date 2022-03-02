@@ -6,7 +6,7 @@
 /*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:14:14 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:48:00 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ inline static int
 {
 	if (chdir(argv[1]) <= -1)
 	{
-		dprintf(2, "%s: cd: %s: ", SHELL_NAME, argv[1]);
+		ft_putstr_fd(SHELL_NAME ": cd: ", 2);
+		printcustom(argv[1], ":", 2);
 		if (open(argv[1], O_RDONLY) > 0)
 		{
 			ft_putstr_fd("Not a directory\n", 2);
@@ -61,7 +62,7 @@ int
 		argv[1] = ft_env_value(l_env, "HOME");
 		if (!argv[1])
 		{
-			dprintf(2, "%s: cd: HOME not set\n", SHELL_NAME);
+			ft_putstr_fd(SHELL_NAME ": cd: HOME not set\n", 2);
 			return (1);
 		}
 	}

@@ -6,7 +6,7 @@
 #    By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/23 00:55:04 by madorna-          #+#    #+#              #
-#    Updated: 2022/03/02 18:03:36 by agaliste         ###   ########.fr        #
+#    Updated: 2022/03/02 18:34:43 by agaliste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,8 @@ SRCS =	main.c																	\
 		utils/set_functions.c													\
 		utils/ft_free_tab.c														\
 		utils/ft_skip_spaces.c													\
-		utils/ft_isspace.c
+		utils/ft_isspace.c														\
+		utils/printcustom.c
 
 NAME = minishell
 

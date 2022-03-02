@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 06:17:31 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/14 01:06:54 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:53:26 by agaliste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ int
 	return (!ft_isalpha(*str));
 }
 
+static inline int
+	ft_export2(t_list **cpy, t_list *env)
+{
+	*cpy = lst_cpy(env);
+	ft_lstsort(*cpy);
+	print_env_list(*cpy);
+	ft_lstclear(cpy, NULL);
+	return (0);
+}
+
 int
 	ft_export(int argc, char **argv, t_list *env)
 {
@@ -80,16 +90,14 @@ int
 			if (arg && arg[0])
 			{
 				if (ft_is_valid_identifier(arg[0]))
-					dprintf(2, "%s: export: `%s': not a valid identifier\n",
-						SHELL_NAME, arg[0]);
+				{
+					ft_putstr_fd(SHELL_NAME ": export: `", 2);
+					printcustom(arg[0], "': not a valid identifier\n", 2);
+				}
 			}
 			arg = ft_free_tab(arg);
 		}
 		return (0);
 	}
-	cpy = lst_cpy(env);
-	ft_lstsort(cpy);
-	print_env_list(cpy);
-	ft_lstclear(&cpy, NULL);
-	return (0);
+	return (ft_export2(&cpy, env));
 }
