@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:52:20 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 07:27:49 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/02 11:41:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int
 	cmd = mini->cmds->content;
 	if (!ft_strncmp(cmd->argv[0], "cd", 3))
 		return (ft_cd(cmd->argc, cmd->argv, mini->l_env));
-	if (!ft_strncmp(cmd->argv[0], "unset", 6))
-		return (ft_unset(cmd->argc, cmd->argv, &mini->l_env));
 	if (!ft_strncmp(cmd->argv[0], "export", 7))
 		return (ft_export_noprint(cmd->argc, cmd->argv, mini->l_env));
+	if (!ft_strncmp(cmd->argv[0], "unset", 6))
+		return (ft_unset(cmd->argc, cmd->argv, &mini->l_env));
 	return (1);
 }
