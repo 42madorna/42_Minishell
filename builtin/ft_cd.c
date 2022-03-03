@@ -6,21 +6,26 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/03 17:11:41 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:46:24 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-inline static void
-	free_cd(char *dir)
+inline static int
+	free_cd(char *dir, char *arg, char *pwd, int ret)
 {
 	if (dir)
 		free(dir);
+	if (arg)
+		free(arg);
+	if (pwd)
+		free(pwd);
+	return (ret);
 }
 
 inline static int
-	cd_check(char **argv, char *dir)
+	cd_check(char **argv)
 {
 	if (chdir(argv[1]) <= -1)
 	{
@@ -29,11 +34,9 @@ inline static int
 		if (open(argv[1], O_RDONLY) > 0)
 		{
 			ft_putstr_fd("Not a directory\n", 2);
-			free_cd(dir);
 			return (1);
 		}
 		ft_putstr_fd("No such file or directory\n", 2);
-		free_cd(dir);
 		return (1);
 	}
 	return (0);
@@ -53,13 +56,14 @@ inline static int
 int
 	ft_cd(int argc, char **argv, t_list *l_env)
 {
-	char		*dir;
+	char	*dir;
+	char	*pwd;
 
 	dir = NULL;
 	(void)argc;
 	if (!argv[1])
 	{
-		argv[1] = ft_env_value(l_env, "HOME"); // FIXME: MINS-111 Leaks! (https://adorna-apps.atlassian.net/browse/MINS-111?focusedCommentId=10049)
+		argv[1] = ft_env_value(l_env, "HOME");
 		if (!argv[1])
 		{
 			ft_putstr_fd(SHELL_NAME ": cd: HOME not set\n", 2);
@@ -68,12 +72,13 @@ int
 	}
 	if (!ft_strncmp(argv[1], "\"\"", ft_strlen(argv[1]))
 		|| !ft_strncmp(argv[1], "\'\'", ft_strlen(argv[1])))
-		return (0);
-	if (cd_check(argv, dir))
-		return (1);
+		return (free_cd(dir, argv[1], NULL, 0));
+	if (cd_check(argv))
+		return (free_cd(dir, argv[1], NULL, 1));
 	dir = getcwd(dir, 0);
-	ft_env_set_value(l_env, "OLDPWD", ft_env_value(l_env, "PWD"));
+	pwd = ft_env_value(l_env, "PWD");
+	ft_env_set_value(l_env, "OLDPWD", pwd);
 	ft_env_set_value(l_env, "PWD", dir);
-	free_cd(dir);
+	free_cd(dir, argv[1], pwd, 0);
 	return (0);
 }
