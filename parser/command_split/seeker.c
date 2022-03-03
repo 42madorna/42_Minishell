@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   seeker.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 17:06:29 by agaliste          #+#    #+#             */
-/*   Updated: 2022/02/27 18:23:31 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:38:08 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ char
 			break ;
 		(*chars) = (*chars)->next;
 	}
+	if (mini->parse_err)
+		return (NULL);
 	return (seek_name_helper(&name, chars, &chars_node));
 }

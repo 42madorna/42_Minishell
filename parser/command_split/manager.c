@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manager.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 17:06:34 by agaliste          #+#    #+#             */
-/*   Updated: 2022/02/27 18:10:58 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:41:11 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int
 static inline int
 	manage_in_helper(char *file, t_mini *mini, int flag, int *fd)
 {
-	if (!file)
+	if (!file && !mini->parse_err)
 	{
 		printf("Unexpected token near `%s'\n", unclosed_name(IN));
 		mini->parse_err = 1;
