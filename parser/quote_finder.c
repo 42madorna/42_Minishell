@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_finder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 18:07:44 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/01 16:34:13 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:35:50 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void
 	if (unclosed)
 	{
 		printf("Unexpected token near `%s'\n", unclosed_name(unclosed));
-		ft_lstdelone(mini->chars, free);
 		mini->parse_err = 1;
 	}
 }
