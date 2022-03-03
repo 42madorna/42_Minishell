@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:48:00 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/03 17:11:41 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int
 	(void)argc;
 	if (!argv[1])
 	{
-		argv[1] = ft_env_value(l_env, "HOME");
+		argv[1] = ft_env_value(l_env, "HOME"); // FIXME: MINS-111 Leaks! (https://adorna-apps.atlassian.net/browse/MINS-111?focusedCommentId=10049)
 		if (!argv[1])
 		{
 			ft_putstr_fd(SHELL_NAME ": cd: HOME not set\n", 2);
