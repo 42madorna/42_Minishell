@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/03 19:46:24 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/03 20:02:55 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ inline static int
 	if (chdir(argv[1]) <= -1)
 	{
 		ft_putstr_fd(SHELL_NAME ": cd: ", 2);
-		printcustom(argv[1], ":", 2);
+		printcustom(argv[1], ": ", 2);
 		if (open(argv[1], O_RDONLY) > 0)
 		{
 			ft_putstr_fd("Not a directory\n", 2);
@@ -74,7 +74,7 @@ int
 		|| !ft_strncmp(argv[1], "\'\'", ft_strlen(argv[1])))
 		return (free_cd(dir, argv[1], NULL, 0));
 	if (cd_check(argv))
-		return (free_cd(dir, argv[1], NULL, 1));
+		return (free_cd(dir, NULL, NULL, 1));
 	dir = getcwd(dir, 0);
 	pwd = ft_env_value(l_env, "PWD");
 	ft_env_set_value(l_env, "OLDPWD", pwd);
