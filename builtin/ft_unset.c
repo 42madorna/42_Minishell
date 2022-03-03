@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/11 04:06:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/14 01:14:49 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:53:36 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void
 		free(env_node->value);
 		env_node->value = NULL;
 	}
+	free(env_node);
 }
 
 inline static void
@@ -74,7 +75,7 @@ inline static void
 	while (env_node)
 	{
 		if (!ft_strncmp(((t_env *)env_node->content)->key,
-				str, ft_strlen(((t_env *)env_node->content)->key)))
+				str, ft_strlen(((t_env *)env_node->content)->key) + 1))
 		{
 			del = env_node;
 			break ;

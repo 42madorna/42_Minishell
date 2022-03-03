@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 18:11:23 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/11 19:37:12 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:51:26 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void
 	while (env_node)
 	{
 		if (!ft_strncmp(((t_env *)(env_node->content))->key, key,
-			ft_strlen(((t_env *)(env_node->content))->key)))
+			ft_strlen(((t_env *)(env_node->content))->key) + 1))
 		{
 			free(((t_env *)(env_node->content))->value);
 			((t_env *)(env_node->content))->value = NULL;

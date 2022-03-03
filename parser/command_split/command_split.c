@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/03 17:16:32 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:55:48 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,14 @@ void
 	chars = mini->chars;
 	if (!chars)
 		return ;
-	cmd = calloc(1, sizeof(t_cmd)); // FIXME: MINS-111 Leaks (https://adorna-apps.atlassian.net/browse/MINS-111?focusedCommentId=10047)
+	cmd = calloc(1, sizeof(t_cmd));
 	i = 0;
 	mini->arg = calloc(1024, sizeof(char *));
 	chars_node = chars->content;
 	if (chars_node->c == '|')
 	{
 		printf("Unexpected token near `%s'\n", unclosed_name(PIPE));
+		free(cmd);
 		mini->parse_err = 1;
 		return ;
 	}
