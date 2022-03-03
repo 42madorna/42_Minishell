@@ -23,6 +23,7 @@ pipelines:
               - make -n
               - make re
               - make
+              - nm -u minishell
               - ls -la minishell
               - ./minishell
               - make fclean
