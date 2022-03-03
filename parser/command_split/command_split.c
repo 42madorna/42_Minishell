@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 05:30:40 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/27 18:42:51 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/03 17:16:32 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void
 	chars = mini->chars;
 	if (!chars)
 		return ;
-	cmd = calloc(1, sizeof(t_cmd));
+	cmd = calloc(1, sizeof(t_cmd)); // FIXME: MINS-111 Leaks (https://adorna-apps.atlassian.net/browse/MINS-111?focusedCommentId=10047)
 	i = 0;
 	mini->arg = calloc(1024, sizeof(char *));
 	chars_node = chars->content;
