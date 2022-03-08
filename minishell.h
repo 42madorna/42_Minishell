@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 00:53:12 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/02 18:33:32 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:50:21 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,6 @@ typedef struct s_env
 	char	*value;
 	char	**split_mem;
 }				t_env;
-
-/*
-** Command PIDs
-*/
-pid_t	g_pid[255];
 
 /*
 ** Parser functions
