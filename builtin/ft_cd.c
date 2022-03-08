@@ -6,7 +6,7 @@
 /*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 13:01:11 by madorna-          #+#    #+#             */
-/*   Updated: 2022/03/03 20:02:55 by madorna-         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:42:49 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,6 @@ int
 	pwd = ft_env_value(l_env, "PWD");
 	ft_env_set_value(l_env, "OLDPWD", pwd);
 	ft_env_set_value(l_env, "PWD", dir);
-	free_cd(dir, argv[1], pwd, 0);
+	free_cd(dir, NULL, pwd, 0);
 	return (0);
 }
