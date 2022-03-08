@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_finder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agaliste <agaliste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madorna- <madorna-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 01:35:39 by madorna-          #+#    #+#             */
-/*   Updated: 2022/02/27 17:19:44 by agaliste         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:58:10 by madorna-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static inline void
 	env_var = calloc(1024, sizeof(char));
 	ft_save_name(lst, mini, &i, env_var);
 	env_cont = ft_env_value(mini->l_env, env_var);
-	env_cont_cpy = env_cont;
 	if (!ft_strncmp("?\0", env_var, 2))
 		env_cont = ft_itoa(mini->ret);
+	env_cont_cpy = env_cont;
 	if (i == 0 && (!*lst || (((t_chars *)(*lst)->content)->c != '"'
 			&& ((t_chars *)(*lst)->content)->c != '\'')))
 		env_cont = "$";
